@@ -323,7 +323,7 @@ constructor(data) {Object.assign(this, data);}const data = JSON.parse(req.respon
 
 ### 静态方法
 
-`static` 关键字用来定义类的静态方法。 静态方法是指那些不需要对类进行实例化，使用类名就可以直接访问的方法。静态方法经常用来作为工具函数。
+`static` 关键字用来定义类的静态方法。静态方法是指那些不需要对类进行实例化，使用类名就可以直接访问的方法。静态方法经常用来作为工具函数。
 
 ```
 class Point {

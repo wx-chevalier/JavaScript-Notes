@@ -847,7 +847,7 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 
 ## 使用 getters 与 setters
 
-在 JavaScript 的对象属性读写中，建议使用 getter 或者 setter，而不是直接读取或者赋值。不过 JavaScript 并没有类似于 public 或者 private 这样的关键字，因此很难通过接口方式进行强限制。不过鉴于以下优势我们还是强烈建议使用 getter 或者 setter: 1. 如果你打算不仅仅是直接获取原始值，使用 getter 能够避免去修改每个取值的地方。 2. 使用`set`能够方便地添加校验。
+在 JavaScript 的对象属性读写中，建议使用 getter 或者 setter，而不是直接读取或者赋值。不过 JavaScript 并没有类似于 public 或者 private 这样的关键字，因此很难通过接口方式进行强限制。不过鉴于以下优势我们还是强烈建议使用 getter 或者 setter: 1. 如果你打算不仅仅是直接获取原始值，使用 getter 能够避免去修改每个取值的地方。2. 使用`set`能够方便地添加校验。
 
 1. 封装内部表述。
 2. 便于添加日志与错误处理。
