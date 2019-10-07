@@ -76,7 +76,7 @@ alert(this === undefined);// true
 
 # Node.js
 
-> [利用 std/esm 在 Node.js 开发中使用 ES Modules](https://zhuanlan.zhihu.com/p/28478464) 整理自[ES Modules in Node Today!](https://parg.co/bjg)，从属于笔者的[现代 JavaScript 开发：语法基础与实践技巧](https://parg.co/bWW)系列中的模块化与构建章节。本文主要介绍了如何利用 std/esm 第三方库在 Node.js 应用中顺滑地使用 ES Modules 语法。
+- [利用 std/esm 在 Node.js 开发中使用 ES Modules](https://zhuanlan.zhihu.com/p/28478464) 整理自[ES Modules in Node Today!](https://parg.co/bjg)，从属于笔者的[现代 JavaScript 开发：语法基础与实践技巧](https://parg.co/bWW)系列中的模块化与构建章节。本文主要介绍了如何利用 std/esm 第三方库在 Node.js 应用中顺滑地使用 ES Modules 语法。
 
 # 利用 std/esm 在 Node.js 开发中使用 ES Modules
 

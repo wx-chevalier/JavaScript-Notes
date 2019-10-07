@@ -3,7 +3,7 @@
  
  
 
-> [JavaScript 模块衍化史与构建工具对比]()归纳于笔者的[现代 JavaScript 开发：语法基础与实践技巧](https://parg.co/b1c)系列文章中；也欢迎关注[前端每周清单系列](https://parg.co/bh1)获得一手资讯。
+- [JavaScript 模块衍化史与构建工具对比]()归纳于笔者的[现代 JavaScript 开发：语法基础与实践技巧](https://parg.co/b1c)系列文章中；也欢迎关注[前端每周清单系列](https://parg.co/bh1)获得一手资讯。
 
 
 
