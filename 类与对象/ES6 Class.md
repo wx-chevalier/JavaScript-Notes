@@ -294,7 +294,7 @@ class Polygon {}
 
 ### 原型方法
 
-```
+```js
 class Polygon {
   constructor(height, width) {
     this.height = height;
@@ -325,19 +325,19 @@ constructor(data) {Object.assign(this, data);}const data = JSON.parse(req.respon
 
 `static` 关键字用来定义类的静态方法。静态方法是指那些不需要对类进行实例化，使用类名就可以直接访问的方法。静态方法经常用来作为工具函数。
 
-```
+```js
 class Point {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 
-    static distance(a, b) {
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
+  static distance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
 
-        return Math.sqrt(dx*dx + dy*dy);
-    }
+    return Math.sqrt(dx * dx + dy * dy);
+  }
 }
 
 const p1 = new Point(5, 5);
@@ -413,7 +413,7 @@ class Lion extends Cat {
 
 当 ES6 类继承另一个类，被继承的类可以是通过任意表达式创建的动态类：
 
-```
+```js
 // Function id() simply returns its parameter
 const id = x => x;
 
