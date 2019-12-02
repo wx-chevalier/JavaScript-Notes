@@ -10,7 +10,7 @@ const target = {
 
 const handler = {
   get(target, propertyKey, receiver) {
-    if (propertyKey === 'bar') return 2;
+    if (propertyKey === "bar") return 2;
 
     console.log(Reflect.get(target, propertyKey, receiver)); // this in foo getter references Proxy instance; logs 2
     console.log(target[propertyKey]); // this in foo getter references "target" - logs 3
@@ -40,16 +40,16 @@ function metadata(
 Reflect.metadata 当作 Decorator 使用，当修饰类时，在类上添加元数据，当修饰类属性时，在类原型的属性上添加元数据，如：
 
 ```ts
-@Reflect.metadata('inClass', 'A')
+@Reflect.metadata("inClass", "A")
 class Test {
-  @Reflect.metadata('inMethod', 'B')
+  @Reflect.metadata("inMethod", "B")
   public hello(): string {
-    return 'hello world';
+    return "hello world";
   }
 }
 
-console.log(Reflect.getMetadata('inClass', Test)); // 'A'
-console.log(Reflect.getMetadata('inMethod', new Test(), 'hello')); // 'B'
+console.log(Reflect.getMetadata("inClass", Test)); // 'A'
+console.log(Reflect.getMetadata("inMethod", new Test(), "hello")); // 'B'
 ```
 
 ## 内置 Key
@@ -60,7 +60,7 @@ reflect-metadata 内置了三种 Key，在代码运行时可以利用内置的 K
 
 ```ts
 function logType(target: any, key: string) {
-  const t = Reflect.getMetadata('design:type', target, key);
+  const t = Reflect.getMetadata("design:type", target, key);
   console.log(`${key} type: ${t.name}`);
 }
 
@@ -77,7 +77,7 @@ class Demo {
 ```ts
 function Prop(): PropertyDecorator {
   return (target, key: string) => {
-    const type = Reflect.getMetadata('design:type', target, key);
+    const type = Reflect.getMetadata("design:type", target, key);
     console.log(`${key} type: ${type.name}`);
     // other...
   };
@@ -93,7 +93,7 @@ class SomeClass {
 
 ```ts
 function logParamTypes(target: any, key: string) {
-  const types = Reflect.getMetadata('design:paramtypes', target, key);
+  const types = Reflect.getMetadata("design:paramtypes", target, key);
   const s = types.map(a => a.name).join();
   console.log(`${key} param types: ${s}`);
 }
@@ -122,7 +122,7 @@ class Demo {
 ### Return type metadata `design:returntype`
 
 ```ts
-Reflect.getMetadata('design:returntype', target, key);
+Reflect.getMetadata("design:returntype", target, key);
 ```
 
 ## 自定义 metadataKey
@@ -133,14 +133,14 @@ Reflect.getMetadata('design:returntype', target, key);
 function classDecorator(): ClassDecorator {
   return target => {
     // 在类上定义元数据，key 为 `classMetaData`，value 为 `a`
-    Reflect.defineMetadata('classMetaData', 'a', target);
+    Reflect.defineMetadata("classMetaData", "a", target);
   };
 }
 
 function methodDecorator(): MethodDecorator {
   return (target, key, descriptor) => {
     // 在类的原型属性 'someMethod' 上定义元数据，key 为 `methodMetaData`，value 为 `b`
-    Reflect.defineMetadata('methodMetaData', 'b', target, key);
+    Reflect.defineMetadata("methodMetaData", "b", target, key);
   };
 }
 
@@ -150,16 +150,16 @@ class SomeClass {
   someMethod() {}
 }
 
-Reflect.getMetadata('classMetaData', SomeClass); // 'a'
-Reflect.getMetadata('methodMetaData', new SomeClass(), 'someMethod'); // 'b'
+Reflect.getMetadata("classMetaData", SomeClass); // 'a'
+Reflect.getMetadata("methodMetaData", new SomeClass(), "someMethod"); // 'b'
 ```
 
-## 案例：Format
+## 案例分析：Format
 
 可以通过 reflect-metadata 包来实现对于元数据的操作。首先我们来看 reflect-metadata 的使用，首先定义使用元数据的函数：
 
 ```ts
-const formatMetadataKey = Symbol('format');
+const formatMetadataKey = Symbol("format");
 
 function format(formatString: string) {
   return Reflect.metadata(formatMetadataKey, formatString);
@@ -174,25 +174,25 @@ function getFormat(target: any, propertyKey: string) {
 
 ```ts
 class Greeter {
-  @format('Hello, %s')
+  @format("Hello, %s")
   name: string;
 
   constructor(name: string) {
     this.name = message;
   }
   sayHello() {
-    let formatString = getFormat(this, 'name');
-    return formatString.replace('%s', this.name);
+    let formatString = getFormat(this, "name");
+    return formatString.replace("%s", this.name);
   }
 }
 
-const g = new Greeter('Jony');
+const g = new Greeter("Jony");
 console.log(g.sayHello());
 ```
 
 在上述中，我们在 name 属性的装饰器工厂函数，执行`@Format("Hello, %s")`，返回一个装饰器函数，且该装饰器函数修饰了 Greeter 类的 name 属性，将“name”属性的值写入为"Hello, %s"。然后再 sayHello 方法中，通过 getFormat(this,"name") 取到 formatString 为“Hello,%s”.
 
-## 案例：Angular 2 DI
+## 案例分析：Angular 2 DI
 
 ```ts
 type Constructor<T = any> = new (...args: any[]) => T;
@@ -214,7 +214,7 @@ class TestService {
 
 const Factory = <T>(target: Constructor<T>): T => {
   // 获取所有注入的服务
-  const providers = Reflect.getMetadata('design:paramtypes', target); // [OtherService]
+  const providers = Reflect.getMetadata("design:paramtypes", target); // [OtherService]
   const args = providers.map((provider: Constructor) => new provider());
   return new target(...args);
 };
