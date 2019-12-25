@@ -28,3 +28,5 @@ ECMAScript 标准不定义 HTML 或 CSS 的相关功能，也不定义类似 DOM
 # 链接
 
 - https://github.com/daumann/ECMAScript-new-features-list
+- https://mp.weixin.qq.com/s/8bov6788ivV0sHzmwrn5lw
+- https://mp.weixin.qq.com/s/3Ku8w-LLgM0cor2c8ipY9A
