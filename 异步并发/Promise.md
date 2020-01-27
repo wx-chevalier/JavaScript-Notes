@@ -206,7 +206,7 @@ class SimplePromise {
 }
 ```
 
-当我们使用 `new Promise((resolve, reject) => {/* ... */})` 这样的形式去创建 Promise 对象时，传入的 executionFunction 函数的两个参数 resolve 与 reject， 实际上映射到了 SimplePromise 类的 onResolve 与 onReject 方法。而构造器同样会创建内置的 promiseChain 数组，该数组用于记录通过 then 设置的异步传入值；而 handleError 则用于响应 onReject 回调。在原生的 Promise 实现中，then 与 catch 都返回的是新的 Promise 对象，在 SimplePromise 的实现中我们则忽略了这一步。另外，原生的 Promise 实现中允许添加多个 catch 回调，并且不需要跟随在 then 后面。
+当我们使用 `new Promise((resolve, reject) => {/* ... */})` 这样的形式去创建 Promise 对象时，传入的 executionFunction 函数的两个参数 resolve 与 reject，实际上映射到了 SimplePromise 类的 onResolve 与 onReject 方法。而构造器同样会创建内置的 promiseChain 数组，该数组用于记录通过 then 设置的异步传入值；而 handleError 则用于响应 onReject 回调。在原生的 Promise 实现中，then 与 catch 都返回的是新的 Promise 对象，在 SimplePromise 的实现中我们则忽略了这一步。另外，原生的 Promise 实现中允许添加多个 catch 回调，并且不需要跟随在 then 后面。
 
 Promise.all
 

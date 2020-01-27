@@ -6,7 +6,7 @@ TypeScript 是由 MicroSoft 出品的 JavaScript 超集，它在兼容 JavaScrip
 
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/3/1-brsHVxCkP9_Fi3yxPZ5fYA.png)
 
-目前， Angular 已经使用 TypeScript 重构了代码，另一大前端框架 Vue 的新版本也将使用 TypeScript 进行重构。在可预见的未来，TypeScript 将成为前端开发者必须掌握的开发语言之一。
+目前，Angular 已经使用 TypeScript 重构了代码，另一大前端框架 Vue 的新版本也将使用 TypeScript 进行重构。在可预见的未来，TypeScript 将成为前端开发者必须掌握的开发语言之一。
 
 - 类型检查。TypeScript 会在编译代码时进行严格的静态类型检查，这意味着你可以在编码阶段发现可能存在的隐患，而不必把它们带到线上。
 
