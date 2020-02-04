@@ -1,5 +1,3 @@
-
-
 # 剖析 V8 引擎
 
 # 引擎与运行时：代码解析与执行
@@ -123,7 +121,7 @@ We will use the following snippet to illustrate how JIT works:
 function sum(x, y) {
   return x + y;
 }
-[1, 2, 3, 4, 5, '6', 7, 8, 9, 10].reduce((prev, curr) => sum(prev, curr), 0);
+[1, 2, 3, 4, 5, "6", 7, 8, 9, 10].reduce((prev, curr) => sum(prev, curr), 0);
 ```
 
 When profiler marks a piece of code as warm, the JIT sends this code to the baseline compiler, which creates a stub for this part of code while the profiler keeps collecting data regarding the frequency and types used on this code section (among other data). When this code section is executed (on our hypothetical example return x + y;), the JIT only needs to take this compiled piece again. When a warm code is called several times in the same manner (like same types), it’s marked as hot.

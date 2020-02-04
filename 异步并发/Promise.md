@@ -1,16 +1,14 @@
-
-
 # Promise/A 内部原理与常见接口实现
 
 ```js
 try {
   let arrayLike = {
-    0: Promise.resolve('233'),
+    0: Promise.resolve("233"),
     length: 1
   };
   Promise.all(arrayLike);
 } catch (e) {
-  console.log('error');
+  console.log("error");
 }
 
 const promises = [
@@ -47,7 +45,7 @@ function requestWithRetry(url, retryCount) {
       const timeout = Math.pow(2, retryCount);
 
       setTimeout(() => {
-        console.log('Waiting', timeout, 'ms');
+        console.log("Waiting", timeout, "ms");
         _requestWithRetry(url, retryCount)
           .then(resolve)
           .catch(reject);
@@ -61,14 +59,14 @@ function requestWithRetry(url, retryCount) {
 function _requestWithRetry(url, retryCount) {
   return request(url, retryCount).catch(err => {
     if (err.statusCode && err.statusCode >= 500) {
-      console.log('Retrying', err.message, retryCount);
+      console.log("Retrying", err.message, retryCount);
       return requestWithRetry(url, ++retryCount);
     }
     throw err;
   });
 }
 
-requestWithRetry('http://localhost:3000')
+requestWithRetry("http://localhost:3000")
   .then(res => {
     console.log(res);
   })
@@ -93,9 +91,9 @@ async function requestWithRetry(url) {
       return await request(url);
     } catch (err) {
       const timeout = Math.pow(2, i);
-      console.log('Waiting', timeout, 'ms');
+      console.log("Waiting", timeout, "ms");
       await wait(timeout);
-      console.log('Retrying', err.message, i);
+      console.log("Retrying", err.message, i);
     }
   }
 }
@@ -142,7 +140,7 @@ filterArray().then(v => {
 ```
 
 ```js
-typeof new Promise((resolve, reject) => {}) === 'object'; // true
+typeof new Promise((resolve, reject) => {}) === "object"; // true
 ```
 
 Promise 本质上只是普通的 JavaScript 对象，包含了允许你执行某些异步代码的方法。
@@ -226,7 +224,7 @@ function connect(mapStateToProps, mapDispatchToProps) {
     handleProps() {
       let propsFromState;
 
-      if (typeof mapStateToProps === 'function') {
+      if (typeof mapStateToProps === "function") {
         // 计算映射之后的 Props 值
         propsFromState = mapStateToProps(state);
       } else {
@@ -278,8 +276,8 @@ function combineReducers(reducers) {
       const nextStateByKey = reducer(stateByKey, action);
 
       // Redux 需要避免状态空，进行异常检测
-      if (typeof nextStateByKey === 'undefined') {
-        throw new Error('Invalid Reducer');
+      if (typeof nextStateByKey === "undefined") {
+        throw new Error("Invalid Reducer");
       }
 
       // 将新的状态对象挂载
@@ -292,7 +290,7 @@ function combineReducers(reducers) {
 
 function clientCacheMiddleware({ maxAge = 3600 * 24 * 365 }) {
   return function(req, res, next) {
-    res.setHeader('Cache-Control', `max-age=${maxAge}`);
+    res.setHeader("Cache-Control", `max-age=${maxAge}`);
 
     next();
   };
@@ -320,7 +318,7 @@ const promiseSerial = funcs =>
   );
 
 // some url's to resolve
-const urls = ['/url1', '/url2', '/url3'];
+const urls = ["/url1", "/url2", "/url3"];
 
 // convert each url to a function that returns a promise
 const funcs = urls.map(url => () => $.ajax(url));
@@ -337,10 +335,10 @@ race 函数返回一个 Promise，这个 Promise 根据传入的 Promise 中的�
 
 ```js
 const p1 = new Promise(function(resolve, reject) {
-  setTimeout(resolve, 500, '一');
+  setTimeout(resolve, 500, "一");
 });
 const p2 = new Promise(function(resolve, reject) {
-  setTimeout(resolve, 100, '二');
+  setTimeout(resolve, 100, "二");
 });
 
 Promise.race([p1, p2]).then(function(value) {
@@ -349,10 +347,10 @@ Promise.race([p1, p2]).then(function(value) {
 });
 
 const p3 = new Promise(function(resolve, reject) {
-  setTimeout(resolve, 100, '三');
+  setTimeout(resolve, 100, "三");
 });
 const p4 = new Promise(function(resolve, reject) {
-  setTimeout(reject, 500, '四');
+  setTimeout(reject, 500, "四");
 });
 
 Promise.race([p3, p4]).then(
@@ -366,10 +364,10 @@ Promise.race([p3, p4]).then(
 );
 
 const p5 = new Promise(function(resolve, reject) {
-  setTimeout(resolve, 500, '五');
+  setTimeout(resolve, 500, "五");
 });
 const p6 = new Promise(function(resolve, reject) {
-  setTimeout(reject, 100, '六');
+  setTimeout(reject, 100, "六");
 });
 
 Promise.race([p5, p6]).then(

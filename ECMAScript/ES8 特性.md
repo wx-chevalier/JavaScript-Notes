@@ -1,5 +1,3 @@
-
-
 # ECMAScript 2017(ES8) Features
 
 ECMAScript 2017 或 ES8 与 2017 年六月底由 TC39 正式发布，可以在[这里](https://www.ecma-international.org/ecma-262/8.0/index.html)浏览完整的版本；而 ES8 中代表性的特征包括了字符串填充、对象值遍历、对象的属性描述符获取、 函数参数列表与调用中的尾部逗号、异步函数、共享内存与原子操作等。
@@ -16,16 +14,16 @@ str.padEnd(targetLength [, padString])
 如上所示，函数的首个参数为目标长度，即最终生成的字符串长度；第二个参数即是指定的填充字符串：
 
 ```js
-'es8'.padStart(2); // 'es8'
-'es8'.padStart(5); // '  es8'
-'es8'.padStart(6, 'woof'); // 'wooes8'
-'es8'.padStart(14, 'wow'); // 'wowwowwowwoes8'
-'es8'.padStart(7, '0'); // '0000es8'
-'es8'.padEnd(2); // 'es8'
-'es8'.padEnd(5); // 'es8  '
-'es8'.padEnd(6, 'woof'); // 'es8woo'
-'es8'.padEnd(14, 'wow'); // 'es8wowwowwowwo'
-'es8'.padEnd(7, '6'); // 'es86666'
+"es8".padStart(2); // 'es8'
+"es8".padStart(5); // '  es8'
+"es8".padStart(6, "woof"); // 'wooes8'
+"es8".padStart(14, "wow"); // 'wowwowwowwoes8'
+"es8".padStart(7, "0"); // '0000es8'
+"es8".padEnd(2); // 'es8'
+"es8".padEnd(5); // 'es8  '
+"es8".padEnd(6, "woof"); // 'es8woo'
+"es8".padEnd(14, "wow"); // 'es8wowwowwowwo'
+"es8".padEnd(7, "6"); // 'es86666'
 ```
 
 ### 对象值遍历
@@ -39,31 +37,31 @@ Object.values(obj);
 首个参数 `obj` 即为需要遍历的目标对象，它可以为某个对象或者数组(数组可以看做键为下标的对象)：
 
 ```js
-const obj = { x: 'xxx', y: 1 };
+const obj = { x: "xxx", y: 1 };
 Object.values(obj); // ['xxx', 1]
 
-const obj = ['e', 's', '8']; // same as { 0: 'e', 1: 's', 2: '8' };
+const obj = ["e", "s", "8"]; // same as { 0: 'e', 1: 's', 2: '8' };
 Object.values(obj); // ['e', 's', '8']
 
 // when we use numeric keys, the values returned in a numerical
 // order according to the keys
-const obj = { 10: 'xxx', 1: 'yyy', 3: 'zzz' };
+const obj = { 10: "xxx", 1: "yyy", 3: "zzz" };
 Object.values(obj); // ['yyy', 'zzz', 'xxx']
-Object.values('es8'); // ['e', 's', '8']
+Object.values("es8"); // ['e', 's', '8']
 ```
 
 而 `Object.entries` 方法则会将某个对象的可枚举属性与值按照二维数组的方式返回，数组中顺序与 `Object.values` 保持一致，该函数的声明与使用为：
 
 ```js
-const obj = { x: 'xxx', y: 1 };
+const obj = { x: "xxx", y: 1 };
 Object.entries(obj); // [['x', 'xxx'], ['y', 1]]
 
-const obj = ['e', 's', '8'];
+const obj = ["e", "s", "8"];
 Object.entries(obj); // [['0', 'e'], ['1', 's'], ['2', '8']]
 
-const obj = { 10: 'xxx', 1: 'yyy', 3: 'zzz' };
+const obj = { 10: "xxx", 1: "yyy", 3: "zzz" };
 Object.entries(obj); // [['1', 'yyy'], ['3', 'zzz'], ['10': 'xxx']]
-Object.entries('es8'); // [['0', 'e'], ['1', 's'], ['2', '8']]
+Object.entries("es8"); // [['0', 'e'], ['1', 's'], ['2', '8']]
 ```
 
 ### 对象的属性描述符获取
@@ -106,7 +104,7 @@ ES8 中允许使用 async/await 语法来定义与执行异步函数，async 关
 function fetchTextByPromise() {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve('es8');
+      resolve("es8");
     }, 2000);
   });
 }

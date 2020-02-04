@@ -13,23 +13,23 @@ class Child extends Parent {}
 ```
 
 ```js
-'use strict';
+"use strict";
 
-const _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+const _getPrototypeOf = require("babel-runtime/core-js/object/get-prototype-of");
 
 const _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-const _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+const _possibleConstructorReturn2 = require("babel-runtime/helpers/possibleConstructorReturn");
 
 const _possibleConstructorReturn3 = _interopRequireDefault(
   _possibleConstructorReturn2
 );
 
-const _inherits2 = require('babel-runtime/helpers/inherits');
+const _inherits2 = require("babel-runtime/helpers/inherits");
 
 const _inherits3 = _interopRequireDefault(_inherits2);
 
-const _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+const _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
 
 const _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
@@ -78,7 +78,7 @@ class C {
     console.log(`logProp: ${C.prop}`);
   }
 }
-C.prop = 'Hi!';
+C.prop = "Hi!";
 
 const D = C;
 C = null;
@@ -160,7 +160,7 @@ class A {
 
 let instanceA = new A(4);
 
-console.log('A.tight', instanceA.tight); //A.tight 8
+console.log("A.tight", instanceA.tight); //A.tight 8
 ```
 
 Remark
@@ -356,14 +356,14 @@ console.log(Point.distance(p1, p2));
 class Polygon {
   constructor(height, width) {
     //class constructor
-    this.name = 'Polygon';
+    this.name = "Polygon";
     this.height = height;
     this.width = width;
   }
 
   sayName() {
     //class method
-    console.log('Hi, I am a', this.name + '.');
+    console.log("Hi, I am a", this.name + ".");
   }
 }
 
@@ -371,7 +371,7 @@ class Square extends Polygon {
   constructor(length = 10) {
     // ES6 features Default Parameters
     super(length, length); //call the parent method with super
-    this.name = 'Square';
+    this.name = "Square";
   }
 
   get area() {
@@ -397,14 +397,14 @@ class Cat {
   }
 
   speak() {
-    console.log(this.name + ' makes a noise.');
+    console.log(this.name + " makes a noise.");
   }
 }
 
 class Lion extends Cat {
   speak() {
     super.speak();
-    console.log(this.name + ' roars.');
+    console.log(this.name + " roars.");
   }
 }
 ```

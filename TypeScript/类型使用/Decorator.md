@@ -100,9 +100,9 @@ temple === P; //true
 ```ts
 function foo(target) {
   return class extends target {
-    name = 'Jony';
+    name = "Jony";
     sayHello() {
-      console.log('Hello ' + this.name);
+      console.log("Hello " + this.name);
     }
   };
 }
@@ -124,12 +124,12 @@ p.sayHello(); // 会输出Hello Jony
 
 ```ts
 function foo(target, name) {
-  console.log('target is', target);
-  console.log('name is', name);
+  console.log("target is", target);
+  console.log("name is", name);
 }
 class P {
   @foo
-  name = 'Jony';
+  name = "Jony";
 }
 const p = new P();
 //会依次输出 target is f P()  name is Jony
@@ -139,15 +139,15 @@ const p = new P();
 
 ```ts
 function foo(target, key, index) {
-  console.log('target is', target);
-  console.log('key is', key);
-  console.log('index is', index);
+  console.log("target is", target);
+  console.log("key is", key);
+  console.log("index is", index);
 }
 class P {
   test(@foo a) {}
 }
 const p = new P();
-p.test('Hello Jony');
+p.test("Hello Jony");
 // 依次输出 f P() , test , 0
 ```
 

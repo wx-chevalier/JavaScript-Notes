@@ -1,5 +1,3 @@
-
-
 # JavaScript Event Loop 与并发编程浅述
 
 浏览器和 Node 环境下，microtask 任务队列的执行时机不同

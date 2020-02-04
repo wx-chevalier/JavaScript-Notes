@@ -1,5 +1,3 @@
-
-
 # Proxy
 
 ```js
@@ -52,11 +50,11 @@ function getStorage(storage, prefix) {
 
 // Create an instance of the storage proxy
 // 使用的时候首先通过 namespace 创建 Storage Proxy 实例
-const userObject = getStorage(localStorage, 'user');
+const userObject = getStorage(localStorage, "user");
 
 // Set a value in localStorage
 // 然后通过直接访问属性的方法来操作数据
-userObject.name = 'David';
+userObject.name = "David";
 
 // Get the value from localStorage
 // 可以方便的使用解构获取数据

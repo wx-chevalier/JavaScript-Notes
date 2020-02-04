@@ -1,5 +1,3 @@
-
-
 # 函数调用与 this 绑定
 
 # 函数执行
@@ -135,7 +133,7 @@ executionContextObj = {
 
 ```js
 function foo(i) {
-  const a = 'hello';
+  const a = "hello";
 
   const b = function privateB() {};
 
@@ -255,24 +253,24 @@ console.log(window.a); // 37
 
 ```js
 function hello(thing) {
-  console.log('Hello ' + thing);
+  console.log("Hello " + thing);
 }
 
 // this:
-hello('world');
+hello("world");
 
 // 编译为
-hello.call(window, 'world');
+hello.call(window, "world");
 ```
 
 而如果是 strict 模式下：
 
 ```js
 // this:
-hello('world');
+hello("world");
 
 // 编译为
-hello.call(undefined, 'world');
+hello.call(undefined, "world");
 ```
 
 ### DOM Event handler(DOM 事件 )
@@ -324,7 +322,7 @@ const o = {
     // Here we passointo the async function,
     // expecting it back asparam`
     asyncFunction(o, function(param) {
-      console.log('param === this?', param === self);
+      console.log("param === this?", param === self);
     });
   }
 };
@@ -338,15 +336,15 @@ o.doSomething(); // param === this? true
 
 ```js
 function hello(thing) {
-  console.log(this + ' says hello ' + thing);
+  console.log(this + " says hello " + thing);
 }
 
-person = { name: 'Brendan Eich' };
+person = { name: "Brendan Eich" };
 person.hello = hello;
 
-person.hello('world'); // still desugars to person.hello.call(person, "world") [object Object] says hello world
+person.hello("world"); // still desugars to person.hello.call(person, "world") [object Object] says hello world
 
-hello('world'); // "[object DOMWindow]world"
+hello("world"); // "[object DOMWindow]world"
 ```
 
 这种效果等效于使用 apply/call 进行调用。
@@ -366,8 +364,8 @@ Cat.prototype.sayHi = function() {
 Dog.prototype.sayHi = function() {
   console.log(`${this.name} barks excitedly!`);
 };
-const whiskers = new Cat('whiskers');
-const fluffybottom = new Dog('fluffy bottom');
+const whiskers = new Cat("whiskers");
+const fluffybottom = new Dog("fluffy bottom");
 whiskers.sayHi(); // => whiskers meows loudly!
 fluffybottom.sayHi(); // => fluffy bottom barks excitedly!
 Cat.prototype.sayHi.call(fluffybottom); // => fluffy bottom meows loudly!
@@ -487,9 +485,9 @@ bind 方程的支持情况如下：
 
 ```js
 const person = {
-  name: 'Brendan Eich',
+  name: "Brendan Eich",
   hello: function(thing) {
-    console.log(this.name + ' says hello ' + thing);
+    console.log(this.name + " says hello " + thing);
   }
 };
 
@@ -497,7 +495,7 @@ const boundHello = function(thing) {
   return person.hello.call(person, thing);
 };
 
-boundHello('world');
+boundHello("world");
 ```
 
 不过，这种方式仍然存在着一定的问题，ES5 为 Function 对象引入了一个新的 bind 方法来解决这个问题。bind() 方法会创建一个新函数，当这个新函数被调用时，它的 this 值是传递给 bind() 的第一个参数 , 它的参数是 bind() 的其他参数和其原本的参数。
@@ -511,20 +509,20 @@ fun.bind(thisArg[, arg1[, arg2[, ...]]])
 
 ```js
 const boundHello = person.hello.bind(person);
-boundHello('world'); // "Brendan Eich says hello world"
+boundHello("world"); // "Brendan Eich says hello world"
 ```
 
 这种方式在设置回调函数中的 this 指针的时候会起到很大的作用，特别是在 React 中，为了保证指针的稳定性，往往需要为内置方法设置 bind。
 
 ```js
 const person = {
-  name: 'Alex Russell',
+  name: "Alex Russell",
   hello: function() {
-    console.log(this.name + ' says hello world');
+    console.log(this.name + " says hello world");
   }
 };
 
-$('#some-div').click(person.hello.bind(person));
+$("#some-div").click(person.hello.bind(person));
 
 // when the div is clicked, "Alex Russell says hello world" is printed
 ```
@@ -545,7 +543,7 @@ const o = {
     asyncFunction(
       o,
       function(param) {
-        console.log('param === this?', param === this);
+        console.log("param === this?", param === this);
       }.bind(this)
     );
   }
@@ -558,11 +556,11 @@ o.doSomething(); // param === this? true
 
 ```js
 const o = {
-  v: 'hello',
-  p: ['a1', 'a2'],
+  v: "hello",
+  p: ["a1", "a2"],
   f: function f() {
     this.p.forEach(function(item) {
-      console.log(this.v + ' ' + item);
+      console.log(this.v + " " + item);
     });
   }
 };
@@ -592,7 +590,7 @@ const o = {
     // the scope ofdoSomethingit is bound to this
     // lexical scope.
     asyncFunction(o, param => {
-      console.log('param === this?', param === this);
+      console.log("param === this?", param === this);
     });
   }
 };

@@ -7,7 +7,7 @@ Object 在 JavaScript 中可谓一个神奇的东西，除了 Function，其他�
 ```js
 const obj = Object.create(null);
 
-console.log(obj + '');
+console.log(obj + "");
 console.log(String(obj));
 console.log(Number(obj));
 console.log(obj.__proto__ === Object.prototype);
@@ -37,7 +37,7 @@ console.log(keys2);
 Object 中的 Key 类别 JavaScript 中 Object 是一个混合了类似于 Dictionary 与 Class 的用法，基本上来说也是一种键值类型。其中键的类型主要包含四种：
 
 ```js
-const a = 'a';
+const a = "a";
 const object = {
   a, // a:"a" // `abc` is a valid identifier; no quotes are needed
   abc: 1, // `123` is a numeric literal; no quotes are needed
@@ -45,9 +45,9 @@ const object = {
   012: 3, // `π` is a valid identifier; no quotes are needed
   π: Math.PI, // `const` is a valid identifier name (although it’s a reserved word); no quotes are needed
   const: 4, // `foo bar` is not a valid identifier name; quotes are required
-  'foo bar': 5, // `foo-bar` is not a valid identifier name; quotes are required
-  'foo-bar': 6, // the empty string is not a valid identifier name; quotes are required
-  '': 7
+  "foo bar": 5, // `foo-bar` is not a valid identifier name; quotes are required
+  "foo-bar": 6, // the empty string is not a valid identifier name; quotes are required
+  "": 7
 };
 ```
 
@@ -62,7 +62,7 @@ const object = {
 注意，与 object 不同的是，[JSON](http://json.org/) 只允许用双引号 (`"`)  包裹的字符串作为键名。而如果要根据键名进行索引的话，可以使用方括号，这种方式对于三种键值皆有效：
 
 ```js
-object['abc']; // 1
+object["abc"]; // 1
 ```
 
 有时候也可以使用点操作符，不过这种方式只可以被用于键为有效地 Identifier 情况：

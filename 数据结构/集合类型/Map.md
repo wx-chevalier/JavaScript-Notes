@@ -4,21 +4,21 @@
 
 ```js
 const map = new Map();
-map.set('foo', 'bar');
-console.log(map.get('foo')); //logs "bar"
+map.set("foo", "bar");
+console.log(map.get("foo")); //logs "bar"
 const animalSounds = new Map();
 
-animalSounds.set('dog', 'woof');
-animalSounds.set('cat', 'meow');
-animalSounds.set('frog', 'ribbit');
+animalSounds.set("dog", "woof");
+animalSounds.set("cat", "meow");
+animalSounds.set("frog", "ribbit");
 
 console.log(animalSounds.size); //logs 3
-console.log(animalSounds.has('dog')); //logs true
+console.log(animalSounds.has("dog")); //logs true
 
-animalSounds.delete('dog');
+animalSounds.delete("dog");
 
 console.log(animalSounds.size); //logs 2
-console.log(animalSounds.has('dog')); //logs false
+console.log(animalSounds.has("dog")); //logs false
 
 animalSounds.clear();
 console.log(animalSounds.size); //logs 0
@@ -28,15 +28,15 @@ console.log(animalSounds.size); //logs 0
 
 ```js
 usersMap = new Map();
-usersMap.set(1, 'sally');
-usersMap.set(2, 'bob');
-usersMap.set(3, 'jane');
+usersMap.set(1, "sally");
+usersMap.set(2, "bob");
+usersMap.set(3, "jane");
 
 console.log(usersMap.get(1)); //logs "sally"
 usersMap.forEach(function(username, userId) {
   console.log(userId, typeof userId); //logs 1..3, "number"
   if (userId === 1) {
-    console.log('We found sally.');
+    console.log("We found sally.");
   }
 });
 
