@@ -32,7 +32,7 @@ const proxy = new Proxy(
 // storage 是 Storage API 的类型，可以是 localStorage 或是 sessionStorage
 // prefix 则属于 namespace
 function getStorage(storage, prefix) {
-  // 这里返回一个 Proxy 实例，调用这个实例的 set 或 get 方法来存取数据
+  // 这里返回一个 Proxy 实例，调用这个实例的 set或get 方法来存取数据
   return new Proxy(
     {},
     {
