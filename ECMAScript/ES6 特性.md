@@ -28,7 +28,7 @@ Loader 的支持遭遇了一些技术上的难点，从而暂时性的舍弃了�
 
 除此之外，ES2016 的相关草案也已经确定了一大部分其他 new features。这里提两个我比较感兴趣的 new feature：
 
-1.  async/await ：协程。ES2016 中 async/await 实际是对 Generator&Promise 的上层封装，几乎同步的写法写异步比 Promise 更优雅更简单，非常值得期待。
-2.  decorator ：装饰器，其实等同于 Java 里面的注解。注解机制对于大型应用的开发的作用想必不用我过多赘述了。用过的同学都说好。
+1.  async/await：协程。ES2016 中 async/await 实际是对 Generator&Promise 的上层封装，几乎同步的写法写异步比 Promise 更优雅更简单，非常值得期待。
+2.  decorator：装饰器，其实等同于 Java 里面的注解。注解机制对于大型应用的开发的作用想必不用我过多赘述了。用过的同学都说好。
 
 而关于纯 ES6 语法在各大浏览器上的支持情况，可以查看[这里](http://kangax.github.io/compat-table/es6/)。另外推荐一个可以将 ES5 代码转化为可读的 ES6 代码的转化器：[lebab](https://github.com/mohebifar/lebab)
