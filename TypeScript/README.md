@@ -102,3 +102,4 @@ echo "console.log('Hello, world!')" | ts-node
 # 链接
 
 - https://mp.weixin.qq.com/s/yK0ll0MygWrChYNrthTwxw
+- https://github.com/David-Else/modern-typescript-with-examples-cheat-sheet
