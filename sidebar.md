@@ -96,6 +96,13 @@
       - [ES6 Class](/语法基础/类与对象/ES6%20Class.md)
       - [原型链与类的继承](/语法基础/类与对象/原型链与类的继承.md)
       - [类的封装与实例化](/语法基础/类与对象/类的封装与实例化.md)
+  - [语法编译](/语法编译/README.md)
+    - [AST](/语法编译/AST/README.md)
+      
+    - [Babel](/语法编译/Babel/README.md)
+      - [插件开发](/语法编译/Babel/插件开发.md)
+      - [编译配置](/语法编译/Babel/编译配置.md)
+      - [语法转换](/语法编译/Babel/语法转换.md)
   - [集合类型](/集合类型/README.md)
     - [Map](/集合类型/Map.md)
     - [Object](/集合类型/Object.md)
