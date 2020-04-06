@@ -35,8 +35,8 @@
     - [循环改造](/函数式编程/循环改造.md)
     - [纯函数与副作用](/函数式编程/纯函数与副作用.md)
   - [异步并发](/异步并发/README.md)
-    - Event Loop
-      - [Event Loop](/异步并发/Event%20Loop/Event%20Loop.md)
+    - [Event Loop](/异步并发/Event%20Loop/README.md)
+      
     - [RxJS](/异步并发/RxJS/README.md)
       - [Observable](/异步并发/RxJS/Observable.md)
       - [Observer](/异步并发/RxJS/Observer.md)
