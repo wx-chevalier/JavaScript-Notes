@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es5",
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "rootDir": "../../",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["dom", "es2017"],
+    "baseUrl": "./"
+  },
+  "exclude": ["node_modules"]
+}

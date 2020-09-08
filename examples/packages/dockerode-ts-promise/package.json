@@ -1,0 +1,35 @@
+{
+  "name": "dockerode-ts-promise",
+  "version": "0.0.1",
+  "description": "Dockerode wrapped in TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxyyxc1992/coding-snippets/blob/master/ts/types/dockerode-ts-promise"
+  },
+  "keywords": [
+    "dockerode",
+    "typescript",
+    "docker",
+    "promise"
+  ],
+  "author": "wxyyxc1992@github",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wxyyxc1992/coding-snippets/blob/master/ts/types/dockerode-ts-promise"
+  },
+  "homepage": "https://github.com/wxyyxc1992/coding-snippets/blob/master/ts/types/dockerode-ts-promise",
+  "dependencies": {
+    "@types/node": "^10.3.0",
+    "dockerode": "^2.5.5"
+  },
+  "devDependencies": {
+    "typescript": "^2.9.1"
+  },
+  "types": "./dockerode.d.ts"
+}
