@@ -6,6 +6,7 @@
   - [TypeScript](/TypeScript/README.md)
     - 类型使用
       - [Decorator](/TypeScript/类型使用/Decorator.md)
+      - [Type Challenge](/TypeScript/类型使用/Type%20Challenge.md)
       - [函数](/TypeScript/类型使用/函数.md)
       - [基础类型](/TypeScript/类型使用/基础类型.md)
       - [类与接口](/TypeScript/类型使用/类与接口.md)
