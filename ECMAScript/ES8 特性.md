@@ -1,6 +1,6 @@
 # ECMAScript 2017(ES8) Features
 
-ECMAScript 2017 或 ES8 与 2017 年六月底由 TC39 正式发布，可以在[这里](https://www.ecma-international.org/ecma-262/8.0/index.html)浏览完整的版本；而 ES8 中代表性的特征包括了字符串填充、对象值遍历、对象的属性描述符获取、 函数参数列表与调用中的尾部逗号、异步函数、共享内存与原子操作等。
+ECMAScript 2017 或 ES8 与 2017 年六月底由 TC39 正式发布，可以在[这里](https://www.ecma-international.org/ecma-262/8.0/index.html)浏览完整的版本；而 ES8 中代表性的特征包括了字符串填充、对象值遍历、对象的属性描述符获取、函数参数列表与调用中的尾部逗号、异步函数、共享内存与原子操作等。
 
 ### 字符串填充
 
@@ -72,7 +72,7 @@ Object.entries("es8"); // [['0', 'e'], ['1', 's'], ['2', '8']]
 Object.getOwnPropertyDescriptor(obj, prop);
 ```
 
-`obj` 即为源对象，而 `prop` 即为需要查看的属性名；结果中包含的键可能有 configurable、enumerable 、 writable、get 、 set 以及 value。
+`obj` 即为源对象，而 `prop` 即为需要查看的属性名；结果中包含的键可能有 configurable、enumerable 、writable、get 、set 以及 value。
 
 ```
 const obj = { get es8() { return 888; } };
@@ -102,7 +102,7 @@ ES8 中允许使用 async/await 语法来定义与执行异步函数，async 关
 
 ```js
 function fetchTextByPromise() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve("es8");
     }, 2000);

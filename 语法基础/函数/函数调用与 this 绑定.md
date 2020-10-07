@@ -317,14 +317,14 @@ const asyncFunction = (param, callback) => {
 // Define a reference tothisoutside of the callback,
 // but within the callback's lexical scope
 const o = {
-  doSomething: function() {
+  doSomething: function () {
     const self = this;
     // Here we passointo the async function,
     // expecting it back asparam`
-    asyncFunction(o, function(param) {
+    asyncFunction(o, function (param) {
       console.log("param === this?", param === self);
     });
-  }
+  },
 };
 
 o.doSomething(); // param === this? true
@@ -352,16 +352,16 @@ hello("world"); // "[object DOMWindow]world"
 ### call/apply: 运行时指定
 
 ```js
-const Cat = function(name) {
+const Cat = function (name) {
   this.name = name;
 };
-const Dog = function(name) {
+const Dog = function (name) {
   this.name = name;
 };
-Cat.prototype.sayHi = function() {
+Cat.prototype.sayHi = function () {
   console.log(`${this.name} meows loudly!`);
 };
-Dog.prototype.sayHi = function() {
+Dog.prototype.sayHi = function () {
   console.log(`${this.name} barks excitedly!`);
 };
 const whiskers = new Cat("whiskers");
@@ -414,9 +414,9 @@ fluffybottom.sayHi.call(whiskers); // => whiskers barks excitedly!
 this.x = 9;
 const module = {
   x: 81,
-  getX: function() {
+  getX: function () {
     return this.x;
-  }
+  },
 };
 
 module.getX(); // 81
@@ -433,21 +433,21 @@ bind 方法在 React 中应用的比较广泛，因为 React 声明方程时往�
 
 ```js
 const myObj = {
-  specialFunction: function() {},
+  specialFunction: function () {},
 
-  anotherSpecialFunction: function() {},
+  anotherSpecialFunction: function () {},
 
-  getAsyncData: function(cb) {
+  getAsyncData: function (cb) {
     cb();
   },
 
-  render: function() {
+  render: function () {
     const that = this;
-    this.getAsyncData(function() {
+    this.getAsyncData(function () {
       that.specialFunction();
       that.anotherSpecialFunction();
     });
-  }
+  },
 };
 
 myObj.render();
@@ -486,12 +486,12 @@ bind 方程的支持情况如下：
 ```js
 const person = {
   name: "Brendan Eich",
-  hello: function(thing) {
+  hello: function (thing) {
     console.log(this.name + " says hello " + thing);
-  }
+  },
 };
 
-const boundHello = function(thing) {
+const boundHello = function (thing) {
   return person.hello.call(person, thing);
 };
 
@@ -517,9 +517,9 @@ boundHello("world"); // "Brendan Eich says hello world"
 ```js
 const person = {
   name: "Alex Russell",
-  hello: function() {
+  hello: function () {
     console.log(this.name + " says hello world");
-  }
+  },
 };
 
 $("#some-div").click(person.hello.bind(person));
@@ -537,16 +537,16 @@ const asyncFunction = (param, callback) => {
 // Here we control the context of the callback using
 //bindensuringthisis correct
 const o = {
-  doSomething: function() {
+  doSomething: function () {
     // Here we passointo the async function,
     // expecting it back asparam`
     asyncFunction(
       o,
-      function(param) {
+      function (param) {
         console.log("param === this?", param === this);
       }.bind(this)
     );
-  }
+  },
 };
 
 o.doSomething(); // param === this? true
@@ -559,10 +559,10 @@ const o = {
   v: "hello",
   p: ["a1", "a2"],
   f: function f() {
-    this.p.forEach(function(item) {
+    this.p.forEach(function (item) {
       console.log(this.v + " " + item);
     });
-  }
+  },
 };
 
 o.f();
@@ -572,7 +572,7 @@ o.f();
 
 ### Arrow Function 绑定
 
-在 ECMAScript 中使用 Arrow Function 时候，会在创建该 Function 的时候即在创建时就被绑定到了闭合的作用域内，不会收到 new、bind 、 call 以及 apply 这些方法的影响。
+在 ECMAScript 中使用 Arrow Function 时候，会在创建该 Function 的时候即在创建时就被绑定到了闭合的作用域内，不会收到 new、bind 、call 以及 apply 这些方法的影响。
 
 ```js
 const asyncFunction = (param, callback) => {
@@ -582,17 +582,17 @@ const asyncFunction = (param, callback) => {
 };
 
 const o = {
-  doSomething: function() {
+  doSomething: function () {
     // Here we passointo the async function,
     // expecting it back asparam`.
     //
     // Because this arrow function is created within
     // the scope ofdoSomethingit is bound to this
     // lexical scope.
-    asyncFunction(o, param => {
+    asyncFunction(o, (param) => {
       console.log("param === this?", param === this);
     });
-  }
+  },
 };
 
 o.doSomething(); // param === this? true

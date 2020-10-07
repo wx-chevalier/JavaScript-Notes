@@ -1,6 +1,6 @@
 # RxJS
 
-RxJS 是一个库，它通过使用 observable 序列来编写异步和基于事件的程序。它提供了一个核心类型 Observable，附属类型 (Observer、 Schedulers、 Subjects) 和受 [Array#extras] 启发的操作符 (map、filter、reduce、every, 等等)，这些数组操作符可以把异步事件作为集合来处理。
+RxJS 是一个库，它通过使用 observable 序列来编写异步和基于事件的程序。它提供了一个核心类型 Observable，附属类型 (Observer、Schedulers、Subjects) 和受 [Array#extras] 启发的操作符 (map、filter、reduce、every, 等等)，这些数组操作符可以把异步事件作为集合来处理。
 
 ReactiveX 结合了 [观察者模式、[迭代器模式 和 [使用集合的函数式编程](http://martinfowler.com/articles/collection-pipeline/#NestedOperatorExpressions)，以满足以一种理想方式来管理事件序列所需要的一切。
 
@@ -84,8 +84,8 @@ button.addEventListener("click", () => {
 const button = document.querySelector("button");
 Rx.Observable.fromEvent(button, "click")
   .throttleTime(1000)
-  .scan(count => count + 1, 0)
-  .subscribe(count => console.log(`Clicked ${count} times`));
+  .scan((count) => count + 1, 0)
+  .subscribe((count) => console.log(`Clicked ${count} times`));
 ```
 
 其他流程控制操作符有 filter、delay、debounceTime、take、takeUntil、distinct、distinctUntilChanged 等等。
@@ -101,7 +101,7 @@ const count = 0;
 const rate = 1000;
 const lastClick = Date.now() - rate;
 const button = document.querySelector("button");
-button.addEventListener("click", event => {
+button.addEventListener("click", (event) => {
   if (Date.now() - lastClick >= rate) {
     count += event.clientX;
     console.log(count);
@@ -116,9 +116,9 @@ button.addEventListener("click", event => {
 const button = document.querySelector("button");
 Rx.Observable.fromEvent(button, "click")
   .throttleTime(1000)
-  .map(event => event.clientX)
+  .map((event) => event.clientX)
   .scan((count, clientX) => count + clientX, 0)
-  .subscribe(count => console.log(count));
+  .subscribe((count) => console.log(count));
 ```
 
-其他产生值的操作符有 pluck、pairwise、 sample 等等。
+其他产生值的操作符有 pluck、pairwise、sample 等等。
