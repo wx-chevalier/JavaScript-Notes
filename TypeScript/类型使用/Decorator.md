@@ -18,7 +18,7 @@ Typescript 中的装饰器与类相关，分别可以修饰类的实例函数和
 
 ```ts
 export function Log() {
-  return function(
+  return function (
     target: Object,
     propertyKey: string,
     descriptor: TypedPropertyDescriptor<any>
@@ -151,7 +151,7 @@ p.test("Hello Jony");
 // 依次输出 f P() , test , 0
 ```
 
-类函数参数的装饰器函数接受三个参数，依次为类本身，类中该被修饰的函数本身，以及被修饰的参数在参数列表中的索引值。上述的例子中，会依次输出 f P() 、test 和 0。再次明确一下修饰函数参数的装饰器函数中的参数含义：
+类函数参数的装饰器函数接受三个参数，依次为类本身，类中该被修饰的函数本身，以及被修饰的参数在参数列表中的索引值。上述的例子中，会依次输出 f P()、test 和 0。再次明确一下修饰函数参数的装饰器函数中的参数含义：
 
 - target：类本身
 - key：该参数所在的函数的函数名

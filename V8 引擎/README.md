@@ -68,7 +68,7 @@ const d = add ("hello", "world");
 
 ## 类型转换
 
-Webpack、Fuse 、Rollup、Browserify
+Webpack、Fuse、Rollup、Browserify
 
 ## 静态类型
 

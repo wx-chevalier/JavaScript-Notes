@@ -11,8 +11,6 @@ JavaScript 是典型的单线程单并发语言，即表示在同一时间片内
 
 Event Loop(事件循环)并不是 JavaScript 中独有的，其广泛应用于各个领域的异步编程实现中；所谓的 Event Loop 即是一系列回调函数的集合，在执行某个异步函数时，会将其回调压入队列中，JavaScript 引擎会在异步代码执行完毕后开始处理其关联的回调。
 
-![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/2/event-loop.png)
-
 在 Web 开发中，我们常常会需要处理网络请求等相对较慢的操作，如果将这些操作全部以同步阻塞方式运行无疑会大大降低用户界面的体验。另一方面，我们点击某些按钮之后的响应事件可能会导致界面重渲染，如果因为响应事件的执行而阻塞了界面的渲染，同样会影响整体性能。实际开发中我们会采用异步回调来处理这些操作，这种调用者与响应之间的解耦保证了 JavaScript 能够在等待异步操作完成之前仍然能够执行其他的代码。Event Loop 正是负责执行队列中的回调并且将其压入到函数调用栈中，其基本的代码逻辑如下所示：
 
 ```js
@@ -22,8 +20,6 @@ while (queue.waitForMessage()) {
 ```
 
 完整的浏览器中 JavaScript 事件循环机制图解如下：
-
-![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/3/1--MMBHKy_ZxCrouecRqvsBg.png)
 
 在 Web 浏览器中，任何时刻都有可能会有事件被触发，而仅有那些设置了回调的事件会将其相关的任务压入到任务队列中。回调函数被调用时即会在函数调用栈中创建初始帧，而直到整个函数调用栈清空之前任何产生的任务都会被压入到任务队列中延后执行；顺序的同步函数调用则会创建新的栈帧。总结而言，浏览器中的事件循环机制阐述如下：
 
@@ -65,13 +61,11 @@ fire();
 
 其对应的函数调用图(整理自[这里](https://github.com/ccforward/cc/issues/47))为：
 
-![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/2/11111111.jpg)
-
 这里还值得一提的是，Promise.then 是异步执行的，而创建 Promise 实例 (executor) 是同步执行的，譬如下述代码：
 
 ```js
 (function test() {
-  setTimeout(function() {
+  setTimeout(function () {
     console.log(4);
   }, 0);
   new Promise(function executor(resolve) {
@@ -80,7 +74,7 @@ fire();
       i == 9999 && resolve();
     }
     console.log(2);
-  }).then(function() {
+  }).then(function () {
     console.log(5);
   });
   console.log(3);

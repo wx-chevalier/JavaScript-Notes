@@ -1,5 +1,3 @@
-![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/1/1/wtfm.jpg)
-
 # Introduction: 简介
 
 很多开发者都会推崇 Robert C. Martin 的[_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)一书中提及的软件工程准则，本文就是对于这些准则在 JavaScript 开发领域中的实践应用总结。本文并不仅仅是样式指南，而是对于如何编写出基于 JavaScript 实现的高可读性、高可用性以及可重构的软件系统。虽然本文对比的讲了很多好坏的实践，但并不是说本文就建议大家强制遵循所有的指南。实际上对于 Clean Code 的概念不同的团队、不同的开发者都会有不同的见解与看法，本文的很多观点也是充满争议。软件工程已经走过了五十多个年头，而我们也一直在前行，很难说有什么原则是永恒正确的。作者更希望这些指南与考量起到试金石的作用，成为评判团队 JavaScript 代码质量的考量标准之一。
@@ -126,7 +124,7 @@ locations.forEach((location) => {
 const Car = {
   carMake: "Honda",
   carModel: "Accord",
-  carColor: "Blue"
+  carColor: "Blue",
 };
 
 function paintCar(car) {
@@ -140,7 +138,7 @@ function paintCar(car) {
 const Car = {
   make: "Honda",
   model: "Accord",
-  color: "Blue"
+  color: "Blue",
 };
 
 function paintCar(car) {
@@ -208,7 +206,7 @@ function createMenu(menuConfig) {
 
 ```js
 function emailClients(clients) {
-  clients.forEach(client => {
+  clients.forEach((client) => {
     let clientRecord = database.lookup(client);
     if (clientRecord.isActive()) {
       email(client);
@@ -221,7 +219,7 @@ function emailClients(clients) {
 
 ```js
 function emailClients(clients) {
-  clients.forEach(client => {
+  clients.forEach((client) => {
     emailClientIfNeeded(client);
   });
 }
@@ -278,18 +276,18 @@ function parseBetterJSAlternative(code) {
 
   let statements = code.split(" ");
   let tokens;
-  REGEXES.forEach(REGEX => {
-    statements.forEach(statement => {
+  REGEXES.forEach((REGEX) => {
+    statements.forEach((statement) => {
       // ...
     });
   });
 
   let ast;
-  tokens.forEach(token => {
+  tokens.forEach((token) => {
     // lex...
   });
 
-  ast.forEach(node => {
+  ast.forEach((node) => {
     // parse...
   });
 }
@@ -305,8 +303,8 @@ function tokenize(code) {
 
   let statements = code.split(" ");
   let tokens;
-  REGEXES.forEach(REGEX => {
-    statements.forEach(statement => {
+  REGEXES.forEach((REGEX) => {
+    statements.forEach((statement) => {
       // ...
     });
   });
@@ -316,7 +314,7 @@ function tokenize(code) {
 
 function lexer(tokens) {
   let ast;
-  tokens.forEach(token => {
+  tokens.forEach((token) => {
     // lex...
   });
 
@@ -326,7 +324,7 @@ function lexer(tokens) {
 function parseBetterJSAlternative(code) {
   let tokens = tokenize(code);
   let ast = lexer(tokens);
-  ast.forEach(node => {
+  ast.forEach((node) => {
     // parse...
   });
 }
@@ -340,14 +338,14 @@ function parseBetterJSAlternative(code) {
 
 ```js
 function showDeveloperList(developers) {
-  developers.forEach(developers => {
+  developers.forEach((developers) => {
     const expectedSalary = developer.calculateExpectedSalary();
     const experience = developer.getExperience();
     const githubLink = developer.getGithubLink();
     const data = {
       expectedSalary: expectedSalary,
       experience: experience,
-      githubLink: githubLink
+      githubLink: githubLink,
     };
 
     render(data);
@@ -355,14 +353,14 @@ function showDeveloperList(developers) {
 }
 
 function showManagerList(managers) {
-  managers.forEach(manager => {
+  managers.forEach((manager) => {
     const expectedSalary = manager.calculateExpectedSalary();
     const experience = manager.getExperience();
     const portfolio = manager.getMBAProjects();
     const data = {
       expectedSalary: expectedSalary,
       experience: experience,
-      portfolio: portfolio
+      portfolio: portfolio,
     };
 
     render(data);
@@ -424,7 +422,7 @@ const menuConfig = {
   title: null,
   body: "Bar",
   buttonText: null,
-  cancellable: true
+  cancellable: true,
 };
 
 function createMenu(config) {
@@ -445,7 +443,7 @@ const menuConfig = {
   title: "Order",
   // User did not include 'body' key
   buttonText: "Send",
-  cancellable: true
+  cancellable: true,
 };
 
 function createMenu(config) {
@@ -454,7 +452,7 @@ function createMenu(config) {
       title: "Foo",
       body: "Bar",
       buttonText: "Baz",
-      cancellable: true
+      cancellable: true,
     },
     config
   );
@@ -535,7 +533,7 @@ JavaScript 中有个不太好的实践就是修改某个全局函数，将其指
 **Bad:**
 
 ```js
-Array.prototype.diff = function(comparisonArray) {
+Array.prototype.diff = function (comparisonArray) {
   const values = [];
   const hash = {};
 
@@ -590,20 +588,20 @@ JavaScript 并不像 Haskell 这样纯粹的函数式编程语言，不过其对
 const programmerOutput = [
   {
     name: "Uncle Bobby",
-    linesOfCode: 500
+    linesOfCode: 500,
   },
   {
     name: "Suzie Q",
-    linesOfCode: 1500
+    linesOfCode: 1500,
   },
   {
     name: "Jimmy Gosling",
-    linesOfCode: 150
+    linesOfCode: 150,
   },
   {
     name: "Gracie Hopper",
-    linesOfCode: 1000
-  }
+    linesOfCode: 1000,
+  },
 ];
 
 const totalOutput = 0;
@@ -619,24 +617,24 @@ for (const i = 0; i < programmerOutput.length; i++) {
 const programmerOutput = [
   {
     name: "Uncle Bobby",
-    linesOfCode: 500
+    linesOfCode: 500,
   },
   {
     name: "Suzie Q",
-    linesOfCode: 1500
+    linesOfCode: 1500,
   },
   {
     name: "Jimmy Gosling",
-    linesOfCode: 150
+    linesOfCode: 150,
   },
   {
     name: "Gracie Hopper",
-    linesOfCode: 1000
-  }
+    linesOfCode: 1000,
+  },
 ];
 
 const totalOutput = programmerOutput
-  .map(programmer => programmer.linesOfCode)
+  .map((programmer) => programmer.linesOfCode)
   .reduce((acc, linesOfCode) => acc + linesOfCode, 0);
 ```
 
@@ -897,11 +895,11 @@ bankAccount.withdraw(100);
 **Bad:**
 
 ```js
-const Employee = function(name) {
+const Employee = function (name) {
   this.name = name;
 };
 
-Employee.prototype.getName = function() {
+Employee.prototype.getName = function () {
   return this.name;
 };
 
@@ -914,9 +912,9 @@ console.log("Employee name: " + employee.getName()); // Employee name: undefined
 **Good**:
 
 ```js
-const Employee = (function() {
+const Employee = (function () {
   function Employee(name) {
-    this.getName = function() {
+    this.getName = function () {
       return name;
     };
   }
@@ -1072,7 +1070,7 @@ class Square extends Rectangle {
 }
 
 function renderLargeRectangles(rectangles) {
-  rectangles.forEach(rectangle => {
+  rectangles.forEach((rectangle) => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
     let area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
@@ -1135,7 +1133,7 @@ class Square extends Shape {
 }
 
 function renderLargeShapes(shapes) {
-  shapes.forEach(shape => {
+  shapes.forEach((shape) => {
     switch (shape.constructor.name) {
       case "Square":
         shape.setLength(5);
@@ -1178,7 +1176,7 @@ class DOMTraverser {
 
 let $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
-  animationModule: function() {} // Most of the time, we won't need to animate when traversing.
+  animationModule: function () {}, // Most of the time, we won't need to animate when traversing.
   // ...
 });
 ```
@@ -1212,8 +1210,8 @@ class DOMTraverser {
 let $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
   options: {
-    animationModule: function() {}
-  }
+    animationModule: function () {},
+  },
 });
 ```
 
@@ -1241,7 +1239,7 @@ class InventoryTracker {
   }
 
   requestItems() {
-    this.items.forEach(item => {
+    this.items.forEach((item) => {
       this.requester.requestItem(item);
     });
   }
@@ -1271,7 +1269,7 @@ class InventoryTracker {
   }
 
   requestItems() {
-    this.items.forEach(item => {
+    this.items.forEach((item) => {
       this.requester.requestItem(item);
     });
   }
@@ -1313,7 +1311,7 @@ inventoryTracker.requestItems();
 **Bad:**
 
 ```js
-const Animal = function(age) {
+const Animal = function (age) {
   if (!(this instanceof Animal)) {
     throw new Error("Instantiate Animal with `new`");
   }
@@ -1321,9 +1319,9 @@ const Animal = function(age) {
   this.age = age;
 };
 
-Animal.prototype.move = function() {};
+Animal.prototype.move = function () {};
 
-const Mammal = function(age, furColor) {
+const Mammal = function (age, furColor) {
   if (!(this instanceof Mammal)) {
     throw new Error("Instantiate Mammal with `new`");
   }
@@ -1334,9 +1332,9 @@ const Mammal = function(age, furColor) {
 
 Mammal.prototype = Object.create(Animal.prototype);
 Mammal.prototype.constructor = Mammal;
-Mammal.prototype.liveBirth = function() {};
+Mammal.prototype.liveBirth = function () {};
 
-const Human = function(age, furColor, languageSpoken) {
+const Human = function (age, furColor, languageSpoken) {
   if (!(this instanceof Human)) {
     throw new Error("Instantiate Human with `new`");
   }
@@ -1347,7 +1345,7 @@ const Human = function(age, furColor, languageSpoken) {
 
 Human.prototype = Object.create(Mammal.prototype);
 Human.prototype.constructor = Human;
-Human.prototype.speak = function() {};
+Human.prototype.speak = function () {};
 ```
 
 **Good:**
@@ -1451,11 +1449,7 @@ class Car {
   }
 }
 
-let car = new Car()
-  .setColor("pink")
-  .setMake("Ford")
-  .setModel("F-150")
-  .save();
+let car = new Car().setColor("pink").setMake("Ford").setModel("F-150").save();
 ```
 
 ## Prefer composition over inheritance
@@ -1528,8 +1522,8 @@ class EmployeeTaxData {
 ```js
 const assert = require("assert");
 
-describe("MakeMomentJSGreatAgain", function() {
-  it("handles date boundaries", function() {
+describe("MakeMomentJSGreatAgain", function () {
+  it("handles date boundaries", function () {
     let date;
 
     date = new MakeMomentJSGreatAgain("1/1/2015");
@@ -1552,20 +1546,20 @@ describe("MakeMomentJSGreatAgain", function() {
 ```js
 const assert = require("assert");
 
-describe("MakeMomentJSGreatAgain", function() {
-  it("handles 30-day months", function() {
+describe("MakeMomentJSGreatAgain", function () {
+  it("handles 30-day months", function () {
     let date = new MakeMomentJSGreatAgain("1/1/2015");
     date.addDays(30);
     date.shouldEqual("1/31/2015");
   });
 
-  it("handles leap year", function() {
+  it("handles leap year", function () {
     let date = new MakeMomentJSGreatAgain("2/1/2016");
     date.addDays(28);
     assert.equal("02/29/2016", date);
   });
 
-  it("handles non-leap year", function() {
+  it("handles non-leap year", function () {
     let date = new MakeMomentJSGreatAgain("2/1/2015");
     date.addDays(28);
     assert.equal("03/01/2015", date);
@@ -1584,11 +1578,11 @@ describe("MakeMomentJSGreatAgain", function() {
 ```js
 require("request").get(
   "https://en.wikipedia.org/wiki/Robert_Cecil_Martin",
-  function(err, response) {
+  function (err, response) {
     if (err) {
       console.error(err);
     } else {
-      require("fs").writeFile("article.html", response.body, function(err) {
+      require("fs").writeFile("article.html", response.body, function (err) {
         if (err) {
           console.error(err);
         } else {
@@ -1605,13 +1599,13 @@ require("request").get(
 ```js
 require("request-promise")
   .get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
-  .then(function(response) {
+  .then(function (response) {
     return require("fs-promise").writeFile("article.html", response);
   })
-  .then(function() {
+  .then(function () {
     console.log("File written");
   })
-  .catch(function(err) {
+  .catch(function (err) {
     console.log(err);
   });
 ```
@@ -1625,13 +1619,13 @@ Promises 本身已经是对于回调的不错的替代，而 ES7 中的 async �
 ```js
 require("request-promise")
   .get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
-  .then(function(response) {
+  .then(function (response) {
     return require("fs-promise").writeFile("article.html", response);
   })
-  .then(function() {
+  .then(function () {
     console.log("File written");
   })
-  .catch(function(err) {
+  .catch(function (err) {
     console.log(err);
   });
 ```
@@ -1985,10 +1979,10 @@ try {
 
 ```js
 getdata()
-  .then(data => {
+  .then((data) => {
     functionThatMightThrow(data);
   })
-  .catch(error => {
+  .catch((error) => {
     console.log(error);
   });
 ```
@@ -1997,10 +1991,10 @@ getdata()
 
 ```js
 getdata()
-  .then(data => {
+  .then((data) => {
     functionThatMightThrow(data);
   })
-  .catch(error => {
+  .catch((error) => {
     // One option (more noisy than console.log):
     console.error(error);
     // Another option:

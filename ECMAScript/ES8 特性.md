@@ -72,7 +72,7 @@ Object.entries("es8"); // [['0', 'e'], ['1', 's'], ['2', '8']]
 Object.getOwnPropertyDescriptor(obj, prop);
 ```
 
-`obj` 即为源对象，而 `prop` 即为需要查看的属性名；结果中包含的键可能有 configurable、enumerable 、writable、get 、set 以及 value。
+`obj` 即为源对象，而 `prop` 即为需要查看的属性名；结果中包含的键可能有 configurable、enumerable、writable、get、set 以及 value。
 
 ```
 const obj = { get es8() { return 888; } };

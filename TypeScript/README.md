@@ -2,8 +2,6 @@
 
 TypeScript 是由 MicroSoft 出品的 JavaScript 超集，它在兼容 JavaScript 的所有特性的基础上，附带了静态类型的支持；TypeScript 还允许我们使用尚未正式发布的 ECMAScript 的语言特性，在编译时进行类似于 Babel 这样的降级转化。JavaScript 本身乃动态类型的语言，即是在运行时才进行类型校验；该特性赋予了其快速原型化的能力，却在构建大型 JavaScript 应用时力有不逮，其无法在编译时帮助规避可能的类型错误，也无法利用自动补全、自动重构等工具特性。TypeScript 的静态类型特性则帮助我们在编译时尽可能规避类型错误，并且 TypeScript 会尽可能地从上下文信息中进行类型推导，以避免像 Java 等静态类型语言中过于冗余的麻烦。
 
-![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/3/1-brsHVxCkP9_Fi3yxPZ5fYA.png)
-
 目前，Angular 已经使用 TypeScript 重构了代码，另一大前端框架 Vue 的新版本也将使用 TypeScript 进行重构。在可预见的未来，TypeScript 将成为前端开发者必须掌握的开发语言之一。
 
 - 类型检查。TypeScript 会在编译代码时进行严格的静态类型检查，这意味着你可以在编码阶段发现可能存在的隐患，而不必把它们带到线上。

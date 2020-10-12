@@ -1,15 +1,13 @@
-![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/6/1/fetch-logo-promo.gif)
-
 # x-fetch: Extreme and Fluent Wrapper for fetch
 
 在[第一版本的 Fluent Fetcher 中](https://parg.co/bXJ)，笔者希望将所有的功能包含在单一的 FluentFetcher 类内，结果发现整个文件冗长而丑陋；在团队内部尝试推广时也无人愿用，包括自己过了一段时间再拾起这个库也觉得很棘手。在编写 declarative-crawler 的时候，笔者又用到了 fluent-fetcher，看着如乱麻般的代码，我不由沉思，为什么当时会去封装这个库？为什么不直接使用 fetch，而是自找麻烦多造一层轮子。就如笔者在 [2016-我的前端之路:工具化与工程化](https://zhuanlan.zhihu.com/p/24575395)一文中介绍的，框架本身是对于复用代码的提取或者功能的扩展，其会具有一定的内建复杂度。如果内建复杂度超过了业务应用本身的复杂度，那么引入框架就不免多此一举了。而网络请求则是绝大部分客户端应用不可或缺的一部分，纵观多个项目，我们也可以提炼出很多的公共代码；譬如公共的域名、请求头、认证等配置代码，有时候需要添加扩展功能：譬如重试、超时返回、缓存、Mock 等等。笔者构建 Fluent Fetcher 的初衷即是希望能够简化网络请求的步骤，将原生 fetch 中偏声明式的构造流程以流式方法调用的方式提供出来，并且为原有的执行函数添加部分功能扩展。
 
 那么之前框架的问题在于：
 
-* 模糊的文档，很多参数的含义、用法包括可用的接口类型都未讲清楚；
-* 接口的不一致与不直观，默认参数，是使用对象解构(opt = {})还是函数的默认参数(arg1, arg2 = 2)；
-* 过多的潜在抽象漏洞，将 Error 对象封装了起来，导致使用者很难直观地发现错误，并且也不便于使用者进行个性化定制；
-* 模块独立性的缺乏，很多的项目都希望能提供尽可能多的功能，但是这本身也会带来一定的风险，同时会导致最终打包生成的包体大小的增长。
+- 模糊的文档，很多参数的含义、用法包括可用的接口类型都未讲清楚；
+- 接口的不一致与不直观，默认参数，是使用对象解构(opt = {})还是函数的默认参数(arg1, arg2 = 2)；
+- 过多的潜在抽象漏洞，将 Error 对象封装了起来，导致使用者很难直观地发现错误，并且也不便于使用者进行个性化定制；
+- 模块独立性的缺乏，很多的项目都希望能提供尽可能多的功能，但是这本身也会带来一定的风险，同时会导致最终打包生成的包体大小的增长。
 
 好的代码，好的 API 设计确实应该如白居易的诗，浅显易懂而又韵味悠长，没有人有义务透过你邋遢的外表去发现你美丽的心灵。开源项目本身也意味着一种责任，如果是单纯地为了炫技而提升了代码的复杂度却是得不偿失。笔者认为最理想的情况是使用任何第三方框架之前都能对其源代码有所了解，像 React、Spring Boot、TensorFlow 这样比较复杂的库，我们可以慢慢地拨开它的面纱。而对于一些相对小巧的工具库，出于对自己负责、对团队负责的态度，在引入之前还是要了解下它们的源码组成，了解有哪些文档中没有提及的功能或者潜在风险。笔者在编写 Fluent Fetcher 的过程中也参考了 OkHttp、super-agent、request 等流行的网络请求库。
 
@@ -36,7 +34,7 @@ test("构建完整跨域缓存请求", () => {
   let { url, option }: RequestType = new RequestBuilder({
     scheme: "https",
     host: "api.com",
-    encoding: "utf-8"
+    encoding: "utf-8",
   })
     .get("/user")
     .cors()
@@ -44,7 +42,7 @@ test("构建完整跨域缓存请求", () => {
     .cache("no-cache")
     .build({
       queryParam: 1,
-      b: "c"
+      b: "c",
     });
 
   chaiExpect(url).to.equal("https://api.com/user?queryParam=1&b=c");
@@ -249,18 +247,18 @@ export default class ExternalDependedComponent extends Component {
 const HttpsProxyAgent = require("https-proxy-agent");
 
 const requestBuilder = new RequestBuilder({
-scheme: "http",
-host: "jsonplaceholder.typicode.com"
+  scheme: "http",
+  host: "jsonplaceholder.typicode.com",
 });
 
 const { url: getUrl, option: getOption } = requestBuilder
-.get("/posts")
-.pathSegment("1")
-.build();
+  .get("/posts")
+  .pathSegment("1")
+  .build();
 
 getOption.agent = new HttpsProxyAgent("http://114.232.81.95:35293");
 
-let post = await execute(getUrl, getOption,"text");
+let post = await execute(getUrl, getOption, "text");
 ```
 
 # 扩展策略
@@ -351,11 +349,11 @@ function consume(reader) {
 
 // 执行数据抓取操作
 fetch("/music/pk/altes-kamuffel.flac")
-  .then(res => consume(res.body.getReader()))
+  .then((res) => consume(res.body.getReader()))
   .then(() =>
     log("consumed the entire body without keeping the whole thing in memory!")
   )
-  .catch(e => log("something went wrong: " + e));
+  .catch((e) => log("something went wrong: " + e));
 ```
 
 ## Pipe
@@ -378,9 +376,9 @@ describe("Pipe 测试", () => {
 
 ## Acknowledge
 
-* [r2](https://github.com/mikeal/r2/tree/master): HTTP client. Spiritual successor to request.
+- [r2](https://github.com/mikeal/r2/tree/master): HTTP client. Spiritual successor to request.
 
-* [wretch](https://github.com/elbywan/wretch)
+- [wretch](https://github.com/elbywan/wretch)
 
 ## Contribution & RoadMap
 
