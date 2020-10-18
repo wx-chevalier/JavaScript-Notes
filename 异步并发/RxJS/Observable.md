@@ -3,7 +3,7 @@
 Observables 是多个值的惰性推送集合。当订阅下面代码中的 Observable 的时候会立即(同步地)推送值 1、2、3，然后 1 秒后会推送值 4，再然后是完成流：
 
 ```js
-const observable = Rx.Observable.create(function(observer) {
+const observable = Rx.Observable.create(function (observer) {
   observer.next(1);
   observer.next(2);
   observer.next(3);
@@ -19,9 +19,9 @@ const observable = Rx.Observable.create(function(observer) {
 ```js
 console.log("just before subscribe");
 observable.subscribe({
-  next: x => console.log("got value " + x),
-  error: err => console.error("something wrong occurred: " + err),
-  complete: () => console.log("done")
+  next: (x) => console.log("got value " + x),
+  error: (err) => console.error("something wrong occurred: " + err),
+  complete: () => console.log("done"),
 });
 console.log("just after subscribe");
 ```
@@ -69,7 +69,9 @@ Rx.Observable.fromPromise(fetch("/users"));
 // 来自回调函数(最后一个参数得是回调函数，比如下面的 cb)
 // fs.exists = (path, cb(exists))
 const exists = Rx.Observable.bindCallback(fs.exists);
-exists("file.txt").subscribe(exists => console.log("Does file exist?", exists));
+exists("file.txt").subscribe((exists) =>
+  console.log("Does file exist?", exists)
+);
 
 // 来自回调函数(最后一个参数得是回调函数，比如下面的 cb)
 // fs.rename = (pathA, pathB, cb(err, result))
@@ -82,7 +84,7 @@ rename("file.txt", "else.txt").subscribe(() => console.log("Renamed!"));
 示例中的 Observable 对象 observable 可以订阅，像这样：
 
 ```js
-observable.subscribe(x => console.log(x));
+observable.subscribe((x) => console.log(x));
 ```
 
 observable.subscribe 和 `Observable.create(function subscribe(observer) {...})` 中的 subscribe 有着同样的名字，这并不是一个巧合。在库中，它们是不同的，但从实际出发，你可以认为在概念上它们是等同的。这表明 subscribe 调用在同一 Observable 的多个观察者之间是不共享的。当使用一个观察者调用 observable.subscribe 时，`Observable.create(function subscribe(observer) {...})` 中的 subscribe 函数只服务于给定的观察者。对 observable.subscribe 的每次调用都会触发针对给定观察者的独立设置。
@@ -93,9 +95,9 @@ observable.subscribe 和 `Observable.create(function subscribe(observer) {...})`
 
 Observable.create(function subscribe(observer) {...}) 中...的代码表示 “Observable 执行”，它是惰性运算，只有在每个观察者订阅后才会执行。随着时间的推移，执行会以同步或异步的方式产生多个值。Observable 执行可以传递三种类型的值：
 
-- "Next" 通知： 发送一个值，比如数字、字符串、对象，等等。
-- "Error" 通知： 发送一个 JavaScript 错误 或 异常。
-- "Complete" 通知： 不再发送任何值。
+- "Next" 通知：发送一个值，比如数字、字符串、对象，等等。
+- "Error" 通知：发送一个 JavaScript 错误 或 异常。
+- "Complete" 通知：不再发送任何值。
 
 "Next" 通知是最重要，也是最常见的类型：它们表示传递给观察者的实际数据。"Error" 和 "Complete" 通知可能只会在 Observable 执行期间发生一次，并且只会执行其中的一个。
 
@@ -142,14 +144,14 @@ const observable = Rx.Observable.create(function subscribe(observer) {
 因为 Observable 执行可能会是无限的，并且观察者通常希望能在有限的时间内中止执行，所以我们需要一个 API 来取消执行。因为每个执行都是其对应观察者专属的，一旦观察者完成接收值，它必须要一种方法来停止执行，以避免浪费计算能力或内存资源。当调用了 observable.subscribe ，观察者会被附加到新创建的 Observable 执行中。这个调用还返回一个对象，即 Subscription (订阅)：
 
 ```ts
-const subscription = observable.subscribe(x => console.log(x));
+const subscription = observable.subscribe((x) => console.log(x));
 ```
 
 Subscription 表示进行中的执行，它有最小化的 API 以允许你取消执行。使用 subscription.unsubscribe() 你可以取消进行中的执行：
 
 ```ts
 const observable = Rx.Observable.from([10, 20, 30]);
-const subscription = observable.subscribe(x => console.log(x));
+const subscription = observable.subscribe((x) => console.log(x));
 // 稍后：
 subscription.unsubscribe();
 ```
@@ -183,7 +185,7 @@ function subscribe(observer) {
   };
 }
 
-const unsubscribe = subscribe({ next: x => console.log(x) });
+const unsubscribe = subscribe({ next: (x) => console.log(x) });
 
 // 稍后：
 unsubscribe(); // 清理资源

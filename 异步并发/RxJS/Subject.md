@@ -2,16 +2,16 @@
 
 RxJS Subject 是一种特殊类型的 Observable，它允许将值多播给多个观察者，所以 Subject 是多播的，而普通的 Observables 是单播的(每个已订阅的观察者都拥有 Observable 的独立执行)。Subject 像是 Observable，但是可以多播给多个观察者。Subject 还像是 EventEmitters，维护着多个监听器的注册表。对于 Subject，你可以提供一个观察者并使用 subscribe 方法，就可以开始正常接收值。从观察者的角度而言，它无法判断 Observable 执行是来自普通的 Observable 还是 Subject 。在 Subject 的内部，subscribe 不会调用发送值的新执行。它只是将给定的观察者注册到观察者列表中，类似于其他库或语言中的 addListener 的工作方式。
 
-Subject 是一个有如下方法的对象： next(v)、error(e) 和 complete() 。要给 Subject 提供新值，只要调用 next(theValue)，它会将值多播给已注册监听该 Subject 的观察者们。在下面的示例中，我们为 Subject 添加了两个观察者，然后给 Subject 提供一些值：
+Subject 是一个有如下方法的对象：next(v)、error(e) 和 complete() 。要给 Subject 提供新值，只要调用 next(theValue)，它会将值多播给已注册监听该 Subject 的观察者们。在下面的示例中，我们为 Subject 添加了两个观察者，然后给 Subject 提供一些值：
 
 ```ts
 const subject = new Rx.Subject();
 
 subject.subscribe({
-  next: v => console.log("observerA: " + v)
+  next: (v) => console.log("observerA: " + v),
 });
 subject.subscribe({
-  next: v => console.log("observerB: " + v)
+  next: (v) => console.log("observerB: " + v),
 });
 
 subject.next(1);
@@ -30,11 +30,11 @@ The subject is another Observable type in RxJS. Subjects like Observables can em
 ```ts
 import { Observable } from "rxjs";
 
-const observable = new Observable(observer => {
+const observable = new Observable((observer) => {
   setTimeout(() => observer.next("hello from Observable!"), 1000);
 });
 
-observable.subscribe(v => console.log(v));
+observable.subscribe((v) => console.log(v));
 
 import { Subject } from "rxjs";
 
@@ -42,7 +42,7 @@ const subject = new Subject();
 
 subject.next("missed message from Subject");
 
-subject.subscribe(v => console.log(v));
+subject.subscribe((v) => console.log(v));
 
 subject.next("hello from subject!");
 ```
@@ -136,8 +136,8 @@ const multi = example.pipe(multicast(() => new Subject()));
   "Result!"
   ...
 */
-const subscriberOne = multi.subscribe(val => console.log(val));
-const subscriberTwo = multi.subscribe(val => console.log(val));
+const subscriberOne = multi.subscribe((val) => console.log(val));
+const subscriberTwo = multi.subscribe((val) => console.log(val));
 //subscribe subject to source
 multi.connect();
 ```
@@ -214,14 +214,14 @@ Subject 的其中一个变体就是 BehaviorSubject，它有一个“当前值�
 const subject = new Rx.BehaviorSubject(0); // 0是初始值
 
 subject.subscribe({
-  next: v => console.log("observerA: " + v)
+  next: (v) => console.log("observerA: " + v),
 });
 
 subject.next(1);
 subject.next(2);
 
 subject.subscribe({
-  next: v => console.log("observerB: " + v)
+  next: (v) => console.log("observerB: " + v),
 });
 
 subject.next(3);
@@ -244,7 +244,7 @@ ReplaySubject 类似于 BehaviorSubject，它可以发送旧值给新的订阅�
 const subject = new Rx.ReplaySubject(3); // 为新的订阅者缓冲3个值
 
 subject.subscribe({
-  next: v => console.log("observerA: " + v)
+  next: (v) => console.log("observerA: " + v),
 });
 
 subject.next(1);
@@ -253,7 +253,7 @@ subject.next(3);
 subject.next(4);
 
 subject.subscribe({
-  next: v => console.log("observerB: " + v)
+  next: (v) => console.log("observerB: " + v),
 });
 
 subject.next(5);
@@ -277,7 +277,7 @@ observerB: 5
 const subject = new Rx.ReplaySubject(100, 500 /* windowTime */);
 
 subject.subscribe({
-  next: v => console.log("observerA: " + v)
+  next: (v) => console.log("observerA: " + v),
 });
 
 const i = 1;
@@ -285,7 +285,7 @@ setInterval(() => subject.next(i++), 200);
 
 setTimeout(() => {
   subject.subscribe({
-    next: v => console.log("observerB: " + v)
+    next: (v) => console.log("observerB: " + v),
   });
 }, 1000);
 ```
@@ -314,7 +314,7 @@ AsyncSubject 是另一个 Subject 变体，只有当 Observable 执行完成时(
 const subject = new Rx.AsyncSubject();
 
 subject.subscribe({
-  next: v => console.log("observerA: " + v)
+  next: (v) => console.log("observerA: " + v),
 });
 
 subject.next(1);
@@ -323,7 +323,7 @@ subject.next(3);
 subject.next(4);
 
 subject.subscribe({
-  next: v => console.log("observerB: " + v)
+  next: (v) => console.log("observerB: " + v),
 });
 
 subject.next(5);
