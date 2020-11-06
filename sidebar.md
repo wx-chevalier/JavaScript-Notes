@@ -87,6 +87,8 @@
       - [async await](/异步并发/异步模式/async-await.md)
       - [异步编程模式](/异步并发/异步模式/异步编程模式.md)
       - [异步编程综述](/异步并发/异步模式/异步编程综述.md)
+  - [设计模式](/设计模式/README.md)
+    - [SOLID](/设计模式/SOLID.md)
   - 语法基础
     - [ECMAScript](/语法基础/ECMAScript/README.md)
       - [ES10 特性](/语法基础/ECMAScript/ES10%20特性.md)
