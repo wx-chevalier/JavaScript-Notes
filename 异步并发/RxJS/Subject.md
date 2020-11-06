@@ -80,7 +80,7 @@ setTimeout(() => {
  * B next: 2
  */
 
-// 如果是同一个 shared Observable execution 的话，B的第一个 emit 的值应该是 2 而不是 0 ，并且只有且仅有一个值 2
+// 如果是同一个 shared Observable execution 的话，B的第一个 emit 的值应该是 2 而不是 0，并且只有且仅有一个值 2
 const clock$ = Observable.interval(1000).take(3);
 
 const observerA = {
