@@ -49,7 +49,7 @@ Handler Table (size = 16)
 
 ## 优化器
 
-作为解释型语言，JavaScript 的性能一直是其瓶颈之一。Google 在 2009 年在 V8 中引入了 JIT 技术 (Just in time compiling ) , JavaScript 瞬间提升了 20 － 40 倍的速度。JIT 基于运行期分析编译，而 Javascript 是一个没有类型的语言，于是，大部分时间，JIT 编译器其实是在猜测 Javascript 中的类型，举个例子：
+作为解释型语言，JavaScript 的性能一直是其瓶颈之一。Google 在 2009 年在 V8 中引入了 JIT 技术 (Just in time compiling ), JavaScript 瞬间提升了 20 － 40 倍的速度。JIT 基于运行期分析编译，而 Javascript 是一个没有类型的语言，于是，大部分时间，JIT 编译器其实是在猜测 Javascript 中的类型，举个例子：
 
 ```js
 function add (a, b) { return a+b}

@@ -43,7 +43,7 @@ const Parent = function Parent() {
   this.a = 1;
 };
 
-const Child = (function(_Parent) {
+const Child = (function (_Parent) {
   (0, _inherits3.default)(Child, _Parent);
 
   function Child() {
@@ -103,9 +103,9 @@ A = null;
 const a = new B();
 a.say();
 
-let C = function() {};
+let C = function () {};
 
-C.prototype.say = function() {
+C.prototype.say = function () {
   console.log(C);
 };
 
@@ -190,7 +190,7 @@ this.tight = A.getResult( input )
 ```
 /*
   * Setting up block level variable to store class state
-  * , set's to null by default.
+  *, set's to null by default.
 */
 let instance = null;
 
@@ -415,7 +415,7 @@ class Lion extends Cat {
 
 ```js
 // Function id() simply returns its parameter
-const id = x => x;
+const id = (x) => x;
 
 class Foo extends id(Object) {}
 ```
