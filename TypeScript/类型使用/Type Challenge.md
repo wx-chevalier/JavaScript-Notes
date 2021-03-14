@@ -1,5 +1,5 @@
 # Type Challenge
 
-# Todos
+# Links
 
 > https://github.com/type-challenges/type-challenges
