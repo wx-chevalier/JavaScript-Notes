@@ -25,7 +25,7 @@ ECMAScript 标准不定义 HTML 或 CSS 的相关功能，也不定义类似 DOM
 
 - Stage 4 “finished” — Indicates that the proposal has been accepted and the specification has been merged with the main JavaScript spec. No further changes are expected. JavaScript engines are expected to ship their implementations. As of October 2017 there are nine finished proposals, most notably async functions.
 
-# TBD
+# Links
 
 - https://github.com/daumann/ECMAScript-new-features-list
 - https://mp.weixin.qq.com/s/8bov6788ivV0sHzmwrn5lw

@@ -1,6 +1,6 @@
 # JavaScript 语法编译
 
-# TBD
+# Links
 
 - https://lihautan.com/json-parser-with-javascript/
 - https://lihautan.com/creating-custom-javascript-syntax-with-babel/
