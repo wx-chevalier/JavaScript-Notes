@@ -177,8 +177,6 @@ this.tight = A.getResult( input )
 
 # Class
 
-## Reference
-
 # 实例化
 
 ## 构造函数
