@@ -80,7 +80,9 @@
       - [5.3.3 异步编程模式](/异步并发/异步模式/异步编程模式.md)
       - [5.3.4 异步编程综述](/异步并发/异步模式/异步编程综述.md)
   - [6 设计模式](/设计模式/README.md)
-    - [6.1 SOLID](/设计模式/SOLID.md)
+    - [6.1 Clean Code](/设计模式/Clean%20Code/README.md)
+      - [6.1.1 ryanmcdermott JavaScript Clean Code Practices](/设计模式/Clean%20Code/ryanmcdermott-JavaScript%20Clean%20Code%20Practices.md)
+    - [6.2 SOLID](/设计模式/SOLID.md)
   - 7 语法基础
     - [7.1 ECMAScript](/语法基础/ECMAScript/README.md)
       - [7.1.1 ES10 特性](/语法基础/ECMAScript/ES10%20特性.md)
