@@ -1,12 +1,5 @@
 # JavaScript Event Loop 与并发编程浅述
 
-浏览器和 Node 环境下，microtask 任务队列的执行时机不同
-
-- Node 端，microtask 在事件循环的各个阶段之间执行
-- 浏览器端，microtask 在事件循环的 macrotask 执行完之后执行
-
-# 1. 事件循环机制详解与实践应用
-
 JavaScript 是典型的单线程单并发语言，即表示在同一时间片内其只能执行单个任务或者部分代码片。换言之，我们可以认为某个同域浏览器上下中 JavaScript 主线程拥有一个函数调用栈以及一个任务队列(参考 [whatwg 规范](https://html.spec.whatwg.org/multipage/webappapis.html#task-queue))；主线程会依次执行代码，当遇到函数时，会先将函数入栈，函数运行完毕后再将该函数出栈，直到所有代码执行完毕。当函数调用栈为空时，运行时即会根据事件循环(Event Loop)机制来从任务队列中提取出待执行的回调并执行，执行的过程同样会进行函数帧的入栈出栈操作。每个线程有自己的事件循环，所以每个 Web Worker 有自己的，所以它才可以独立执行。然而，所有同属一个 origin 的窗体都共享一个事件循环，所以它们可以同步交流。
 
 Event Loop(事件循环)并不是 JavaScript 中独有的，其广泛应用于各个领域的异步编程实现中；所谓的 Event Loop 即是一系列回调函数的集合，在执行某个异步函数时，会将其回调压入队列中，JavaScript 引擎会在异步代码执行完毕后开始处理其关联的回调。
@@ -20,6 +13,34 @@ while (queue.waitForMessage()) {
 ```
 
 完整的浏览器中 JavaScript 事件循环机制图解如下：
+
+```js
+// Create promise which resolves after a timeout of 0ms.
+// This forces the promise to be enqueue as a new thread in
+// the event loop instead of executing immediately in this thread.
+// The function within the timeout acts very much like
+// a thread in other programming models.
+let promise = new Promise(
+  (resolve, reject) =>
+    setTimeout(() => {
+      console.log("[A] Inside Promise");
+      resolve("DONE");
+    }),
+  0
+);
+
+// Add another message after promise has been resolved.
+promise.then(
+  (result) => console.log("[B] Promise returned: ", result),
+  (error) => console.log("[C] Promise failed: ", error)
+);
+
+// Write to the console when this code block finshes executing.
+console.log("[D] End of code");
+
+// SOLUTION
+// Output order: D, A, B
+```
 
 在 Web 浏览器中，任何时刻都有可能会有事件被触发，而仅有那些设置了回调的事件会将其相关的任务压入到任务队列中。回调函数被调用时即会在函数调用栈中创建初始帧，而直到整个函数调用栈清空之前任何产生的任务都会被压入到任务队列中延后执行；顺序的同步函数调用则会创建新的栈帧。总结而言，浏览器中的事件循环机制阐述如下：
 
