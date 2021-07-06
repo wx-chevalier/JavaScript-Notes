@@ -15,6 +15,8 @@ ECMAScript 标准不定义 HTML 或 CSS 的相关功能，也不定义类似 DOM
 
 ## 特性阶段
 
+![ES 特性阶段](https://ngte-superbed.oss-cn-beijing.aliyuncs.com/superbed/2021/07/06/60e3edcd5132923bf801093a.jpg)
+
 - Stage 0 “strawman” — The starting point for all proposals. These can change significantly before advancing to the next stage. There is no acceptance criteria and anyone can make a new proposal for this stage. There doesn’t need to be any implementation and the spec isn’t held to any standard. This stage is intended to start a discussion about the feature. There are currently over twenty stage 0 proposals.
 
 - Stage 1 “proposal” — An actual formal proposal. These require a “champion”(i.e. a member of TC39 committee). At this stage the API should be well thought out and any potential implementation challenges should be outlined. At this stage, a polyfill is developed and demos produced. Major changes might happen after this stage, so use with caution. Proposals at this stage include the long-awaited Observables type and the Promise.try function.
