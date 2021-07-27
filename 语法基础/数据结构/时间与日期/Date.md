@@ -1,42 +1,6 @@
-# JavaScript 时间与日期类型
-
-## 标准时间
-
-GMT 即「格林威治标准时间」( Greenwich Mean Time，简称 G.M.T. )，指位于英国伦敦郊区的皇家格林威治天文台的标准时间，因为本初子午线被定义为通过那里的经线。然而由于地球的不规则自转，导致 GMT 时间有误差，因此目前已不被当作标准时间使用。UTC 是最主要的世界时间标准，是经过平均太阳时 ( 以格林威治时间 GMT 为准 )、地轴运动修正后的新时标以及以「秒」为单位的国际原子时所综合精算而成的时间。UTC 比 GMT 来得更加精准。其误差值必须保持在 0.9 秒以内，若大于 0.9 秒则由位于巴黎的国际地球自转事务中央局发布闰秒，使 UTC 与地球自转周期一致。不过日常使用中，GMT 与 UTC 的功能与精确度是没有差别的。协调世界时区会使用 “Z” 来表示。而在航空上，所有使用的时间划一规定是协调世界时。而且 Z 在无线电中应读作 “Zulu”(可参见北约音标字母)，协调世界时也会被称为 “Zulu time”。
-
-### TimeZone&UTC Offsets | 时区与偏移
-
-人们经常会把时区与 UTC 偏移量搞混，UTC 偏移量代表了某个具体的时间值与 UTC 时间之间的差异，通常用 HH:mm 形式表述。而 TimeZone 则表示某个地理区域，某个 TimeZone 中往往会包含多个偏移量，而多个时区可能在一年的某些时间有相同的偏移量。譬如 America/Chicago, America/Denver, 以及 America/Belize 在一年中不同的时间都会包含 -06:00 这个偏移。
-
-### 时间戳
-
-Unix 时间戳表示当前时间到 1970 年 1 月 1 日 00:00:00 UTC 对应的秒数。注意，JavaScript 内的时间戳指的是当前时间到 1970 年 1 月 1 日 00:00:00 UTC 对应的毫秒数，和 Unix 时间戳不是一个概念，后者表示秒数，差了 1000 倍。
-
-## 时间数字字符串格式
-
-### RFC2822
-
-```
-YYYY/MM/DD HH:MM:SS ± timezone(时区用4位数字表示)
-// eg 1992/02/12 12:23:22+0800
-```
-
-### ISO 8601
-
-国际标准化组织的国际标准 ISO 8601 是日期和时间的表示方法，全称为《数据存储和交换形式 · 信息交换 · 日期和时间的表示方法》。目前最新为第三版 ISO8601:2004，第一版为 ISO8601:1988，第二版为 ISO8601:2000。年由 4 位数组成，以公历公元 1 年为 0001 年，以公元前 1 年为 0000 年，公元前 2 年为 -0001 年，其他以此类推。应用其他纪年法要换算成公历，但如果发送和接受信息的双方有共同一致同意的其他纪年法，可以自行应用。
-
-```
-YYYY-MM-DDThh:mm:ss ± timezone(时区用HH:MM表示)
-1997-07-16T08:20:30Z
-// “Z”表示UTC标准时区，即"00:00",所以这里表示零时区的`1997年7月16日08时20分30秒`
-//转换成位于东八区的北京时间则为`1997年7月17日16时20分30秒`
-1997-07-16T19:20:30+01:00
-// 表示东一区的1997年7月16日19时20秒30分，转换成UTC标准时间的话是1997-07-16T18:20:30Z
-```
-
 # Date
 
-JavaScript 为我们提供了不是很好用的 Date 对象作为时间日期对象，Date() 直接返回当前时间字符串，不管参数是 number 还是任何 string。而 new Date() 则是会根据参数来返回对应的值，无参数的时候，返回当前时间的字符串形式；有参数的时候返回参数所对应时间的字符串。new Date() 对参数不管是格式还是内容都要求, 且只返回字符串, 标准的构造 Date 对象的方法有 :
+JavaScript 为我们提供了不是很好用的 Date 对象作为时间日期对象，Date() 直接返回当前时间字符串，不管参数是 number 还是任何 string。而 new Date() 则是会根据参数来返回对应的值，无参数的时候，返回当前时间的字符串形式；有参数的时候返回参数所对应时间的字符串。new Date() 对参数不管是格式还是内容都要求, 且只返回字符串, 标准的构造 Date 对象的方法有
 
 ```
 // 不带new操作符，像一个函数一样调用。它将忽略所有传入的参数，并返回当前日期和时间的一个字符串表示。
@@ -82,7 +46,7 @@ new Date("2011-01-01T11:00:00") - new Date("1992/02/11 12:00:12");
 
 ### TimeStamp | 时间戳
 
-如果需要从当前的时间对象获取其相应的时间戳，我们可以使用 getTime 或者 valueOf()，返回距离 1970 年 1 月 1 日 0 点的毫秒数 :
+如果需要从当前的时间对象获取其相应的时间戳，我们可以使用 getTime 或者 valueOf()，返回距离 1970 年 1 月 1 日 0 点的毫秒数
 
 ```js
 const date1 = new Date(2007, 0, 1);
@@ -97,7 +61,7 @@ Date.now = function () {
 };
 ```
 
-另外 Date 对象还有一个静态方法同样返回给定日期的毫秒数。但其参数并不是一个字符串，而是分别代表年、月、日、时、分、秒、毫秒的数字参数 :
+另外 Date 对象还有一个静态方法同样返回给定日期的毫秒数。但其参数并不是一个字符串，而是分别代表年、月、日、时、分、秒、毫秒的数字参数
 
 ```js
 console.log(Date.UTC(1970)); //NaN
@@ -112,14 +76,14 @@ console.log(Date.UTC(1970, 0, 1, 1, 59, 30)); //717000
 
 ### DateTimeString | 时间日期字符串
 
-JavaScript 原生 Date 对于时间字符串的解析真的是槽点满满，假设我们希望以 DD/MM/YYYY 的格式进行解析，那么它是无法识别的 :
+JavaScript 原生 Date 对于时间字符串的解析真的是槽点满满，假设我们希望以 DD/MM/YYYY 的格式进行解析，那么它是无法识别的
 
 ```js
 const a = new Date("01/12/2016"); //December 1 2016 in DD/MM/YYYY format
 //"Tue Jan 12 2016 00:00:00 GMT-0600 (Central Standard Time)"
 ```
 
-另外，在 ES5 的标准中，其对 ISO 8601 标准的字符串进行了一个神奇的断言 : 所有没有提供时区的字符串默认为标准时区。换言之，你会发现你解析出来的时间和你预期中的不一样，而且它打印的时候是按照本地时区又进行了转换 :
+另外，在 ES5 的标准中，其对 ISO 8601 标准的字符串进行了一个神奇的断言 : 所有没有提供时区的字符串默认为标准时区。换言之，你会发现你解析出来的时间和你预期中的不一样，而且它打印的时候是按照本地时区又进行了转换
 
 ```
 //US local format
@@ -159,7 +123,7 @@ console.log(Date.parse('2016-07-12'));//1468281600000
 
 ### Get & Set | 属性值设置
 
-Date 对象提供了一系列 get\* 方法，用来获取实例对象某个方面的值。具体的 Get 函数列表详见附录 :
+Date 对象提供了一系列 get\* 方法，用来获取实例对象某个方面的值。具体的 Get 函数列表详见附录
 
 ```sjs
 const d = new Date("January 6, 2013");
@@ -171,7 +135,7 @@ d.getFullYear(); // 2013
 d.getTimezoneOffset(); // -480
 ```
 
-同样的，Date 对象还提供了一系列的 Set 方法 :
+同样的，Date 对象还提供了一系列的 Set 方法
 
 ```js
 const d1 = new Date("January 6, 2013");
@@ -260,7 +224,7 @@ d2 + d1;
 
 ### Format | 格式化
 
-Date 对象提供了一系列的`to*`方法来支持从 Date 对象转化为字符串，具体的函数列表详见附录 :
+Date 对象提供了一系列的`to*`方法来支持从 Date 对象转化为字符串，具体的函数列表详见附录
 
 ```
 const d = new Date(2013, 0, 1);
@@ -346,159 +310,3 @@ window.navigator.language
 ```
 
 ## Calendar | 日历操作
-
-# [Moment.js](http://momentjs.com/guides/)
-
-Moment.js 为 JavaScript Date 对象提供了封装与统一好的 API 接口，并且提供了更多的功能。首先需要了解的是，Moment 提供的 moment 对象是可变的，即当我们对该对象执行类似于增减或者设置的时候，其对象本身的值会发生变化，譬如下面这段代码 :
-
-```
-const a = moment('2016-01-01');
-const b = a.add(1, 'week');
-a.format();
-"2016-01-08T00:00:00-06:00"
-```
-
-而如果我们不希望改变原有的值，特别是在需要创建多个时间日期对象的时候，我们可以利用 clone 方法 :
-
-```
-const a = moment('2016-01-01');
-const b = a.clone().add(1, 'week');
-a.format();
-"2016-01-01T00:00:00-06:00"
-```
-
-笔者是习惯在 Webpack 中进行打包，类似于 Node 下的安装方式 :
-
-```
-//安装
-npm install moment
-//使用
-const moment = require('moment');
-moment().format();
-```
-
-如果你需要引入某个语言包，那么可以用如下方式 :
-
-```
-const moment = require('moment');
-require('moment/locale/cs');
-console.log(moment.locale()); // cs
-```
-
-## Parse
-
-### TimeStamp
-
-```
-//毫秒
-const day = moment(1318781876406);
-//秒
-const day = moment.unix(1318781876);
-```
-
-### DateTimeString
-
-```
-moment("2010-10-20 4:30",       "YYYY-MM-DD HH:mm");   // parsed as 4:30 local time
-moment("2010-10-20 4:30 +0000", "YYYY-MM-DD HH:mm Z"); // parsed as 4:30 UTC
-
-moment("2010 13",           "YYYY MM").isValid();     // false (not a real month)
-moment("2010 11 31",        "YYYY MM DD").isValid();  // false (not a real day)
-moment("2010 2 29",         "YYYY MM DD").isValid();  // false (not a leap year)
-moment("2010 notamonth 29", "YYYY MMM DD").isValid(); // false (not a real month name)
-```
-
-## Manipulate
-
-### Get/Set
-
-```
-moment().seconds(30) === new Date().setSeconds(30);
-moment().seconds()   === new Date().getSeconds();
-
-moment().get('year');
-moment().get('month');  // 0 to 11
-moment().get('date');
-moment().get('hour');
-moment().get('minute');
-moment().get('second');
-moment().get('millisecond');
-```
-
-```
-moment().set('year', 2013);
-moment().set('month', 3);  // April
-moment().set('date', 1);
-moment().set('hour', 13);
-moment().set('minute', 20);
-moment().set('second', 30);
-moment().set('millisecond', 123);
-
-moment().set({'year': 2013, 'month': 3});
-```
-
-### Add&Subtract
-
-```
-moment().add(Number, String);
-moment().add(Duration);
-moment().add(Object);
-
-moment().add(7, 'days');
-
-moment().subtract(Number, String);
-moment().subtract(Duration);
-moment().subtract(Object);
-
-moment().subtract(7, 'days');
-```
-
-### Comparison
-
-```
-moment().isBefore(Moment|String|Number|Date|Array);
-moment().isBefore(Moment|String|Number|Date|Array, String);
-
-moment('2010-10-20').isBefore('2010-12-31', 'year'); // false
-moment('2010-10-20').isBefore('2011-01-01', 'year'); // true
-```
-
-### Diff
-
-```
-moment().diff(Moment|String|Number|Date|Array);
-moment().diff(Moment|String|Number|Date|Array, String);
-moment().diff(Moment|String|Number|Date|Array, String, Boolean);
-
-const a = moment([2007, 0, 29]);
-const b = moment([2007, 0, 28]);
-a.diff(b, 'days') // 1
-```
-
-## Display
-
-### Format
-
-```js
-moment().format(); // "2014-09-08T08:02:17-05:00" (ISO 8601)
-moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
-moment().format("ddd, hA"); // "Sun, 3PM"
-moment("gibberish").format("YYYY MM DD"); // "Invalid date"
-```
-
-### Relative Format
-
-```
-moment([2007, 0, 29]).fromNow();     // 4 years ago
-moment([2007, 0, 29]).fromNow(true); // 4 years
-```
-
-### Duration
-
-```
-moment.duration(1, "minutes").humanize(); // a minute
-moment.duration(2, "minutes").humanize(); // 2 minutes
-moment.duration(24, "hours").humanize();  // a day
-```
-
-## i18n
