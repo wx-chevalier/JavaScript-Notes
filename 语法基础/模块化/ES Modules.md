@@ -10,15 +10,20 @@
 
 这里的 `module` 关键字就告诉浏览器该脚本中包含了对于其他脚本的导入语句，需要进行预先处理；不过问题来了，那么 JavaScript 解释器又该如何判断某个文件是否为模块。社区也经过很多轮的讨论，我们可以来看下简单的例子：
 
-```
+```html
 <!--index.html-->
 <!DOCTYPE html>
 <html>
-  <head>
-  <script type="module" src="main.js"></script>
-  </head>
-  <body>
-  </body>
+   
+  <head>
+     
+    <script type="module" src="main.js"></script>
+     
+  </head>
+   
+  <body>
+     
+  </body>
 </html>
 ```
 
@@ -106,9 +111,9 @@ undefined
 
 [@std/esm]  除了会自动识别 `.mjs` 扩展的文件之外，它还支持任何包含 `import/export`、Dynamic import、file URI scheme 等语句的文件，典型的用例如下：
 
-```
+```js
 // 首先安装依赖
-npm i --save @std/esm
+// npm i --save @std/esm
 
 
 
@@ -138,7 +143,7 @@ export default "Hello World!";
 
 
 // 运行文件
-node -r @std/esm index.js
+// node -r @std/esm index.js
 // Hello World!
 ```
 
