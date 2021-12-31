@@ -32,7 +32,7 @@
     "rimraf": "^2.6.1"
   },
   "dependencies": {
-    "validator": "^8.0.0",
+    "validator": "^13.7.0",
     "validatorjs": "^3.13.3"
   }
 }
