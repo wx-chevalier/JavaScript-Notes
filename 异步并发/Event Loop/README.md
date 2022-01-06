@@ -217,8 +217,8 @@ Middle of queue
 b. 如果 Task X 为 Null，则结束执行 MicroTask 队列；
 
 c. 将 Current Running Task 设置为 Task X，
-  d. 执行该任务，如果产生新的 MicroTask，直接压入当前队列；
-  e. 将 Current Running Task 设置为 Null，并移出 Task X；
+d. 执行该任务，如果产生新的 MicroTask，直接压入当前队列；
+e. 将 Current Running Task 设置为 Null，并移出 Task X；
 
 f. 重新从 MicroTask 中选出最早的任务，跳转到 b；
 

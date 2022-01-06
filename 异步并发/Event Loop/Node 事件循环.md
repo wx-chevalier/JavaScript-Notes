@@ -7,17 +7,17 @@
 
 # Node.js 事件循环机制
 
-## setImmediate 与 setTimeout 对比
+## setImmediate 与 setTimeout 对比
 
 上文中我们介绍过 setImmediate 与 setTimeout 都属于 MacroTask，每轮事件循环中都会执行 MacroTask 中的队列首部回调；不过我们也经常可以看到描述说 setImmediate 会优于 setTimeout 执行，
 
 ```js
 //index.js
 setTimeout(function(){
-  console.log("SETTIMEOUT");
+  console.log("SETTIMEOUT");
 });
 setImmediate(function(){
-  console.log("SETIMMEDIATE");
+  console.log("SETIMMEDIATE");
 });
 
 //run it
@@ -27,7 +27,7 @@ node index.js
 上述代码的执行结果并不固定，在介绍 setImmediate 与 setTimeout 的区别之前，我们先来讨论下 Node.js 中的事件循环机制；其基本流程如下图所示：
 
 ```js
- ┌───────────────────────┐
+ ┌───────────────────────┐
 ┌─>│timers │
 │└──────────┬────────────┘
 │┌──────────┴────────────┐
@@ -44,19 +44,19 @@ node index.js
 │└──────────┬────────────┘
 │┌──────────┴────────────┐
 └──┤close callbacks│
- └───────────────────────┘
+ └───────────────────────┘
 ```
 
 ```js
 //index.js
 var fs = require('fs');
 fs.readFile("my-file-path.txt", function() {
-  setTimeout(function(){
-  console.log("SETTIMEOUT");
-  });
-  setImmediate(function(){
-  console.log("SETIMMEDIATE");
-  });
+  setTimeout(function(){
+  console.log("SETTIMEOUT");
+  });
+  setImmediate(function(){
+  console.log("SETIMMEDIATE");
+  });
 });
 
 //run it
@@ -76,30 +76,30 @@ var suite = new Suite
 
 
 suite.add('deffered.resolve()', function(deferred) {
-  deferred.resolve()
+  deferred.resolve()
 }, {defer: true})
 
 
 suite.add('setImmediate()', function(deferred) {
-  setImmediate(function() {
-  deferred.resolve()
-  })
+  setImmediate(function() {
+  deferred.resolve()
+  })
 }, {defer: true})
 
 
 suite.add('setTimeout(,0)', function(deferred) {
-  setTimeout(function() {
-  deferred.resolve()
-  },0)
+  setTimeout(function() {
+  deferred.resolve()
+  },0)
 }, {defer: true})
 
 
 suite
 .on('cycle', function(event) {
-  console.log(String(event.target));
+  console.log(String(event.target));
 })
 .on('complete', function() {
-  console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+  console.log('Fastest is ' + this.filter('fastest').pluck('name'));
 })
 .run({async: true})
 
@@ -119,7 +119,7 @@ setTimeout(,0) x 445 ops/sec Â±2.79% (82 runs sampled)
 ![](https://blog-assets.risingstack.com/2016/10/the-Node-js-event-loop.png)
 
 ```
- ┌───────────────────────┐
+ ┌───────────────────────┐
 ┌─>│timers │
 │└──────────┬────────────┘
 │┌──────────┴────────────┐
@@ -136,7 +136,7 @@ setTimeout(,0) x 445 ops/sec Â±2.79% (82 runs sampled)
 │└──────────┬────────────┘
 │┌──────────┴────────────┐
 └──┤close callbacks│
- └───────────────────────┘
+ └───────────────────────┘
 ```
 
 ## nextTick 与 setImmediate
@@ -147,21 +147,21 @@ setTimeout(,0) x 445 ops/sec Â±2.79% (82 runs sampled)
 
 ```
 setImmediate(function A() {
-  setImmediate(function B() {
-  log(1);
-  setImmediate(function D() { log(2); });
-  setImmediate(function E() { log(3); });
-  });
-  setImmediate(function C() {
-  log(4);
-  setImmediate(function F() { log(5); });
-  setImmediate(function G() { log(6); });
-  });
+  setImmediate(function B() {
+  log(1);
+  setImmediate(function D() { log(2); });
+  setImmediate(function E() { log(3); });
+  });
+  setImmediate(function C() {
+  log(4);
+  setImmediate(function F() { log(5); });
+  setImmediate(function G() { log(6); });
+  });
 });
 
 
 setTimeout(function timeout() {
-  console.log('TIMEOUT FIRED');
+  console.log('TIMEOUT FIRED');
 }, 0)
 
 

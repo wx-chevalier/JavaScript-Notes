@@ -14,10 +14,10 @@ console.log(obj.__proto__ === Object.prototype);
 
 const obj = {
   a: 1,
-  b: 2
+  b: 2,
 };
 Object.setPrototypeOf(obj, {
-  c: 3
+  c: 3,
 });
 
 console.log(Object.keys(obj));
@@ -39,15 +39,15 @@ Object 中的 Key 类别 JavaScript 中 Object 是一个混合了类似于 Dicti
 ```js
 const a = "a";
 const object = {
-  a, // a:"a" // `abc` is a valid identifier; no quotes are needed
-  abc: 1, // `123` is a numeric literal; no quotes are needed
-  123: 2, // `012` is an octal literal with value `10` and thus isn’t allowed in strict mode; but if you insist on using it, quotes aren’t needed
-  012: 3, // `π` is a valid identifier; no quotes are needed
-  π: Math.PI, // `const` is a valid identifier name (although it’s a reserved word); no quotes are needed
-  const: 4, // `foo bar` is not a valid identifier name; quotes are required
-  "foo bar": 5, // `foo-bar` is not a valid identifier name; quotes are required
-  "foo-bar": 6, // the empty string is not a valid identifier name; quotes are required
-  "": 7
+  a, // a:"a" // `abc` is a valid identifier; no quotes are needed
+  abc: 1, // `123` is a numeric literal; no quotes are needed
+  123: 2, // `012` is an octal literal with value `10` and thus isn’t allowed in strict mode; but if you insist on using it, quotes aren’t needed
+  012: 3, // `π` is a valid identifier; no quotes are needed
+  π: Math.PI, // `const` is a valid identifier name (although it’s a reserved word); no quotes are needed
+  const: 4, // `foo bar` is not a valid identifier name; quotes are required
+  "foo bar": 5, // `foo-bar` is not a valid identifier name; quotes are required
+  "foo-bar": 6, // the empty string is not a valid identifier name; quotes are required
+  "": 7,
 };
 ```
 
@@ -59,16 +59,16 @@ const object = {
 
 - Object Literals: 在 ES6 中，Object 的字面值调用也得到了增强，譬如用于构建时候的原型设置、`foo:foo`形式的简写、方法定义、父类调用以及计算属性值等等。
 
-注意，与 object 不同的是，[JSON](http://json.org/) 只允许用双引号 (`"`)  包裹的字符串作为键名。而如果要根据键名进行索引的话，可以使用方括号，这种方式对于三种键值皆有效：
+注意，与 object 不同的是，[JSON](http://json.org/) 只允许用双引号 (`"`) 包裹的字符串作为键名。而如果要根据键名进行索引的话，可以使用方括号，这种方式对于三种键值皆有效：
 
 ```js
-object["abc"]; // 1
+object["abc"]; // 1
 ```
 
 有时候也可以使用点操作符，不过这种方式只可以被用于键为有效地 Identifier 情况：
 
 ```js
-object.abc; // 1
+object.abc; // 1
 ```
 
 如果需要获取所有的键名的话，可以使用 Object.keys 方法：> 注意，所有的 Object 的方法只能用 Object.methodName 方式调用。
@@ -78,24 +78,24 @@ object.abc; // 1
 ECMAScript 5 中引入了一个新方法：[Object.create](https://developer.mozilla.org/zh-cn/JavaScript/Reference/Global_Objects/Object/create)。可以调用这个方法来创建一个新对象。新对象的原型就是调用 `create` 方法时传入的第一个参数：
 
 ````js
-const a = {a: 1};
-// a ---> Object.prototype ---> null
+const a = {a: 1};
+// a ---> Object.prototype ---> null
 
-const b = Object.create(a);
-// b ---> a ---> Object.prototype ---> null
-console.log(b.a); // 1 (继承而来)
+const b = Object.create(a);
+// b ---> a ---> Object.prototype ---> null
+console.log(b.a); // 1 (继承而来)
 
-const c = Object.create(b);
-// c ---> b ---> a ---> Object.prototype ---> null
+const c = Object.create(b);
+// c ---> b ---> a ---> Object.prototype ---> null
 
-const d = Object.create(null);
-// d ---> null
-console.log(d.hasOwnProperty); // undefined, 因为d没有继承Object.prototype
+const d = Object.create(null);
+// d ---> null
+console.log(d.hasOwnProperty); // undefined, 因为d没有继承Object.prototype
 
 //如下是实现了简单的基于函数的原型链的继承
-const Scope = function(){};
-Scope.prototype.$clone = function(){
-    return Object.create(this);
+const Scope = function(){};
+Scope.prototype.$clone = function(){
+    return Object.create(this);
 }
 ```
 

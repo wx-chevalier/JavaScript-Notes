@@ -4,7 +4,7 @@
 try {
   let arrayLike = {
     0: Promise.resolve("233"),
-    length: 1
+    length: 1,
   };
   Promise.all(arrayLike);
 } catch (e) {
@@ -12,21 +12,21 @@ try {
 }
 
 const promises = [
-  new Promise(function(resolve) {
-    setTimeout(function() {
+  new Promise(function (resolve) {
+    setTimeout(function () {
       resolve(1);
     }, 90);
   }),
-  new Promise(function(resolve) {
-    setTimeout(function() {
+  new Promise(function (resolve) {
+    setTimeout(function () {
       resolve(2);
     }, 10);
   }),
-  new Promise(function(resolve) {
-    setTimeout(function() {
+  new Promise(function (resolve) {
+    setTimeout(function () {
       resolve(3);
     }, 50);
-  })
+  }),
 ];
 
 Promise.all(promises).then(console.log);
@@ -46,9 +46,7 @@ function requestWithRetry(url, retryCount) {
 
       setTimeout(() => {
         console.log("Waiting", timeout, "ms");
-        _requestWithRetry(url, retryCount)
-          .then(resolve)
-          .catch(reject);
+        _requestWithRetry(url, retryCount).then(resolve).catch(reject);
       }, timeout);
     });
   } else {
@@ -57,7 +55,7 @@ function requestWithRetry(url, retryCount) {
 }
 
 function _requestWithRetry(url, retryCount) {
-  return request(url, retryCount).catch(err => {
+  return request(url, retryCount).catch((err) => {
     if (err.statusCode && err.statusCode >= 500) {
       console.log("Retrying", err.message, retryCount);
       return requestWithRetry(url, ++retryCount);
@@ -67,17 +65,17 @@ function _requestWithRetry(url, retryCount) {
 }
 
 requestWithRetry("http://localhost:3000")
-  .then(res => {
+  .then((res) => {
     console.log(res);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
   });
 ```
 
 ```js
 function wait(timeout) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve();
     }, timeout);
@@ -109,14 +107,14 @@ function asyncThing(value) {
 }
 
 async function mapArray() {
-  return [1, 2, 3, 4].map(async value => {
+  return [1, 2, 3, 4].map(async (value) => {
     const v = await asyncThing(value);
     return v * 2;
   });
 }
 
 async function filterArray() {
-  return [1, 2, 3, 4].filter(async value => {
+  return [1, 2, 3, 4].filter(async (value) => {
     const v = await asyncThing(value);
     return v % 2 === 0;
   });
@@ -132,11 +130,11 @@ async function reduceArray() {
 ```
 
 ```js
-filterArray().then(v => {
+filterArray().then((v) => {
   console.log(v);
 });
 
-// [ 1, 2, 3, 4 ]
+// [ 1, 2, 3, 4 ]
 ```
 
 ```js
@@ -146,7 +144,7 @@ typeof new Promise((resolve, reject) => {}) === "object"; // true
 Promise 本质上只是普通的 JavaScript 对象，包含了允许你执行某些异步代码的方法。
 
 ```js
-const fetch = function(url) {
+const fetch = function (url) {
   return new Promise((resolve, reject) => {
     request((error, apiResponse) => {
       if (error) {
@@ -188,7 +186,7 @@ class SimplePromise {
     let storedValue = value;
 
     try {
-      this.promiseChain.forEach(nextFunction => {
+      this.promiseChain.forEach((nextFunction) => {
         storedValue = nextFunction(storedValue);
       });
     } catch (error) {
@@ -289,7 +287,7 @@ function combineReducers(reducers) {
 }
 
 function clientCacheMiddleware({ maxAge = 3600 * 24 * 365 }) {
-  return function(req, res, next) {
+  return function (req, res, next) {
     res.setHeader("Cache-Control", `max-age=${maxAge}`);
 
     next();
@@ -310,10 +308,12 @@ function clientCacheMiddleware({ maxAge = 3600 * 24 * 365 }) {
  *   .then(console.log)
  *   .catch(console.error)
  */
-const promiseSerial = funcs =>
+const promiseSerial = (funcs) =>
   funcs.reduce(
     (promise, func) =>
-      promise.then(result => func().then(Array.prototype.concat.bind(result))),
+      promise.then((result) =>
+        func().then(Array.prototype.concat.bind(result))
+      ),
     Promise.resolve([])
   );
 
@@ -321,12 +321,10 @@ const promiseSerial = funcs =>
 const urls = ["/url1", "/url2", "/url3"];
 
 // convert each url to a function that returns a promise
-const funcs = urls.map(url => () => $.ajax(url));
+const funcs = urls.map((url) => () => $.ajax(url));
 
 // execute Promises in serial
-promiseSerial(funcs)
-  .then(console.log)
-  .catch(console.error);
+promiseSerial(funcs).then(console.log).catch(console.error);
 ```
 
 ### Promise.race: 返回第一个确定状态
@@ -334,47 +332,47 @@ promiseSerial(funcs)
 race 函数返回一个 Promise，这个 Promise 根据传入的 Promise 中的第一个确定状态 -- 不管是接受还是拒绝 -- 的状态而确定状态。
 
 ```js
-const p1 = new Promise(function(resolve, reject) {
+const p1 = new Promise(function (resolve, reject) {
   setTimeout(resolve, 500, "一");
 });
-const p2 = new Promise(function(resolve, reject) {
+const p2 = new Promise(function (resolve, reject) {
   setTimeout(resolve, 100, "二");
 });
 
-Promise.race([p1, p2]).then(function(value) {
+Promise.race([p1, p2]).then(function (value) {
   console.log(value); // "二"
   // 两个都解决，但p2更快
 });
 
-const p3 = new Promise(function(resolve, reject) {
+const p3 = new Promise(function (resolve, reject) {
   setTimeout(resolve, 100, "三");
 });
-const p4 = new Promise(function(resolve, reject) {
+const p4 = new Promise(function (resolve, reject) {
   setTimeout(reject, 500, "四");
 });
 
 Promise.race([p3, p4]).then(
-  function(value) {
+  function (value) {
     console.log(value); // "三"
     // p3更快，所以被解决(resolve)了
   },
-  function(reason) {
+  function (reason) {
     // 未被执行
   }
 );
 
-const p5 = new Promise(function(resolve, reject) {
+const p5 = new Promise(function (resolve, reject) {
   setTimeout(resolve, 500, "五");
 });
-const p6 = new Promise(function(resolve, reject) {
+const p6 = new Promise(function (resolve, reject) {
   setTimeout(reject, 100, "六");
 });
 
 Promise.race([p5, p6]).then(
-  function(value) {
+  function (value) {
     // 未被执行
   },
-  function(reason) {
+  function (reason) {
     console.log(reason); // "六"
     // p6更快，所以被拒绝(reject了)
   }
@@ -383,8 +381,8 @@ Promise.race([p5, p6]).then(
 
 ```js
 function executeAsyncTask() {
-  return functionA().then(valueA => {
-    return functionB(valueA).then(valueB => {
+  return functionA().then((valueA) => {
+    return functionB(valueA).then((valueB) => {
       return functionC(valueA, valueB);
     });
   });
@@ -392,18 +390,20 @@ function executeAsyncTask() {
 ```
 
 ```js
-const converge = (...promises) => (...args) => {
-  let [head, ...tail] = promises;
-  if (tail.length) {
-    return head(...args).then(value =>
-      converge(...tail)(...args.concat([value]))
-    );
-  } else {
-    return head(...args);
-  }
-};
+const converge =
+  (...promises) =>
+  (...args) => {
+    let [head, ...tail] = promises;
+    if (tail.length) {
+      return head(...args).then((value) =>
+        converge(...tail)(...args.concat([value]))
+      );
+    } else {
+      return head(...args);
+    }
+  };
 
-functionA(2).then(valueA => converge(functionB, functionC)(valueA));
+functionA(2).then((valueA) => converge(functionB, functionC)(valueA));
 ```
 
 ```
@@ -422,7 +422,7 @@ promise.then((value)=>{
 
 
 // 1
-// 2 in setTimeout
+// 2 in setTimeout
 ```
 
 ```js
@@ -432,12 +432,12 @@ const prom = new Promise((resolve, reject) => {
   }, 1000);
 });
 
-prom.then(value => {
+prom.then((value) => {
   console.log(value);
 });
 
 setTimeout(() => {
-  prom.then(value => {
+  prom.then((value) => {
     console.log(value);
   });
 }, 5000);
@@ -460,7 +460,7 @@ async function executeParallelAsyncTasks() {
   const [valueA, valueB, valueC] = await Promise.all([
     functionA(),
     functionB(),
-    functionC()
+    functionC(),
   ]);
   doSomethingWith(valueA);
   doSomethingElseWith(valueB);

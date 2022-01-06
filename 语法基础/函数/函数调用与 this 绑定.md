@@ -84,11 +84,11 @@ func();
 ```
 executionContextObj = {
 
-  'scopeChain': { /* 变量对象 + 所有父级执行上下文中的变量对象 */ },
+  'scopeChain': { /* 变量对象 + 所有父级执行上下文中的变量对象 */ },
 
-  'variableObject': { /*  函数参数 / 参数, 内部变量以及函数声明 */ },
+  'variableObject': { /*  函数参数 / 参数, 内部变量以及函数声明 */ },
 
-  'this': {}
+  'this': {}
 
 }
 ```
@@ -148,29 +148,29 @@ foo(22);
 ```
 fooExecutionContext = {
 
-  scopeChain: { ... },
+  scopeChain: { ... },
 
-  variableObject: {
+  variableObject: {
 
-  arguments: {
+  arguments: {
 
-  0: 22,
+  0: 22,
 
-  length: 1
+  length: 1
 
-  },
+  },
 
-  i: 22,
+  i: 22,
 
-  c: pointer to function c()
+  c: pointer to function c()
 
-  a: undefined,
+  a: undefined,
 
-  b: undefined
+  b: undefined
 
-  },
+  },
 
-  this: { ... }
+  this: { ... }
 
 }
 ```
@@ -180,29 +180,29 @@ fooExecutionContext = {
 ```
 fooExecutionContext = {
 
-  scopeChain: { ... },
+  scopeChain: { ... },
 
-  variableObject: {
+  variableObject: {
 
-  arguments: {
+  arguments: {
 
-  0: 22,
+  0: 22,
 
-  length: 1
+  length: 1
 
-  },
+  },
 
-  i: 22,
+  i: 22,
 
-  c: pointer to function c()
+  c: pointer to function c()
 
-  a: 'hello',
+  a: 'hello',
 
-  b: pointer to function privateB()
+  b: pointer to function privateB()
 
-  },
+  },
 
-  this: { ... }
+  this: { ... }
 
 }
 ```
@@ -212,17 +212,17 @@ fooExecutionContext = {
 ```
 Function.prototype.bind = function() {
 
-  const fn = this,
+  const fn = this,
 
-    args = Array.prototype.slice.call(arguments),
+    args = Array.prototype.slice.call(arguments),
 
-    object = args.shift();
+    object = args.shift();
 
-  return function() {
+  return function() {
 
-    return fn.apply(object, args.concat(Array.prototype.slice.call(arguments)));
+    return fn.apply(object, args.concat(Array.prototype.slice.call(arguments)));
 
-  };
+  };
 
 };
 ```

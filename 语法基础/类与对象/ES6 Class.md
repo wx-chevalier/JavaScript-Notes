@@ -124,17 +124,17 @@ c.say();
 ```
 class Obj {
 
-  static myMethod(msg) {
+  static myMethod(msg) {
 
-  console.log('static', msg);
+  console.log('static', msg);
 
-  }
+  }
 
-  myMethod(msg) {
+  myMethod(msg) {
 
-  console.log('instance', msg);
+  console.log('instance', msg);
 
-  }
+  }
 
 }
 

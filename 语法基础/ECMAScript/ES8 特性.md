@@ -15,12 +15,12 @@ str.padEnd(targetLength [, padString])
 
 ```js
 "es8".padStart(2); // 'es8'
-"es8".padStart(5); // '  es8'
+"es8".padStart(5); // '  es8'
 "es8".padStart(6, "woof"); // 'wooes8'
 "es8".padStart(14, "wow"); // 'wowwowwowwoes8'
 "es8".padStart(7, "0"); // '0000es8'
 "es8".padEnd(2); // 'es8'
-"es8".padEnd(5); // 'es8  '
+"es8".padEnd(5); // 'es8  '
 "es8".padEnd(6, "woof"); // 'es8woo'
 "es8".padEnd(14, "wow"); // 'es8wowwowwowwo'
 "es8".padEnd(7, "6"); // 'es86666'
@@ -78,10 +78,10 @@ Object.getOwnPropertyDescriptor(obj, prop);
 const obj = { get es8() { return 888; } };
 Object.getOwnPropertyDescriptor(obj, 'es8');
 // {
-//   configurable: true,
-//   enumerable: true,
-//   get: function es8(){}, //the getter function
-//   set: undefined
+//   configurable: true,
+//   enumerable: true,
+//   get: function es8(){}, //the getter function
+//   set: undefined
 // }
 ```
 
