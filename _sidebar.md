@@ -8,7 +8,9 @@
       - [2.2.3 Type Challenge](/TypeScript/类型使用/Type%20Challenge.md)
       - [2.2.4 函数](/TypeScript/类型使用/函数.md)
       - [2.2.5 基础类型](/TypeScript/类型使用/基础类型.md)
-      - [2.2.6 类与接口](/TypeScript/类型使用/类与接口.md)
+      - 2.2.6 类与接口
+        - [2.2.6.1 useDefineForClassFields 与 class fields 提案](/TypeScript/类型使用/类与接口/useDefineForClassFields%20与%20class-fields%20提案.md)
+        - [2.2.6.2 类与接口](/TypeScript/类型使用/类与接口/类与接口.md)
       - [2.2.7 类型修饰](/TypeScript/类型使用/类型修饰.md)
       - [2.2.8 进阶类型](/TypeScript/类型使用/进阶类型.md)
     - 2.3 类型机制
