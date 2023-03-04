@@ -1,25 +1,34 @@
   - [1 INTRODUCTION](/INTRODUCTION.md)
-  - [2 TypeScript [4]](/TypeScript/README.md)
-    - 2.1 工程实践 [1]
-      - [2.1.1 类型使用注意](/TypeScript/工程实践/类型使用注意.md)
-    - 2.2 类型使用 [8]
-      - [2.2.1 Decorator](/TypeScript/类型使用/Decorator.md)
-      - [2.2.2 Mixins](/TypeScript/类型使用/Mixins.md)
-      - [2.2.3 Type Challenge](/TypeScript/类型使用/Type%20Challenge.md)
-      - [2.2.4 函数](/TypeScript/类型使用/函数.md)
-      - [2.2.5 基础类型](/TypeScript/类型使用/基础类型.md)
-      - 2.2.6 类与接口 [2]
-        - [2.2.6.1 useDefineForClassFields 与 class fields 提案](/TypeScript/类型使用/类与接口/useDefineForClassFields%20与%20class-fields%20提案.md)
-        - [2.2.6.2 类与接口](/TypeScript/类型使用/类与接口/类与接口.md)
-      - [2.2.7 类型修饰](/TypeScript/类型使用/类型修饰.md)
-      - [2.2.8 进阶类型](/TypeScript/类型使用/进阶类型.md)
-    - 2.3 类型机制 [3]
-      - [2.3.1 类型声明](/TypeScript/类型机制/类型声明.md)
-      - [2.3.2 类型推断](/TypeScript/类型机制/类型推断.md)
-      - [2.3.3 类型断言](/TypeScript/类型机制/类型断言.md)
-    - [2.4 编译原理 [2]](/TypeScript/编译原理/README.md)
-      - [2.4.1 程序与抽象语法树](/TypeScript/编译原理/程序与抽象语法树.md)
-      - [2.4.2 编译流程](/TypeScript/编译原理/编译流程.md)
+  - [2 TypeScript [5]](/TypeScript/README.md)
+    - 2.1 1.类型机制 [3]
+      - [2.1.1 类型声明](/TypeScript/1.类型机制/类型声明.md)
+      - [2.1.2 类型推断](/TypeScript/1.类型机制/类型推断.md)
+      - [2.1.3 类型断言](/TypeScript/1.类型机制/类型断言.md)
+    - 2.2 2.类型使用 [7]
+      - [2.2.1 Decorator](/TypeScript/2.类型使用/Decorator.md)
+      - [2.2.2 Mixins](/TypeScript/2.类型使用/Mixins.md)
+      - [2.2.3 函数](/TypeScript/2.类型使用/函数.md)
+      - [2.2.4 基础类型](/TypeScript/2.类型使用/基础类型.md)
+      - 2.2.5 类与接口 [2]
+        - [2.2.5.1 useDefineForClassFields 与 class fields 提案](/TypeScript/2.类型使用/类与接口/useDefineForClassFields%20与%20class-fields%20提案.md)
+        - [2.2.5.2 类与接口](/TypeScript/2.类型使用/类与接口/类与接口.md)
+      - [2.2.6 类型修饰](/TypeScript/2.类型使用/类型修饰.md)
+      - [2.2.7 进阶类型](/TypeScript/2.类型使用/进阶类型.md)
+    - 2.3 3.工程实践 [1]
+      - [2.3.1 类型使用注意](/TypeScript/3.工程实践/类型使用注意.md)
+    - [2.4 4.编译原理 [2]](/TypeScript/4.编译原理/README.md)
+      - [2.4.1 程序与抽象语法树](/TypeScript/4.编译原理/程序与抽象语法树.md)
+      - [2.4.2 编译流程](/TypeScript/4.编译原理/编译流程.md)
+    - 2.5 5.类型库 [3]
+      - [2.5.1 type challenge](/TypeScript/5.类型库/type-challenge/README.md)
+        
+      - [2.5.2 type fest](/TypeScript/5.类型库/type-fest/README.md)
+        
+      - 2.5.3 内置类型 [4]
+        - [2.5.3.1 Partial](/TypeScript/5.类型库/内置类型/Partial.md)
+        - [2.5.3.2 Pick](/TypeScript/5.类型库/内置类型/Pick.md)
+        - [2.5.3.3 Readonly](/TypeScript/5.类型库/内置类型/Readonly.md)
+        - [2.5.3.4 Required](/TypeScript/5.类型库/内置类型/Required.md)
   - [3 V8 引擎 [6]](/V8%20引擎/README.md)
     - [3.1 JIT](/V8%20引擎/JIT/README.md)
       
