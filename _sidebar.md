@@ -24,11 +24,23 @@
         
       - [2.5.2 type fest](/TypeScript/5.类型库/type-fest/README.md)
         
-      - 2.5.3 内置类型 [4]
-        - [2.5.3.1 Partial](/TypeScript/5.类型库/内置类型/Partial.md)
-        - [2.5.3.2 Pick](/TypeScript/5.类型库/内置类型/Pick.md)
-        - [2.5.3.3 Readonly](/TypeScript/5.类型库/内置类型/Readonly.md)
-        - [2.5.3.4 Required](/TypeScript/5.类型库/内置类型/Required.md)
+      - 2.5.3 内置类型 [16]
+        - [2.5.3.1 Capitalize](/TypeScript/5.类型库/内置类型/Capitalize.md)
+        - [2.5.3.2 Exclude](/TypeScript/5.类型库/内置类型/Exclude.md)
+        - [2.5.3.3 Extract](/TypeScript/5.类型库/内置类型/Extract.md)
+        - [2.5.3.4 InstanceType](/TypeScript/5.类型库/内置类型/InstanceType.md)
+        - [2.5.3.5 Lowercase](/TypeScript/5.类型库/内置类型/Lowercase.md)
+        - [2.5.3.6 NonNullable](/TypeScript/5.类型库/内置类型/NonNullable.md)
+        - [2.5.3.7 Omit](/TypeScript/5.类型库/内置类型/Omit.md)
+        - [2.5.3.8 Parameters](/TypeScript/5.类型库/内置类型/Parameters.md)
+        - [2.5.3.9 Partial](/TypeScript/5.类型库/内置类型/Partial.md)
+        - [2.5.3.10 Pick](/TypeScript/5.类型库/内置类型/Pick.md)
+        - [2.5.3.11 Readonly](/TypeScript/5.类型库/内置类型/Readonly.md)
+        - [2.5.3.12 Record](/TypeScript/5.类型库/内置类型/Record.md)
+        - [2.5.3.13 Required](/TypeScript/5.类型库/内置类型/Required.md)
+        - [2.5.3.14 ReturnType](/TypeScript/5.类型库/内置类型/ReturnType.md)
+        - [2.5.3.15 Uncapitalize](/TypeScript/5.类型库/内置类型/Uncapitalize.md)
+        - [2.5.3.16 Uppercase](/TypeScript/5.类型库/内置类型/Uppercase.md)
   - [3 V8 引擎 [6]](/V8%20引擎/README.md)
     - [3.1 JIT](/V8%20引擎/JIT/README.md)
       
