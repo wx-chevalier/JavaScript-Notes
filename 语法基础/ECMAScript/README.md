@@ -15,7 +15,7 @@ ECMAScript 标准不定义 HTML 或 CSS 的相关功能，也不定义类似 DOM
 
 ## 特性阶段
 
-![ES 特性阶段](https://ngte-superbed.oss-cn-beijing.aliyuncs.com/superbed/2021/07/06/60e3edcd5132923bf801093a.jpg)
+![ES 特性阶段](https://assets.ng-tech.icu/superbed/2021/07/06/60e3edcd5132923bf801093a.jpg)
 
 - Stage 0 “strawman” — The starting point for all proposals. These can change significantly before advancing to the next stage. There is no acceptance criteria and anyone can make a new proposal for this stage. There doesn’t need to be any implementation and the spec isn’t held to any standard. This stage is intended to start a discussion about the feature. There are currently over twenty stage 0 proposals.
 
