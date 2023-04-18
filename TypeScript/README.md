@@ -12,7 +12,7 @@ TypeScript 是由 MicroSoft 出品的 JavaScript 超集，它在兼容 JavaScrip
 
 - TypeScript 还可以帮助团队重塑“类型思维”，接口提供方将被迫去思考 API 的边界，他们将从代码的编写者蜕变为代码的设计者。
 
-![mindmap](https://i.postimg.cc/15NwgxZW/Type-Script.png)
+![mindmap](https://assets.ng-tech.icu/item/20230418223105.png)
 
 # 环境配置
 
