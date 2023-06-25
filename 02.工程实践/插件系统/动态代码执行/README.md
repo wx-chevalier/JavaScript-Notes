@@ -21,7 +21,7 @@ var a = -100;
   var nfunc = new Function("return this");
   console.log(nfunc()); // Window
 
-  // 作为对象的方法时， this 是当前对象
+  // 作为对象的方法时，this 是当前对象
   var obj = { nfunc: nfunc };
   console.log(obj.nfunc()); // {nfunc: ƒ}
 })();
