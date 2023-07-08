@@ -106,7 +106,7 @@
     - [4.1 Clean Code [1]](/04.设计模式/Clean%20Code/README.md)
       - [4.1.1 ryanmcdermott JavaScript Clean Code Practices](/04.设计模式/Clean%20Code/ryanmcdermott-JavaScript%20Clean%20Code%20Practices.md)
     - [4.2 SOLID](/04.设计模式/SOLID.md)
-  - [5 10.TypeScript [5]](/10.TypeScript/README.md)
+  - [5 10.TypeScript [6]](/10.TypeScript/README.md)
     - 5.1 01.类型机制 [3]
       - [5.1.1 类型声明](/10.TypeScript/01.类型机制/类型声明.md)
       - [5.1.2 类型推断](/10.TypeScript/01.类型机制/类型推断.md)
@@ -148,6 +148,9 @@
         - [5.5.3.14 ReturnType](/10.TypeScript/05.类型库/内置类型/ReturnType.md)
         - [5.5.3.15 Uncapitalize](/10.TypeScript/05.类型库/内置类型/Uncapitalize.md)
         - [5.5.3.16 Uppercase](/10.TypeScript/05.类型库/内置类型/Uppercase.md)
+    - 5.6 99.参考资料 [1]
+      - [5.6.1 《The Concise TypeScript Book》](/10.TypeScript/99.参考资料/2023-《The%20Concise%20TypeScript%20Book》/README.md)
+        
   - [6 20.V8 引擎 [6]](/20.V8%20引擎/README.md)
     - 6.1 99.参考资料 [1]
       - [6.1.1 Google V8 引擎浅析](/20.V8%20引擎/99.参考资料/2021-Google%20V8%20引擎浅析.md)
