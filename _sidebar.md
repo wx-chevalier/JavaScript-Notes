@@ -107,10 +107,10 @@
       - [4.1.1 ryanmcdermott JavaScript Clean Code Practices](/04~设计模式/Clean%20Code/ryanmcdermott-JavaScript%20Clean%20Code%20Practices.md)
     - [4.2 SOLID](/04~设计模式/SOLID.md)
   - [5 10~TypeScript [6]](/10~TypeScript/README.md)
-    - 5.1 01.类型机制 [3]
-      - [5.1.1 类型声明](/10~TypeScript/01.类型机制/类型声明.md)
-      - [5.1.2 类型推断](/10~TypeScript/01.类型机制/类型推断.md)
-      - [5.1.3 类型断言](/10~TypeScript/01.类型机制/类型断言.md)
+    - 5.1 01~类型机制 [3]
+      - [5.1.1 类型声明](/10~TypeScript/01~类型机制/类型声明.md)
+      - [5.1.2 类型推断](/10~TypeScript/01~类型机制/类型推断.md)
+      - [5.1.3 类型断言](/10~TypeScript/01~类型机制/类型断言.md)
     - 5.2 02.类型使用 [7]
       - [5.2.1 Decorator](/10~TypeScript/02.类型使用/Decorator.md)
       - [5.2.2 Mixins](/10~TypeScript/02.类型使用/Mixins.md)
