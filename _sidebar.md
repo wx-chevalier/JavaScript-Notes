@@ -111,21 +111,21 @@
       - [5.1.1 类型声明](/10~TypeScript/01~类型机制/类型声明.md)
       - [5.1.2 类型推断](/10~TypeScript/01~类型机制/类型推断.md)
       - [5.1.3 类型断言](/10~TypeScript/01~类型机制/类型断言.md)
-    - 5.2 02.类型使用 [7]
-      - [5.2.1 Decorator](/10~TypeScript/02.类型使用/Decorator.md)
-      - [5.2.2 Mixins](/10~TypeScript/02.类型使用/Mixins.md)
-      - [5.2.3 函数](/10~TypeScript/02.类型使用/函数.md)
-      - [5.2.4 基础类型](/10~TypeScript/02.类型使用/基础类型.md)
+    - 5.2 02~类型使用 [7]
+      - [5.2.1 Decorator](/10~TypeScript/02~类型使用/Decorator.md)
+      - [5.2.2 Mixins](/10~TypeScript/02~类型使用/Mixins.md)
+      - [5.2.3 函数](/10~TypeScript/02~类型使用/函数.md)
+      - [5.2.4 基础类型](/10~TypeScript/02~类型使用/基础类型.md)
       - 5.2.5 类与接口 [2]
-        - [5.2.5.1 useDefineForClassFields 与 class fields 提案](/10~TypeScript/02.类型使用/类与接口/useDefineForClassFields%20与%20class-fields%20提案.md)
-        - [5.2.5.2 类与接口](/10~TypeScript/02.类型使用/类与接口/类与接口.md)
-      - [5.2.6 类型修饰](/10~TypeScript/02.类型使用/类型修饰.md)
-      - [5.2.7 进阶类型](/10~TypeScript/02.类型使用/进阶类型.md)
-    - 5.3 03.工程实践 [1]
-      - [5.3.1 类型使用注意](/10~TypeScript/03.工程实践/类型使用注意.md)
-    - [5.4 04.编译原理 [2]](/10~TypeScript/04.编译原理/README.md)
-      - [5.4.1 程序与抽象语法树](/10~TypeScript/04.编译原理/程序与抽象语法树.md)
-      - [5.4.2 编译流程](/10~TypeScript/04.编译原理/编译流程.md)
+        - [5.2.5.1 useDefineForClassFields 与 class fields 提案](/10~TypeScript/02~类型使用/类与接口/useDefineForClassFields%20与%20class-fields%20提案.md)
+        - [5.2.5.2 类与接口](/10~TypeScript/02~类型使用/类与接口/类与接口.md)
+      - [5.2.6 类型修饰](/10~TypeScript/02~类型使用/类型修饰.md)
+      - [5.2.7 进阶类型](/10~TypeScript/02~类型使用/进阶类型.md)
+    - 5.3 03~工程实践 [1]
+      - [5.3.1 类型使用注意](/10~TypeScript/03~工程实践/类型使用注意.md)
+    - [5.4 04~编译原理 [2]](/10~TypeScript/04~编译原理/README.md)
+      - [5.4.1 程序与抽象语法树](/10~TypeScript/04~编译原理/程序与抽象语法树.md)
+      - [5.4.2 编译流程](/10~TypeScript/04~编译原理/编译流程.md)
     - 5.5 05~类型库 [3]
       - [5.5.1 type challenge](/10~TypeScript/05~类型库/type-challenge/README.md)
         
