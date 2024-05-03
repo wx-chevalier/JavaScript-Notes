@@ -62,7 +62,7 @@ declare namespace JSX {
 }
 ```
 
-上面示例中， 元素名可以是任意字符串。
+上面示例中，元素名可以是任意字符串。
 
 ## 组件的写法
 
@@ -80,4 +80,3 @@ const Button = (prop: { value: string }, context: { color: string }) => (
   <button />
 );
 ```
-
