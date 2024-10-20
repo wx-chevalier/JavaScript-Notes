@@ -1,5 +1,13 @@
 # NonNullable
 
+条件类型根据一个条件表达式来选择两种可能类型之一。
+
+```typescript
+type NonNullable<T> = T extends null | undefined ? never : T;
+
+type Result = NonNullable<string | null | undefined>; // Result is string
+```
+
 ```ts
 type PortNumber = string | number | null;
 

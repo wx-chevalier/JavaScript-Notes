@@ -1483,7 +1483,7 @@ Notes: `bigInt` values cannot be mixed with `number` and cannot be used with bui
 
 JavaScript has a primitive function, Symbol(), that creates a globally unique reference.
 
-```
+```ts
 let sym = Symbol("x"); // Type symbol
 ```
 
