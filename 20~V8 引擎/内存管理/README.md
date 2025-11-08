@@ -4,7 +4,7 @@
 
 在前端中，被存储在栈内的数据包括小数值型，string，boolean 和复杂类型的地址索引。所谓小数值数据(small number), 即长度短于 32 位存储空间的 number 型数据。一些复杂的数据类型，诸如 Array，Object 等，是被存在堆中的。如果我们要获取一个已存储的对象 A，会先从栈中找到这个变量存储的地址，再根据该地址找到堆中相应的数据。
 
-![](https://assets.ng-tech.icu/item/20230418223124.png)
+![](https://ngte-superbed.oss-cn-beijing.aliyuncs.com/item/20230418223124.png)
 
 简单的数据类型由于存储在栈中，读取写入速度相对复杂类型（存在堆中）会更快些。下面的 Demo 对比了存在堆中和栈中的写入性能：
 

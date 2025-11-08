@@ -8,7 +8,7 @@ JavaScript 的设计与语法一直为人所诟病，不过正如 Zeit 的 CEO G
 
 我喜爱这门语言，所以我希望能够以绵薄之力让更多的人无痛地使用它，在返回主页后您可以看到更多有关 JavaScript 的代码实践。本篇的所有参考资料声明在 [Awesome JavaScript Lists](https://ngte-al.gitbook.io/i/?q=JavaScript)。
 
-![](https://assets.ng-tech.icu/item/20230418223547.png)
+![](https://ngte-superbed.oss-cn-beijing.aliyuncs.com/item/20230418223547.png)
 
 # About
 
