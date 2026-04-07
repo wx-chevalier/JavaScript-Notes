@@ -67,7 +67,7 @@ for (const i = 0; i < MINUTES_IN_A_YEAR; i++) {
 let cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
 saveCityState(
   cityStateRegex.match(cityStateRegex)[1],
-  cityStateRegex.match(cityStateRegex)[2]
+  cityStateRegex.match(cityStateRegex)[2],
 );
 ```
 
@@ -372,7 +372,7 @@ function showManagerList(managers) {
 
 ```js
 function showList(employees) {
-  employees.forEach(employee => {
+  employees.forEach((employee) => {
     const expectedSalary = employee.calculateExpectedSalary();
     const experience = employee.getExperience();
     const portfolio;
@@ -386,7 +386,7 @@ function showList(employees) {
     const data = {
       expectedSalary: expectedSalary,
       experience: experience,
-      portfolio: portfolio
+      portfolio: portfolio,
     };
 
     render(data);
@@ -454,7 +454,7 @@ function createMenu(config) {
       buttonText: "Baz",
       cancellable: true,
     },
-    config
+    config,
   );
 
   // config now equals: {title: "Foo", body: "Bar", buttonText: "Baz", cancellable: true}
@@ -1299,7 +1299,7 @@ class InventoryRequesterV2 {
 // substitute our request module for a fancy new one that uses WebSockets.
 let inventoryTracker = new InventoryTracker(
   ["apples", "bananas"],
-  new InventoryRequesterV2()
+  new InventoryRequesterV2(),
 );
 inventoryTracker.requestItems();
 ```
@@ -1590,7 +1590,7 @@ require("request").get(
         }
       });
     }
-  }
+  },
 );
 ```
 
@@ -1637,7 +1637,7 @@ async function getCleanCodeArticle() {
   try {
     const request = await require("request-promise");
     const response = await request.get(
-      "https://en.wikipedia.org/wiki/Robert_Cecil_Martin"
+      "https://en.wikipedia.org/wiki/Robert_Cecil_Martin",
     );
     const fileHandle = await require("fs-promise");
 
@@ -2007,4 +2007,4 @@ getdata()
 
 > 延伸阅读
 >
-> [知乎专栏：某熊的全栈之路](https://zhuanlan.zhihu.com/wx-chevalier) >[知乎专栏：前端当自强](https://zhuanlan.zhihu.com/c_67532981) >[知乎专栏：lotuc 的编程之路](https://zhuanlan.zhihu.com/lotuc) >[2016~ 我的技术之路 : 编程知识体系结构](https://zhuanlan.zhihu.com/p/24476917?refer=wx-chevalier) >[2016~ 我的前端之路 : 工具化与工程化](https://zhuanlan.zhihu.com/p/24575395?refer=wx-chevalier) >[某熊周刊系列 : 一周推荐外文技术资料 (12.1)](https://zhuanlan.zhihu.com/p/24516669?refer=wx-chevalier)
+> [知乎专栏：某熊的全栈之路](https://zhuanlan.zhihu.com/wx-chevalier) >[知乎专栏：前端当自强](https://zhuanlan.zhihu.com/c_67532981) >[知乎专栏：lotuc 的编程之路](https://zhuanlan.zhihu.com/lotuc) >[2016\_ 我的技术之路 : 编程知识体系结构](https://zhuanlan.zhihu.com/p/24476917?refer=wx-chevalier) >[2016\_ 我的前端之路 : 工具化与工程化](https://zhuanlan.zhihu.com/p/24575395?refer=wx-chevalier) >[某熊周刊系列 : 一周推荐外文技术资料 (12.1)](https://zhuanlan.zhihu.com/p/24516669?refer=wx-chevalier)
