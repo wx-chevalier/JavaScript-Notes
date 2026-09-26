@@ -101,3 +101,4 @@ Object.create(proto, { propertiesObject })
 ```
 这里需要注意的是，propertiesObject 不是一个简单的键值类型，而是有固定格式的 object。
 ````
+```
