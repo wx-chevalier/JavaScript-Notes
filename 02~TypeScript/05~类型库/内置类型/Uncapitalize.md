@@ -12,4 +12,4 @@ type T5 = Uncapitalize<string>; // string
 type T6 = Uncapitalize<any>; // any
 type T7 = Uncapitalize<never>; // never
 type T8 = Uncapitalize<42>; // Error, type 'number' does not satisfy the constraint 'string'
-```javascript
+```

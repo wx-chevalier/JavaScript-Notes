@@ -39,4 +39,4 @@ class NodeAppBuilder {
 // `Partial<NodeConfig>`` allows us to provide only a part of the
 // NodeConfig interface.
 new NodeAppBuilder().config({ appName: "ToDoApp" });
-```javascript
+```

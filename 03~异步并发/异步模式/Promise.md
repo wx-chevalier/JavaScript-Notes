@@ -30,7 +30,7 @@ const promises = [
 ];
 
 Promise.all(promises).then(console.log);
-```javascript
+```
 # 异步设计模式
 
 在日常的项目开发中我们经常会需要处理异步调用，本部分我们即讨论如何以回调、Promise 以及 async/await 来实现常见的异步模式。
@@ -70,7 +70,7 @@ requestWithRetry("http://localhost:3000")
   .catch((err) => {
     console.error(err);
   });
-```javascript
+```
 ```js
 function wait(timeout) {
   return new Promise((resolve) => {
@@ -93,7 +93,7 @@ async function requestWithRetry(url) {
     }
   }
 }
-```javascript
+```
 ## 数组转换
 
 ```js
@@ -124,17 +124,17 @@ async function reduceArray() {
 }
 
 // [ Promise { <pending> }, Promise { <pending> }, Promise { <pending> }, Promise { <pending> } ]
-```javascript
+```
 ```js
 filterArray().then((v) => {
   console.log(v);
 });
 
 // [ 1, 2, 3, 4 ]
-```javascript
+```
 ```js
 typeof new Promise((resolve, reject) => {}) === "object"; // true
-```javascript
+```
 Promise 本质上只是普通的 JavaScript 对象，包含了允许你执行某些异步代码的方法。
 
 ```js
@@ -149,7 +149,7 @@ const fetch = function (url) {
     });
   });
 };
-```javascript
+```
 ```js
 class SimplePromise {
   constructor(executionFunction) {
@@ -193,7 +193,7 @@ class SimplePromise {
     this.handleError(error);
   }
 }
-```javascript
+```
 当我们使用 `new Promise((resolve, reject) => {/* ... */})` 这样的形式去创建 Promise 对象时，传入的 executionFunction 函数的两个参数 resolve 与 reject，实际上映射到了 SimplePromise 类的 onResolve 与 onReject 方法。而构造器同样会创建内置的 promiseChain 数组，该数组用于记录通过 then 设置的异步传入值；而 handleError 则用于响应 onReject 回调。在原生的 Promise 实现中，then 与 catch 都返回的是新的 Promise 对象，在 SimplePromise 的实现中我们则忽略了这一步。另外，原生的 Promise 实现中允许添加多个 catch 回调，并且不需要跟随在 then 后面。
 
 Promise.all
@@ -285,7 +285,7 @@ function clientCacheMiddleware({ maxAge = 3600 * 24 * 365 }) {
     next();
   };
 }
-```javascript
+```
 ## Promise 编排
 
 ```js
@@ -316,7 +316,7 @@ const funcs = urls.map((url) => () => $.ajax(url));
 
 // execute Promises in serial
 promiseSerial(funcs).then(console.log).catch(console.error);
-```javascript
+```
 ### Promise.race: 返回第一个确定状态
 
 race 函数返回一个 Promise，这个 Promise 根据传入的 Promise 中的第一个确定状态 -- 不管是接受还是拒绝 -- 的状态而确定状态。
@@ -367,7 +367,7 @@ Promise.race([p5, p6]).then(
     // p6更快，所以被拒绝(reject了)
   }
 );
-```javascript
+```
 ```js
 function executeAsyncTask() {
   return functionA().then((valueA) => {
@@ -376,7 +376,7 @@ function executeAsyncTask() {
     });
   });
 }
-```javascript
+```
 ```js
 const converge =
   (...promises) =>
@@ -392,7 +392,7 @@ const converge =
   };
 
 functionA(2).then((valueA) => converge(functionB, functionC)(valueA));
-```javascript
+```
 ```javascript
 let promise = new Promise((resolve,reject)=>{
 	setTimeout(()=>{
@@ -408,7 +408,7 @@ promise.then((value)=>{
 
 // 1
 // 2 in setTimeout
-```javascript
+```
 ```js
 const prom = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -425,7 +425,7 @@ setTimeout(() => {
     console.log(value);
   });
 }, 5000);
-```javascript
+```
 ## Promise.all: 并发执行
 
 async/await 默认情况下是顺序执行的，
@@ -436,7 +436,7 @@ async function executeAsyncTask() {
   const valueB = await functionB(valueA);
   return function3(valueA, valueB);
 }
-```javascript
+```
 ```js
 async function executeParallelAsyncTasks() {
   const [valueA, valueB, valueC] = await Promise.all([
@@ -448,4 +448,4 @@ async function executeParallelAsyncTasks() {
   doSomethingElseWith(valueB);
   doAnotherThingWith(valueC);
 }
-```javascript
+```

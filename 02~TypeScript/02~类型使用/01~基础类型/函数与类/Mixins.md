@@ -22,7 +22,7 @@ const BMW: Car = {
   tyre: 4,
   exhaustOutlet: 2,
 };
-```javascript
+```
 现在我们了解了这两个 TypeScript 特性，我们就可以开始了。首先，我们需要创建一个基类，然后将 Mixins 应用到基类中。
 
 ```js
@@ -38,7 +38,7 @@ class Block {
     this.height = height;
   }
 }
-```javascript
+```
 接下来，创建基类所要扩展的类。
 
 ```js
@@ -59,12 +59,12 @@ class Stacker {
     this.done = true;
   }
 }
-```javascript
+```
 创建一个接口，合并与你的基类（Block）同名的预期类。
 
 ```js
 interface Block extends Moulder, Stacker {}
-```javascript
+```
 这个新接口的定义与我们之前创建的 Block 类的名称完全相同。这一点至关重要，因为这个接口同时扩展了 Moulder 和 Stacker 类。这意味着接口将把它们的方法定义合并到一个结构中（接口），同时合并到同名的类定义中。由于声明的合并，Block 类将与 Block 接口合并。
 
 # 创建函数
@@ -84,12 +84,12 @@ function applyMixins(derivedCtor: any, constructors: any[]) {
     });
   });
 }
-```javascript
+```
 前面的函数迭代了 Moulder 和 Stacker 类，然后迭代了它的属性列表，并将这些属性定义到 Block 类中。从本质上讲，我们是在手动地将 Moulder 和 Stacker 类的所有方法和属性链接到 Block 类中。要继续，请按以下方式执行前面的函数，然后查看下面的例子。
 
 ```js
 applyMixins(Block, [Moulder, Stacker]);
-```javascript
+```
 # TypeScript Mixin example
 
 ```js
@@ -104,7 +104,7 @@ console.log(
   cube.moulding,
   cube.stacking
 );
-```javascript
+```
 在这里，我们将 cube 分配给基类 Block 的实例。现在，Block 实例可以直接访问分别来自 Moulder 和 Stacker 类的 mould() 和 stack() 方法。
 
 虽然有其他方法来创建 TypeScript 混合器，但这是最优化的模式，因为它更少地依赖编译器，而更多地依赖你的代码库来确保运行时和类型系统保持同步。
@@ -141,5 +141,5 @@ class Block extends Moulder, Stacker{
     super()
  }
 }
-```javascript
+```
 在这个例子中，Block 类试图同时扩展两个类而没有引入 mixins 的概念。如果你把这个片段添加到在线编辑器（playcode.io）中，你会得到以下错误。

@@ -20,7 +20,7 @@
 // String interpolation const name = "Bob", time = "today"; `Hello ${name}, how are you ${time}?`
 
 // Construct an HTTP request prefix is used to interpret the replacements and construction GET`http://foo.org/bar?a=${a}&b=${b} Content-Type: application/json X-Credentials: ${credentials} { "foo": ${foo}, "bar": ${bar}}`(myOnReadyStateChangeHandler);
-```javascript
+```
 ### 替换删除如果是仅替换一次，可以直接使用 String.prototype.replace，如果需要全部替换：
 
 ```js
@@ -28,4 +28,4 @@ str = str.replace(/abc/g, "");
 function replaceAll(str, find, replace) {
   return str.replace(new RegExp(find, "g"), replace);
 }
-```javascript
+```

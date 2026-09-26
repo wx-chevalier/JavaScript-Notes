@@ -19,4 +19,4 @@ submitContactForm({
 submitContactForm({
   email: "ex@mple.com",
 });
-```javascript
+```

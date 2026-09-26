@@ -25,7 +25,7 @@ var a = -100;
   var obj = { nfunc: nfunc };
   console.log(obj.nfunc()); // {nfunc: ƒ}
 })();
-```javascript
+```
 # eval
 
 eval 没有自己的作用域，而是使用执行时所在的作用域，在 eval 中初始化语会将变量加入到当前作用域。由于变量是在运行时动态添加的，导致 v8 引擎不能做出正确的判断，只能放弃优化策略。在严格模式下，eval 有自己的作用域，这样就不会污染当前作用域。
@@ -56,7 +56,7 @@ eval 没有自己的作用域，而是使用执行时所在的作用域，在 ev
   var innerb = eval("var b = 20; (function () { return b })")();
   console.log("innerb", innerb); // innerb 20
 })();
-```javascript
+```
 值得注意的是，eval 如果不使用 direct call 的方式调用，其使用的作用域将会变为全局作用域。
 
 ```js
@@ -69,7 +69,7 @@ var a = 0;
   // 非 direct call 的调用方式
   fn("console.log(a)"); // 0
 })();
-```javascript
+```
 # setTimeout
 
 setTimeout 用来设置定时器，其第一个参数可以传入函数，也可以传入代码片段。传入函数时，函数的作用域是正常的函数作用域。传入代码片段时，没有自己的作用域，其执行时作用域是全局作用域。
@@ -91,7 +91,7 @@ var a = -100;
     console.log("window.b", window.b); // window.b 200
   }, 20);
 })();
-```javascript
+```
 # script.textContent
 
 动态创建 script 节点，也是一种动态执行语句的方式。其创建的 script 和普通 script 没有区别，代码的作用域是全局作用域。需要注意 script 应该使用 document.createElement('script') 创建并插入到文档中。使用 innerHTML 插入 script 的方式，脚本不会执行。
@@ -104,7 +104,7 @@ var a = -100;
   s.textContent = "console.log(a)";
   document.documentElement.append(s);
 })();
-```javascript
+```
 # onclick="xxx"
 
 html 元素的 onclick 属性也支持设置 js 代码，这种特性被称为 Inline event handlers。这种方式执行的代码存在自己的作用域，父作用域是全局作用域。也就是说初始化语句不会污染全局作用域。
@@ -118,4 +118,4 @@ html 元素的 onclick 属性也支持设置 js 代码，这种特性被称为 I
 <!-- 点击按钮输出 -100 200 -->
 <button onclick="var b = 200; console.log(a, b);">click me</button>
 <!-- 执行成功后，在控制台检查，全局作用域内并没有变量 b -->
-```javascript
+```

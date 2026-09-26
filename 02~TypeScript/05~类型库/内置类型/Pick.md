@@ -10,7 +10,7 @@
 type Pick<T, K extends keyof T> = {
   [P in K]: T[P];
 };
-```javascript
+```
 这个定义看起来可能有点复杂，让我们来逐步解析：
 
 - `T` 是源类型，即我们要从中选择属性的类型。
@@ -42,7 +42,7 @@ const john: PersonNameAndAge = {
   age: 30,
   // address 和 email 不再是必需的
 };
-```javascript
+```
 在这个例子中，我们从 `Person` 接口中选择了 `name` 和 `age` 属性来创建一个新的类型 `PersonNameAndAge`。
 
 3. 更复杂的 `Pick` 用法
@@ -69,7 +69,7 @@ type TodoStringProps = Pick<Todo, StringPropertyNames<Todo>>;
 //     title: string;
 //     description: string;
 // }
-```javascript
+```
 在这个例子中，我们首先创建了一个 `StringPropertyNames` 类型，它会从一个类型中提取所有字符串类型的属性名。然后我们使用 `Pick` 和这个 `StringPropertyNames` 来创建一个新的类型，这个新类型只包含原始类型中的字符串属性。
 
 理解和熟练使用 `Pick` 类型可以帮助你更灵活地操作和转换类型，从而编写出更精确、更易维护的 TypeScript 代码。
@@ -105,4 +105,4 @@ const articles = renderArticlePreviews([
     thumbnail: "/assets/ts.jpg",
   },
 ]);
-```javascript
+```

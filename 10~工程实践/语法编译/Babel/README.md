@@ -12,7 +12,7 @@ Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a
 ```sh
 $ npm install --save-dev @babel/core @babel/cli @babel/preset-env
 $ npm install --save @babel/polyfill
-```javascript
+```
 然后在根目录添加 babel.config.js 或者 `.babel.rc`:
 
 ```js
@@ -32,19 +32,19 @@ const presets = [
 ];
 
 module.exports = { presets };
-```javascript
+```
 然后可以使用 Babel 命令行工具来转换文件:
 
 ```sh
 $ ./node_modules/.bin/babel src --out-dir lib
-```javascript
+```
 也可以使用编程方式进行转换:
 
 ```js
 const babel = require("@babel/core");
 
 babel.transform("code", optionsObject);
-```javascript
+```
 值得一提的是，在 Babel 7 中，env 会根据浏览器的支持情况以及实际的代码使用来选择性的引入 Pollyfill 文件:
 
 ```js
@@ -55,12 +55,12 @@ Promise.resolve().finally();
 require("core-js/modules/es.promise.finally");
 
 Promise.resolve().finally();
-```javascript
+```
 我们也可以在单个配置文件中，针对不同的环境定制不同的插件方案，Babel 默认按照如下方式加载环境变量:
 
 ```js
 process.env.BABEL_ENV || process.env.NODE_ENV || "development";
-```javascript
+```
 ```json
 // .babel.rc
 {
@@ -82,7 +82,7 @@ process.env.BABEL_ENV || process.env.NODE_ENV || "development";
     }
   }
 }
-```javascript
+```
 我们也可以为不同的子目录设置不同的 Babel 配置:
 
 ```json
@@ -95,7 +95,7 @@ process.env.BABEL_ENV || process.env.NODE_ENV || "development";
     "./packages/*"
   ]
 }
-```javascript
+```
 ## Modules
 
 ### polyfill
@@ -127,7 +127,7 @@ import "@babel/polyfill";
 module.exports = {
   entry: ["@babel/polyfill", "./app/js"]
 };
-```javascript
+```
 ### transform-runtime
 
 A plugin that enables the re-use of Babel's injected helper code to save on codesize.
@@ -136,7 +136,7 @@ A plugin that enables the re-use of Babel's injected helper code to save on code
 $ npm install --save-dev @babel/plugin-transform-runtime
 
 $ npm install --save @babel/runtime
-```javascript
+```
 The transformation plugin is typically used only in development, but the runtime itself will be depended on by your deployed code.
 
 ```json
@@ -154,7 +154,7 @@ The transformation plugin is typically used only in development, but the runtime
     ]
   ]
 }
-```javascript
+```
 Babel uses very small helpers for common functions such as \_extend. By default this will be added to every file that requires it. This duplication is sometimes unnecessary, especially when your application is spread out over multiple files.
 
 This is where the @babel/plugin-transform-runtime plugin comes in: all of the helpers will reference the module @babel/runtime to avoid duplication across your compiled output. The runtime will be compiled into your build.
@@ -165,11 +165,11 @@ You can use Babel is through the require hook. The require hook will bind itself
 
 ```sh
 npm install @babel/core @babel/register --save-dev
-```javascript
+```
 ```js
 // entry.js
 require("@babel/register");
-```javascript
+```
 All subsequent files required by node with the extensions .es6, .es, .jsx, .mjs, and .js will be transformed by Babel.
 
 ## Plugins & Presets
@@ -178,7 +178,7 @@ All subsequent files required by node with the extensions .es6, .es, .jsx, .mjs,
 
 ```sh
 $ npm install --save-dev @babel/preset-react
-```javascript
+```
 ```json
 {
   "presets": [
@@ -192,4 +192,4 @@ $ npm install --save-dev @babel/preset-react
     ]
   ]
 }
-```javascript
+```

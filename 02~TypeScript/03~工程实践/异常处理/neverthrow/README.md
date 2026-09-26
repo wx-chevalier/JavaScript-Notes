@@ -15,12 +15,12 @@ yarn add neverthrow
 
 # pnpm
 pnpm add neverthrow
-```javascript
+```
 ### 1.2 基本导入
 
 ```typescript
 import { Result, ok, err } from "neverthrow";
-```javascript
+```
 ## 2. 基础用法
 
 ### 2.1 创建 Result
@@ -37,7 +37,7 @@ const errorResult: Result<number, Error> = err(
 // 类型推断
 const success = ok(42); // Result<number, never>
 const failure = err("error"); // Result<never, string>
-```javascript
+```
 ### 2.2 基本方法使用
 
 ```typescript
@@ -67,7 +67,7 @@ result.match(
   (value) => console.log("Success:", value),
   (error) => console.log("Error:", error)
 );
-```javascript
+```
 ## 3. 链式操作
 
 ### 3.1 map 和 mapErr
@@ -82,7 +82,7 @@ const result = ok(5)
 // mapErr: 转换错误值
 const error = err("error").mapErr((e) => new Error(e));
 // Result<never, Error>
-```javascript
+```
 ### 3.2 chain (flatMap)
 
 ```typescript
@@ -99,7 +99,7 @@ function fetchUserPosts(user: User): Result<Post[], Error> {
 // 链式调用
 const result = fetchUser(1).chain((user) => fetchUserPosts(user));
 // 结果类型: Result<Post[], Error>
-```javascript
+```
 ## 4. 高级用法
 
 ### 4.1 组合多个 Result
@@ -114,7 +114,7 @@ const results = combine([ok(1), ok(2), ok(3)]);
 // 组合并收集所有错误
 const results2 = combineWithAllErrors([ok(1), err("error1"), err("error2")]);
 // Result<number[], string[]>
-```javascript
+```
 ### 4.2 异步操作
 
 ```typescript
@@ -134,7 +134,7 @@ asyncResult
     (items) => console.log("Items:", items),
     (error) => console.error("Error:", error)
   );
-```javascript
+```
 ### 4.3 自定义错误类型
 
 ```typescript
@@ -148,7 +148,7 @@ function fetchData(): Result<string, ApiError> {
   // ... 实现逻辑
   return err({ type: "NOT_FOUND", message: "Resource not found" });
 }
-```javascript
+```
 ## 5. 实际应用示例
 
 ### 5.1 表单验证
@@ -181,7 +181,7 @@ function validateForm(email: string, password: string) {
     })
   );
 }
-```javascript
+```
 ### 5.2 API 请求处理
 
 ```typescript
@@ -219,7 +219,7 @@ api
     (updatedUser) => console.log("User updated:", updatedUser),
     (error) => console.error("Error:", error)
   );
-```javascript
+```
 ### 5.3 业务逻辑处理
 
 ```typescript
@@ -254,7 +254,7 @@ class OrderService {
       }));
   }
 }
-```javascript
+```
 ## 6. 最佳实践
 
 1. **始终指定错误类型**
@@ -269,18 +269,18 @@ function doSomething(): Result<number, MyError> {
 function doSomething(): Result<number, any> {
   // ...
 }
-```javascript
+```
 2. **使用类型别名简化复杂类型**
 
 ```typescript
 type ApiResult<T> = Result<T, ApiError>;
 type AsyncApiResult<T> = ResultAsync<T, ApiError>;
-```javascript
+```
 3. **合理使用错误转换**
 
 ```typescript
 someResult
   .mapErr((error) => new CustomError(error))
   .chain((value) => anotherOperation(value));
-```javascript
+```
 通过使用 neverthrow，我们可以更优雅地处理错误，使代码更加健壮和可维护。记住要根据实际需求选择合适的方法和模式。

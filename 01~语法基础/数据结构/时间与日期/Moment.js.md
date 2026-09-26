@@ -7,7 +7,7 @@ const a = moment("2016-01-01");
 const b = a.add(1, "week");
 a.format();
 ("2016-01-08T00:00:00-06:00");
-```javascript
+```
 而如果我们不希望改变原有的值，特别是在需要创建多个时间日期对象的时候，我们可以利用 clone 方法
 
 ```js
@@ -15,7 +15,7 @@ const a = moment("2016-01-01");
 const b = a.clone().add(1, "week");
 a.format();
 ("2016-01-01T00:00:00-06:00");
-```javascript
+```
 笔者是习惯在 Webpack 中进行打包，类似于 Node 下的安装方式
 
 ```js
@@ -25,14 +25,14 @@ npm install moment
 // 使用
 const moment = require('moment');
 moment().format();
-```javascript
+```
 如果你需要引入某个语言包，那么可以用如下方式
 
 ```javascript
 const moment = require('moment');
 require('moment/locale/cs');
 console.log(moment.locale()); // cs
-```javascript
+```
 ## Parse
 
 ### TimeStamp
@@ -42,7 +42,7 @@ console.log(moment.locale()); // cs
 const day = moment(1318781876406);
 //秒
 const day = moment.unix(1318781876);
-```javascript
+```
 ### DateTimeString
 
 ```javascript
@@ -53,7 +53,7 @@ moment("2010 13",           "YYYY MM").isValid();     // false (not a real month
 moment("2010 11 31",        "YYYY MM DD").isValid();  // false (not a real day)
 moment("2010 2 29",         "YYYY MM DD").isValid();  // false (not a leap year)
 moment("2010 notamonth 29", "YYYY MMM DD").isValid(); // false (not a real month name)
-```javascript
+```
 ## Manipulate
 
 ### Get/Set
@@ -69,7 +69,7 @@ moment().get('hour');
 moment().get('minute');
 moment().get('second');
 moment().get('millisecond');
-```javascript
+```
 ```javascript
 moment().set('year', 2013);
 moment().set('month', 3);  // April
@@ -80,7 +80,7 @@ moment().set('second', 30);
 moment().set('millisecond', 123);
 
 moment().set({'year': 2013, 'month': 3});
-```javascript
+```
 ### Add&Subtract
 
 ```javascript
@@ -95,7 +95,7 @@ moment().subtract(Duration);
 moment().subtract(Object);
 
 moment().subtract(7, 'days');
-```javascript
+```
 ### Comparison
 
 ```javascript
@@ -104,7 +104,7 @@ moment().isBefore(Moment|String|Number|Date|Array, String);
 
 moment('2010-10-20').isBefore('2010-12-31', 'year'); // false
 moment('2010-10-20').isBefore('2011-01-01', 'year'); // true
-```javascript
+```
 ### Diff
 
 ```javascript
@@ -115,7 +115,7 @@ moment().diff(Moment|String|Number|Date|Array, String, Boolean);
 const a = moment([2007, 0, 29]);
 const b = moment([2007, 0, 28]);
 a.diff(b, 'days') // 1
-```javascript
+```
 ## Display
 
 ### Format
@@ -125,18 +125,18 @@ moment().format(); // "2014-09-08T08:02:17-05:00" (ISO 8601)
 moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
 moment().format("ddd, hA"); // "Sun, 3PM"
 moment("gibberish").format("YYYY MM DD"); // "Invalid date"
-```javascript
+```
 ### Relative Format
 
 ```javascript
 moment([2007, 0, 29]).fromNow();     // 4 years ago
 moment([2007, 0, 29]).fromNow(true); // 4 years
-```javascript
+```
 ### Duration
 
 ```javascript
 moment.duration(1, "minutes").humanize(); // a minute
 moment.duration(2, "minutes").humanize(); // 2 minutes
 moment.duration(24, "hours").humanize();  // a day
-```javascript
+```
 ## i18n

@@ -19,7 +19,7 @@ function multiplyByTen(input) {
 const input = Rx.Observable.from([1, 2, 3, 4]);
 const output = multiplyByTen(input);
 output.subscribe((x) => console.log(x));
-```javascript
+```
 # 实例操作符 vs. 静态操作符
 
 通常提到操作符时，我们指的是实例操作符，它是 Observable 实例上的方法。举例来说，如果上面的 multiplyByTen 是官方提供的实例操作符，它看起来大致是这个样子的：
@@ -35,19 +35,19 @@ Rx.Observable.prototype.multiplyByTen = function multiplyByTen() {
     });
   });
 };
-```javascript
+```
 注意，这里的 input Observable 不再是一个函数参数，它现在是 this 对象。下面是我们如何使用这样的实例运算符：
 
 ```js
 const observable = Rx.Observable.from([1, 2, 3, 4]).multiplyByTen();
 
 observable.subscribe((x) => console.log(x));
-```javascript
+```
 除了实例操作符，还有静态操作符，它们是直接附加到 Observable 类上的。静态操作符在内部不使用 this 关键字，而是完全依赖于它的参数。最常用的静态操作符类型是所谓的创建操作符。它们只接收非 Observable 参数，比如数字，然后创建一个新的 Observable，而不是将一个输入 Observable 转换为输出 Observable 。一个典型的静态操作符例子就是 interval 函数。它接收一个数字(非 Observable)作为参数，并生产一个 Observable 作为输出：
 
 ```js
 const observable = Rx.Observable.interval(1000 /* 毫秒数 */);
-```javascript
+```
 ## Marble diagrams (弹珠图)
 
 要解释操作符是如何工作的，文字描述通常是不足以描述清楚的。许多操作符都是跟时间相关的，它们可能会以不同的方式延迟(delay)、取样(sample)、节流(throttle)或去抖动值(debonce)。图表通常是更适合的工具。弹珠图是操作符运行方式的视觉表示，其中包含输入 Obserable(s) (输入可能是多个 Observable )、操作符及其参数和输出 Observable 。
@@ -103,7 +103,7 @@ input
   .takeUntil(stopStream)
   .map((event) => event.target.value)
   .subscribe((value) => console.log(value)); // "hello" (点击才能看到)
-```javascript
+```
 ## 产生值
 
 ```js
@@ -135,4 +135,4 @@ input
   .pluck("data")
   .distinctUntilChanged()
   .subscribe((value) => console.log(value)); // "helo world"
-```javascript
+```

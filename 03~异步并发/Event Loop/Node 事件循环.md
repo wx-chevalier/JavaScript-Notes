@@ -22,7 +22,7 @@ setImmediate(function(){
 
 //run it
 node index.js
-```javascript
+```
 上述代码的执行结果并不固定，在介绍 setImmediate 与 setTimeout 的区别之前，我们先来讨论下 Node.js 中的事件循环机制；其基本流程如下图所示：
 
 ```js
@@ -44,7 +44,7 @@ node index.js
 │┌──────────┴────────────┐
 └──┤close callbacks│
  └───────────────────────┘
-```javascript
+```
 ```js
 //index.js
 var fs = require('fs');
@@ -63,7 +63,7 @@ node index.js
 //output (always)
 SETIMMEDIATE
 SETTIMEOUT
-```javascript
+```
 ```js
 var Suite = require('benchmark').Suite
 var fs = require('fs')
@@ -99,7 +99,7 @@ suite
 deffered.resolve() x 993 ops/sec Â±0.67% (22 runs sampled)
 setImmediate() x 914 ops/sec Â±2.48% (57 runs sampled)
 setTimeout(,0) x 445 ops/sec Â±2.79% (82 runs sampled)
-```javascript
+```
 ## 浏览器中实现 setImmediate
 
 当我们使用 Webpack 打包应用时，其默认会添加 setImmediate 的垫片
@@ -127,7 +127,7 @@ setTimeout(,0) x 445 ops/sec Â±2.79% (82 runs sampled)
 │┌──────────┴────────────┐
 └──┤close callbacks│
  └───────────────────────┘
-```javascript
+```
 ## nextTick 与 setImmediate
 
 我们通过比较以下两个用例来了解 setImmediate 与 nextTick 的区别：
@@ -155,7 +155,7 @@ setTimeout(function timeout() {
 // 'TIMEOUT FIRED' 1 4 2 3 5 6
 // OR
 // 1 'TIMEOUT FIRED' 4 2 3 5 6
-```javascript
+```
 - nextTick
 
 ```js
@@ -185,5 +185,5 @@ setTimeout(function timeout() {
 }, 0);
 
 // 1 4 2 3 5 6 'TIMEOUT FIRED'
-```javascript
+```
 如上文所述，通过 setImmediate 设置的回调会以 MacroTask 加入到 Event Loop 中，每个循环中会提取出某个回调执行；setImmediate 能够避免 Event Loop 被阻塞，从而允许其他完成的 IO 操作或者定时器回调顺利执行。而通过 nextTick 加入的回调会在当前代码执行完毕(即函数调用栈执行完毕)后立刻执行，即会在返回 Event Loop 之前立刻执行。譬如上面的例子中，setTimeout 的回调会在 Event Loop 中调用，因此 TIMEOUT FIRED 的输出会在所有的 nextTick 回调执行完毕后打印出来。

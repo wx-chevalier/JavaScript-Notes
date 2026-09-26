@@ -12,4 +12,4 @@ type T5 = Lowercase<string>; // string
 type T6 = Lowercase<any>; // any
 type T7 = Lowercase<never>; // never
 type T8 = Lowercase<42>; // Error, type 'number' does not satisfy the constraint 'string'
-```javascript
+```

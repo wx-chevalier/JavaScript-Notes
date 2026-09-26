@@ -7,7 +7,7 @@ class C {
   foo = 100;
   bar: string;
 }
-```javascript
+```
 这是长期以来很常见的一种 TS 字段声明方式，默认情况下它的[编译结果](https://link.zhihu.com/?target=https%3A//www.typescriptlang.org/play%3F%23code/MYGwhgzhAEDC0G8CwAoa0BmB7L0C80AjAAzEDcq6ARmAE4Bc0EALrQJYB2A5hSgL5A)如下：
 
 ```ts
@@ -16,7 +16,7 @@ class C {
     this.foo = 100;
   }
 }
-```javascript
+```
 当启用了 `useDefineForClassFields` 编译选项后它的[编译结果](https://link.zhihu.com/?target=https%3A//www.typescriptlang.org/play%3FuseDefineForClassFields%3Dtrue%23code/MYGwhgzhAEDC0G8CwAoa0BmB7L0C80AjAAzEDcq6ARmAE4Bc0EALrQJYB2A5hSgL5A)如下：
 
 ```ts
@@ -36,7 +36,7 @@ class C {
     });
   }
 }
-```javascript
+```
 可以看到变化主要由如下两点：
 
 1. 字段声明的方式从 `=` 赋值的方式变更成了 `Object.defineProperty`
@@ -76,7 +76,7 @@ class Derived extends Base {
 }
 
 const derived = new Derived(5);
-```javascript
+```
 # class-fields 提案的选择
 
 对于字段声明默认赋值为 `undefined` 相对能获得认可，毕竟是显式地声明了一个字段并且未赋值，类似于不同层级的代码块中声明 `let value: number`，内层的 `value` 会默认重新创建一个值为 `undefined` 的标识符，因此 TS 中也提供了 `declare field` 的新语法来支持声明字段但不产生实际代码的用法。
@@ -86,7 +86,7 @@ class Derived extends Base {
   // 即使启用了 `useDefineForClassFields` 也不会覆盖初始化为 `undefined`
   declare value: number;
 }
-```javascript
+```
 但初次接触到新的 `[[Define]]` 语义可能会觉得不可理喻，社区内也有[很大的分歧](https://link.zhihu.com/?target=https%3A//github.com/tc39/proposal-class-fields/issues/151%23issuecomment-431597270)，但实际上 TC39 最终选择了 `[[Define]]` 语义自然有他们的考虑。
 
 在上面的例子中，如果是 `[[Set]]` 语义，`data` 的 `setter` 被正确触发，但 `Derived` 的实例上并不会拥有一个值为 `10` 的 `data` 属性，即 `derived.hasOwnProperty('data') === false` 且 `derived.data === undefined`，这『可能』也是不符合预期的。

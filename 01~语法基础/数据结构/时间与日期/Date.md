@@ -19,7 +19,7 @@ hour：表示小时，0到23
 minute：表示分钟，0到59
 second：表示秒钟，0到59
 ms：表示毫秒，0到999
-```javascript
+```
 这里需要注意的是，**月份 month 参数，其计数方式从 0 开始，而天 day 参数，其计数方式从 1 开始**。
 
 ```js
@@ -39,7 +39,7 @@ new Date("1293879600000");
 //Invalid Date
 new Date("2011-01-01T11:00:00") - new Date("1992/02/11 12:00:12");
 //596069988000
-```javascript
+```
 ## Parse | 解析
 
 ### TimeStamp | 时间戳
@@ -57,7 +57,7 @@ console.log(date1 < date2); //true
 Date.now = function () {
   return new Date().getTime();
 };
-```javascript
+```
 另外 Date 对象还有一个静态方法同样返回给定日期的毫秒数。但其参数并不是一个字符串，而是分别代表年、月、日、时、分、秒、毫秒的数字参数
 
 ```js
@@ -67,7 +67,7 @@ console.log(Date.UTC(1970, 0, 2)); //86400000
 console.log(Date.UTC(1970, 0, 1, 1)); //3600000
 console.log(Date.UTC(1970, 0, 1, 1, 59)); //714000
 console.log(Date.UTC(1970, 0, 1, 1, 59, 30)); //717000
-```javascript
+```
 还是需要强调下，JavaScript 内的时间戳指的是当前时间到 1970 年 1 月 1 日 00:00:00 UTC 对应的毫秒数，和 unix 时间戳不是一个概念，后者表示秒数，差了 1000 倍。`new Date(timestamp)`中的时间戳必须是`number`格式，`string`会返回`Invalid Date`。所以比如`new Date('11111111')`这种写法是错的。
 
 ### DateTimeString | 时间日期字符串
@@ -77,7 +77,7 @@ JavaScript 原生 Date 对于时间字符串的解析真的是槽点满满，假
 ```js
 const a = new Date("01/12/2016"); //December 1 2016 in DD/MM/YYYY format
 //"Tue Jan 12 2016 00:00:00 GMT-0600 (Central Standard Time)"
-```javascript
+```
 另外，在 ES5 的标准中，其对 ISO 8601 标准的字符串进行了一个神奇的断言 : 所有没有提供时区的字符串默认为标准时区。换言之，你会发现你解析出来的时间和你预期中的不一样，而且它打印的时候是按照本地时区又进行了转换
 
 ```javascript
@@ -88,7 +88,7 @@ const a = new Date('1/1/2016');
 //ISO 8601
 const a = new Date('2016-01-01');
 //"Thu Dec 31 2015 18:00:00 GMT-0600 (Central Standard Time)"
-```javascript
+```
 ES 2015 标准中则是修复了该 Bug，不过还是会让人觉得头大，毕竟你不知道你代码的最终运行环境会是 ES5 还是 ES6。Date 对象也有一个 parse 方法，用于解析一个日期字符串，参数是一个包含待解析的日期和时间的字符串，返回从 1970 年 1 月 1 日 0 点到给定日期的毫秒数。该方法会根据日期时间字符串格式规则来解析字符串的格式，除了标准格式外，以下格式也支持。如果字符串无法识别，将返回 NaN。
 
 - ' 月 / 日 / 年 ' 如 6/13/2004
@@ -103,14 +103,14 @@ console.log(Date.parse('2004-05-25T00:00:00'));//1085443200000
 console.log(Date.parse('2016'));//1451606400000
 console.log(Date.parse('T00:00:00'));//NaN
 console.log(Date.parse());//NaN
-```javascript
+```
 在 ECMAScript5 中，如果使用标准的日期时间字符串格式规则的字符串中，数学前有前置 0，则会解析为 UTC 时间，时间没有前置 0，则会解析为本地时间。其他情况一般都会解析为本地时间
 
 ```javascript
 console.log(Date.parse('7/12/2016'));//1468252800000
 console.log(Date.parse('2016-7-12'));//1468252800000
 console.log(Date.parse('2016-07-12'));//1468281600000
-```javascript
+```
 ## Manipulate | 时间对象操作
 
 ### Get & Set | 属性值设置
@@ -125,7 +125,7 @@ d.getMonth(); // 0
 d.getYear(); // 113
 d.getFullYear(); // 2013
 d.getTimezoneOffset(); // -480
-```javascript
+```
 同样的，Date 对象还提供了一系列的 Set 方法
 
 ```js
@@ -138,7 +138,7 @@ const d2 = new Date("January 6, 2013");
 
 d.setDate(-1); // 1356796800000
 d; // Sun Dec 30 2012 00:00:00 GMT+0800 (CST)
-```javascript
+```
 ### Add & Subtract | 运算操作
 
 我们可以巧用 Set 方法的特性，set\* 方法的参数都会自动折算。以 setDate 为例，如果参数超过当月的最大天数，则向下一个月顺延，如果参数是负数，表示从上个月的最后一天开始减去的天数。
@@ -164,7 +164,7 @@ d.setHours(d.getHours() + 6);
 
 // 将年份设为去年
 d.setFullYear(d.getFullYear() - 1);
-```javascript
+```
 ### Diff | 计算差值
 
 类型转换时，Date 对象的实例如果转为数值，则等于对应的毫秒数；如果转为字符串，则等于对应的日期字符串。所以，两个日期对象进行减法运算，返回的就是它们间隔的毫秒数；进行加法运算，返回的就是连接后的两个字符串。
@@ -179,7 +179,7 @@ d2 - d1;
 
 d2 + d1;
 // "Sat Apr 01 2000 00:00:00 GMT+0800 (CST)Wed Mar 01 2000 00:00:00 GMT+0800 (CST)"
-```javascript
+```
 ## Display | 时间展示
 
 - 年月日
@@ -240,7 +240,7 @@ d.toLocaleDateString()
 d.toLocaleTimeString()
 // 中文版浏览器为"上午12:00:00"
 // 英文版浏览器为"12:00:00 AM"
-```javascript
+```
 ### Durations: 时长
 
 ```javascript
@@ -249,7 +249,7 @@ const nD = Math.floor(nMS/(1000 * 60 * 60 * 24));
 const nH = Math.floor(nMS/(1000*60*60)) % 24;
 const nM = Math.floor(nMS/(1000*60)) % 60;
 const nS = Math.floor(nMS/1000) % 60;
-```javascript
+```
 ### i18n: 国际化
 
 浏览器获取当前用户所在的时区等信息只和系统的日期和时间设置里的时区以及时间有关。区域和语言设置影响的是浏览器默认时间函数 (Date.prototype.toLocaleString 等 ) 显示的格式，不会对时区等有影响。Date 有个 Date.prototype.toLocaleString() 方法可以将时间字符串返回用户本地字符串格式，这个方法还有两个子方法 Date.prototype.toLocaleDateString 和 Date.prototype.toLocaleTimeString，这两个方法返回值分别表示日期和时间，加一起就是 Date.prototype.toLocaleString 的结果。这个方法的默认参数会对时间字符串做一次转换，将其转换成用户当前所在时区的时间，并按照对应的系统设置时间格式返回字符串结果。然而不同浏览器对用户本地所使用的语言格式的判断依据是不同的。
@@ -267,7 +267,7 @@ window.navigator.browserLanguage
 //"ja-JP"(系统菜单界面语言)
 window.navigator.languages
 //undefined
-```javascript
+```
 - FF：获取方式和结果与 IE 浏览器相同，区别在于 FF 只会在浏览器进程第一次启动的时候获取一次系统设置，中间不管怎么系统设置怎么变化，FF 都无法获取到当前系统设置。除非重启 FF 浏览器。当浏览器界面语言为 zh-CN,accept-language 首位为 en-US 的时候：
 
 ```javascript
@@ -280,7 +280,7 @@ window.navigator.language
 //'zh-CN'(`accept-language`首选值)
 window.navigator.languages
 //["zh-CN", "de", "zh", "en-US", "en"]
-```javascript
+```
 - Chrome: 获取方式和以上两个都不同。chrome 无视系统的区域和语言 - 格式格式，只依照自己浏览器的界面设置的菜单语言来处理。( 比如英文界面则按系统 ’en-US’ 格式返回字符串，中文界面则按系统 ’zh-CN’ 格式返回结果 )。当浏览器界面语言为 zh-CN,accept-language 首位为 en-US 的时候：
 
 ```javascript
@@ -291,5 +291,5 @@ window.navigator.languages
 //当界面语言改为"en-US"时
 window.navigator.language
 //'en-US'(浏览器界面语言)
-```javascript
+```
 ## Calendar | 日历操作

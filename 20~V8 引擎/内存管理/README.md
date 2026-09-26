@@ -26,4 +26,4 @@ function inHeap() {
     obj.key = 1;
   }
 }
-```javascript
+```

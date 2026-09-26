@@ -10,7 +10,7 @@ Event Loop(事件循环)并不是 JavaScript 中独有的，其广泛应用于�
 while (queue.waitForMessage()) {
   queue.processNextMessage();
 }
-```javascript
+```
 完整的浏览器中 JavaScript 事件循环机制图解如下：
 
 ```js
@@ -39,7 +39,7 @@ console.log("[D] End of code");
 
 // SOLUTION
 // Output order: D, A, B
-```javascript
+```
 在 Web 浏览器中，任何时刻都有可能会有事件被触发，而仅有那些设置了回调的事件会将其相关的任务压入到任务队列中。回调函数被调用时即会在函数调用栈中创建初始帧，而直到整个函数调用栈清空之前任何产生的任务都会被压入到任务队列中延后执行；顺序的同步函数调用则会创建新的栈帧。总结而言，浏览器中的事件循环机制阐述如下：
 
 - 浏览器内核会在其它线程中执行异步操作，当操作完成后，将操作结果以及事先定义的回调函数放入 JavaScript 主线程的任务队列中。
@@ -76,7 +76,7 @@ function square(x) {
 }
 
 fire();
-```javascript
+```
 其对应的函数调用图(整理自[这里](https://github.com/ccforward/cc/issues/47))为：
 
 这里还值得一提的是，Promise.then 是异步执行的，而创建 Promise 实例 (executor) 是同步执行的，譬如下述代码：
@@ -104,7 +104,7 @@ fire();
 // 3
 // 5
 // 4
-```javascript
+```
 我们可以参考 Promise 规范中有关于 promise.then 的部分：
 
 ```javascript
@@ -113,7 +113,7 @@ promise.then(onFulfilled, onRejected)
 2.2.4 onFulfilled or onRejected must not be called until the execution context stack contains only platform code. [3.1].
 
 Here “platform code” means engine, environment, and promise implementation code. In practice, this requirement ensures that onFulfilled and onRejected execute asynchronously, after the event loop turn in which then is called, and with a fresh stack. This can be implemented with either a “macro-task” mechanism such as setTimeout or setImmediate, or with a “micro-task” mechanism such as MutationObserver or process.nextTick. Since the promise implementation is considered platform code, it may itself contain a task-scheduling queue or “trampoline” in which the handlers are called.
-```javascript
+```
 规范要求，onFulfilled 必须在执行上下文栈(Execution Context Stack) 只包含平台代码(platform code) 后才能执行。平台代码指引擎，环境，Promise 实现代码等。实践上来说，这个要求保证了 onFulfilled 的异步执行(以全新的栈)，在 then 被调用的这个事件循环之后。
 
 # 3. MacroTask(Task) 与 MicroTask(Job)
@@ -153,7 +153,7 @@ process.nextTick1
 promise then
 setTimeout
 process.nextTick2
-```javascript
+```
 我们在前文中已经介绍过 JavaScript 的主线程在遇到异步调用时，这些异步调用会立刻返回某个值，从而让主线程不会在此处阻塞。而真正的异步操作会由浏览器执行，主线程则会在清空当前调用栈后，按照先入先出的顺序读取任务队列里面的任务。而 JavaScript 中的任务又分为 MacroTask 与 MicroTask 两种，在 ES2015 中 MacroTask 即指 Task，而 MicroTask 则是指代 Job。典型的 MacroTask 包含了 setTimeout, setInterval, setImmediate, requestAnimationFrame, IO, UI rendering 等，MicroTask 包含了 process.nextTick, Promises, Object.observe, MutationObserver 等。二者的关系可以图示如下：
 
 ![](https://github.com/wx-chevalier/OSS/blob/master/2017/8/1/javascript-eventloop.png?raw=true)
@@ -195,7 +195,7 @@ Promise resolved again
 Start of next queue
 End of next queue
 Middle of queue
-```javascript
+```
 上述代码中首个 TaskQueue 即为 foo()，foo() 又调用了 bar() 构建了新的 TaskQueue，bar() 调用之后 foo() 又产生了 MicroTask 并被压入了唯一的 MicroTask 队列。我们最后再总计下 JavaScript MacroTask 与 MicroTask 的执行顺序，当执行栈(Call Stack)为空的时候，开始依次执行：
 
 1.  从当前的 TaskQueue 中取出队列首部的 Task A，并且放入任务队列；

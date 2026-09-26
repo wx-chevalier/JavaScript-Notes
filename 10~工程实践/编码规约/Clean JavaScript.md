@@ -12,12 +12,12 @@
 
 ```js
 const yyyymmdstr = moment().format("YYYY/MM/DD");
-```javascript
+```
 **Good**:
 
 ```js
 const yearMonthDay = moment().format("YYYY/MM/DD");
-```javascript
+```
 ## 对相同类型的变量使用相同的关键字
 
 **Bad:**
@@ -26,12 +26,12 @@ const yearMonthDay = moment().format("YYYY/MM/DD");
 getUserInfo();
 getClientData();
 getCustomerRecord();
-```javascript
+```
 **Good**:
 
 ```js
 getUser();
-```javascript
+```
 ## 使用可搜索的命名
 
 在开发过程中，我们阅读代码的时间会远远超过编写代码的时间，因此保证代码的可读性与可搜索会非常重要。切记，没事不要坑自己。
@@ -43,7 +43,7 @@ getUser();
 for (const i = 0; i < 525600; i++) {
   runCronJob();
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -52,7 +52,7 @@ const MINUTES_IN_A_YEAR = 525600;
 for (const i = 0; i < MINUTES_IN_A_YEAR; i++) {
   runCronJob();
 }
-```javascript
+```
 ## 使用说明性质的临时变量
 
 **Bad:**
@@ -63,7 +63,7 @@ saveCityState(
   cityStateRegex.match(cityStateRegex)[1],
   cityStateRegex.match(cityStateRegex)[2],
 );
-```javascript
+```
 **Good**:
 
 ```js
@@ -72,7 +72,7 @@ let match = cityStateRegex.match(cityStateRegex);
 let city = match[1];
 let state = match[2];
 saveCityState(city, state);
-```javascript
+```
 ## 避免摸不着头脑的临时变量
 
 在遍历或者 mapping 过程中，需要避免短小无意义的变量命名。
@@ -90,7 +90,7 @@ locations.forEach((l) => {
   // Wait, what is `l` for again?
   dispatch(l);
 });
-```javascript
+```
 **Good**:
 
 ```js
@@ -103,7 +103,7 @@ locations.forEach((location) => {
   ...
   dispatch(location);
 });
-```javascript
+```
 ## 避免添加不需要的内容
 
 如果你的类名 / 实例名已经能够表述某些信息，那么在类 / 实例的属性中就不需要重复命名。
@@ -120,7 +120,7 @@ const Car = {
 function paintCar(car) {
   car.carColor = "Red";
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -133,7 +133,7 @@ const Car = {
 function paintCar(car) {
   car.color = "Red";
 }
-```javascript
+```
 ## Short-circuiting 优于条件选择
 
 **Bad:**
@@ -147,14 +147,14 @@ function createMicrobrewery(name) {
     breweryName = "Hipster Brew Co.";
   }
 }
-```javascript
+```
 **Good**:
 
 ```js
 function createMicrobrewery(name) {
   const breweryName = name || "Hipster Brew Co.";
 }
-```javascript
+```
 # 函数
 
 ## 函数参数最好不超过两个
@@ -167,7 +167,7 @@ function createMicrobrewery(name) {
 function createMenu(title, body, buttonText, cancellable) {
   ...
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -181,7 +181,7 @@ const menuConfig = {
 function createMenu(menuConfig) {
   ...
 }
-```javascript
+```
 ## 函数应当遵循单一职责原则
 
 这一条算是迄今为止软件工程中最重要的原则之一了。如果我们给单一函数赋予了过多的职责，那么其很难被用于组合、测试等。而如果你保证函数的单一职责性质，那么相对其重构难度、代码可读性也会更好。
@@ -197,7 +197,7 @@ function emailClients(clients) {
     }
   });
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -217,7 +217,7 @@ function isClientActive(client) {
   let clientRecord = database.lookup(client);
   return clientRecord.isActive();
 }
-```javascript
+```
 ## 函数命名应该反映其功能
 
 **Bad:**
@@ -231,7 +231,7 @@ let date = new Date();
 
 // 很难从函数名中获知该函数到底是谁加上谁
 dateAdd(date, 1);
-```javascript
+```
 **Good**:
 
 ```js
@@ -241,7 +241,7 @@ function dateAddMonth(date, month) {
 
 let date = new Date();
 dateAddMonth(date, 1);
-```javascript
+```
 ## 函数应当只是一层抽象
 
 这一条类似于单一职责原则，不过更倾向于关注函数的抽象程度，如果我们在单一函数中添加了过多的抽象层，同样会降低的函数可读性、增加重构难度。
@@ -271,7 +271,7 @@ function parseBetterJSAlternative(code) {
     // parse...
   });
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -307,7 +307,7 @@ function parseBetterJSAlternative(code) {
     // parse...
   });
 }
-```javascript
+```
 ## 移除重复代码
 
 在任何情况下都不要去容许重复代码的存在。重复代码指那些修改单一逻辑时需要修改多个代码片的代码交集，JavaScript 本身是弱类型语言，相对而言编写泛型函数会更加容易。
@@ -344,7 +344,7 @@ function showManagerList(managers) {
     render(data);
   });
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -369,7 +369,7 @@ function showList(employees) {
     render(data);
   });
 }
-```javascript
+```
 ## 使用默认参数代替或运算
 
 **Bad:**
@@ -379,14 +379,14 @@ function writeForumComment(subject, body) {
   subject = subject || "No Subject";
   body = body || "No text";
 }
-```javascript
+```
 **Good**:
 
 ```js
 function writeForumComment(subject = 'No subject', body = 'No text') {
   ...
 }
-```javascript
+```
 ## 使用 Object.assign 设置默认值
 
 **Bad:**
@@ -408,7 +408,7 @@ function createMenu(config) {
 }
 
 createMenu(menuConfig);
-```javascript
+```
 **Good**:
 
 ```js
@@ -435,7 +435,7 @@ function createMenu(config) {
 }
 
 createMenu(menuConfig);
-```javascript
+```
 ## 避免在参数中使用 Flags
 
 有的开发者会使用 Flags 来控制函数执行不同的逻辑流，不过就如我们在上文中提及的单一职责原则，我们应当将函数拆分为不同的部分，然后在外层调用上根据 Flags 调用不同的函数。
@@ -450,7 +450,7 @@ function createFile(name, temp) {
     fs.create(name);
   }
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -461,7 +461,7 @@ function createTempFile(name) {
 function createFile(name) {
   fs.create(name);
 }
-```javascript
+```
 ## 避免冗余副作用
 
 如果某个函数除了接收输入值与返回值之外还做了其他事，那么就称其具有副作用。典型的副作用譬如写文件、修改某些全局变量、修改内存参数等等。在编程中我们不可避免的需要产生副作用，譬如上面例子中我们需要写入到某个外部文件。而你应当做的就是将所有的写文件操作由某个服务统一处理，而不应该将写文件的操作分散到数个类或者函数中。这一点最大的优势在于避免了不同对象之间共享状态，共享的可变状态可是万恶之源啊。
@@ -480,7 +480,7 @@ function splitIntoFirstAndLastName() {
 splitIntoFirstAndLastName();
 
 console.log(name); // ['Ryan', 'McDermott'];
-```javascript
+```
 **Good**:
 
 ```js
@@ -493,7 +493,7 @@ const newName = splitIntoFirstAndLastName(name);
 
 console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
-```javascript
+```
 ## 避免污染全局函数
 
 JavaScript 中有个不太好的实践就是修改某个全局函数，将其指向其他的库或者自定义函数，不过这个会对某个懵懂的用户造成困恼。如果你想给 JavaScript 原生的 Array 添加一个 diff 函数支持，来展示两个数组的差异。你可以选择将函数挂载到`Array.prototype`，不过很有可能跟其他打算占用这个位置的库起冲突。我们更建议使用 ES6 的 classes，并且使用继承方式去添加新的功能函数。
@@ -517,7 +517,7 @@ Array.prototype.diff = function (comparisonArray) {
 
   return values;
 };
-```javascript
+```
 **Good:**
 
 ```js
@@ -543,7 +543,7 @@ class SuperArray extends Array {
     return values;
   }
 }
-```javascript
+```
 ## 优先选择函数式编程而不是命令式编程
 
 JavaScript 并不像 Haskell 这样纯粹的函数式编程语言，不过其对于实践函数式编程的理念还是很推崇的。函数式编程可读性更好，也更易于测试。
@@ -575,7 +575,7 @@ const totalOutput = 0;
 for (const i = 0; i < programmerOutput.length; i++) {
   totalOutput += programmerOutput[i].linesOfCode;
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -601,7 +601,7 @@ const programmerOutput = [
 const totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
   .reduce((acc, linesOfCode) => acc + linesOfCode, 0);
-```javascript
+```
 ## 封装条件选择
 
 **Bad:**
@@ -610,7 +610,7 @@ const totalOutput = programmerOutput
 if (fsm.state === "fetching" && isEmpty(listNode)) {
   /// ...
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -621,7 +621,7 @@ function shouldShowSpinner(fsm, listNode) {
 if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
   // ...
 }
-```javascript
+```
 ## 避免负类条件
 
 **Bad:**
@@ -634,7 +634,7 @@ function isDOMNodeNotPresent(node) {
 if (!isDOMNodeNotPresent(node)) {
   // ...
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -645,7 +645,7 @@ function isDOMNodePresent(node) {
 if (isDOMNodePresent(node)) {
   // ...
 }
-```javascript
+```
 ## 避免使用条件选择
 
 很多人第一次听到这个概念都会觉得不可思议，没有`if`条件选择语句的话又该如何编程呢？在这里我们推荐使用多态性来达成这一目标，因为如果在函数或类中嵌入过多的`if`语句，会导致该函数或者类破坏单一职责原则。
@@ -666,7 +666,7 @@ class Airplane {
     }
   }
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -694,7 +694,7 @@ class Cesna extends Airplane {
     return getMaxAltitude() - getFuelExpenditure();
   }
 }
-```javascript
+```
 ## 避免依赖于类型检测
 
 很多时候我们会依赖于 JavaScript 输入的参数类型来进入不同的控制流，不过鉴于 JavaScript 本身是弱类型语言，我们还是应该避免这种实践。第一个方法就是使用较为一致性的接口。
@@ -709,14 +709,14 @@ function travelToTexas(vehicle) {
     vehicle.drive(this.currentLocation, new Location("texas"));
   }
 }
-```javascript
+```
 **Good**:
 
 ```js
 function travelToTexas(vehicle) {
   vehicle.move(this.currentLocation, new Location("texas"));
 }
-```javascript
+```
 ## 避免依赖于类型检测
 
 如果你需要操作像字符串、数值、列表这样的基础数据类型，你就无法依赖于多态性来实现类型检测。那么建议是使用 TypeScript，它为普通的 JavaScript 添加了静态类型支持。
@@ -734,14 +734,14 @@ function combine(val1, val2) {
     throw new Error("Must be of type String or Number");
   }
 }
-```javascript
+```
 **Good**:
 
 ```js
 function combine(val1, val2) {
   return val1 + val2;
 }
-```javascript
+```
 ## 避免过度优化
 
 现代浏览器已经在运行时做了很多的优化，因此很多时候如果我们要遵循那些流传已久的优化策略不过是浪费时间。可以参考[这个](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)来获取建议的优化要点。
@@ -754,14 +754,14 @@ function combine(val1, val2) {
 for (const i = 0, len = list.length; i < len; i++) {
   // ...
 }
-```javascript
+```
 **Good**:
 
 ```js
 for (const i = 0; i < list.length; i++) {
   // ...
 }
-```javascript
+```
 ## 移除弃用的代码
 
 弃用的代码就和重复的代码一样，我们没有任何理由保留他们。不过为防万一建议不要彻底从 Git 的历史记录中删除它们。
@@ -779,7 +779,7 @@ function newRequestModule(url) {
 
 const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
-```javascript
+```
 **Good**:
 
 ```js
@@ -789,7 +789,7 @@ function newRequestModule(url) {
 
 const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
-```javascript
+```
 # 对象与数据结构
 
 ## 使用 getters 与 setters
@@ -814,7 +814,7 @@ let bankAccount = new BankAccount();
 
 // Buy shoes...
 bankAccount.balance = bankAccount.balance - 100;
-```javascript
+```
 **Good**:
 
 ```js
@@ -835,7 +835,7 @@ let bankAccount = new BankAccount();
 
 // Buy shoes...
 bankAccount.withdraw(100);
-```javascript
+```
 ## 为对象添加私有属性
 
 可以通过闭包方式添加私有属性：
@@ -855,7 +855,7 @@ const employee = new Employee("John Doe");
 console.log("Employee name: " + employee.getName()); // Employee name: John Doe
 delete employee.name;
 console.log("Employee name: " + employee.getName()); // Employee name: undefined
-```javascript
+```
 **Good**:
 
 ```js
@@ -873,7 +873,7 @@ const employee = new Employee("John Doe");
 console.log("Employee name: " + employee.getName()); // Employee name: John Doe
 delete employee.name;
 console.log("Employee name: " + employee.getName()); // Employee name: John Doe
-```javascript
+```
 # 类
 
 ## 单一职责原则
@@ -898,7 +898,7 @@ class UserSettings {
     // ...
   }
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -924,7 +924,7 @@ class UserSettings {
     }
   }
 }
-```javascript
+```
 ## 开放封闭原则
 
 正如 Bertrand Meyer 所述，譬如类、模块、函数这样的实体应该面向扩展开放，而拒绝修改。换言之，我们推荐去继承扩展某个函数或模块，而不是每次都去修改源代码。
@@ -943,7 +943,7 @@ class AjaxRequester {
     // ...
   }
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -960,7 +960,7 @@ class AjaxRequester {
     this.HTTP_METHODS.push(method);
   }
 }
-```javascript
+```
 ## 里氏替换原则
 
 这个原则听起来有点拗口，不过概念却很好理解。其形式化描述为如果 S 为 T 的子类型，那么类型 T 的实例可以被类型 S 的实例替换而不需要修改任何的代码。形象而言，我们创建的父类与其子类应当可交换地使用而不会引起异常，譬如下文的 Square-Rectangle 这个例子。Square 也是 Rectangle：
@@ -1022,7 +1022,7 @@ function renderLargeRectangles(rectangles) {
 
 let rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
-```javascript
+```
 **Good**:
 
 ```js
@@ -1090,7 +1090,7 @@ function renderLargeShapes(shapes) {
 
 let shapes = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeShapes(shapes);
-```javascript
+```
 ## 接口隔离原则
 
 JavaScript 本身并不包含对于接口语法的支持，因此也无法像其他语言那样达到严格限制的程度。不过鉴于 JavaScript 本身类型系统的缺失，遵循接口隔离原则还是蛮重要的。ISP 的表述为不应该强制客户端去依赖于他们不需要的接口，这一点在 JavaScript 中较为典型的例子就是那些需要大量配置信息的对象。其实使用者并不需要去关心每一个配置项，允许他们动态的设置能够节省大量的时间，代码的可读性也会更好。
@@ -1119,7 +1119,7 @@ let $ = new DOMTraverser({
   animationModule: function () {}, // Most of the time, we won't need to animate when traversing.
   // ...
 });
-```javascript
+```
 **Good**:
 
 ```js
@@ -1152,7 +1152,7 @@ let $ = new DOMTraverser({
     animationModule: function () {},
   },
 });
-```javascript
+```
 ## 依赖反转原则
 
 This principle states two essential things:
@@ -1195,7 +1195,7 @@ class InventoryRequester {
 
 let inventoryTracker = new InventoryTracker(["apples", "bananas"]);
 inventoryTracker.requestItems();
-```javascript
+```
 **Good**:
 
 ```js
@@ -1239,7 +1239,7 @@ let inventoryTracker = new InventoryTracker(
   new InventoryRequesterV2(),
 );
 inventoryTracker.requestItems();
-```javascript
+```
 ## 优先选择 ES6 类而不是 ES5 的基本函数定义
 
 传统 ES5 的类实现语法对于类的继承、构建以及方法定义的可读性都不是很好。如果你考虑在类中实现继承，那么建议优先考虑 ES6 的类语法糖。如果你只是需要构建简单的对象，那么可以考虑使用 ES5 的基本函数定义来构造类对象。
@@ -1282,7 +1282,7 @@ const Human = function (age, furColor, languageSpoken) {
 Human.prototype = Object.create(Mammal.prototype);
 Human.prototype.constructor = Human;
 Human.prototype.speak = function () {};
-```javascript
+```
 **Good:**
 
 ```js
@@ -1311,7 +1311,7 @@ class Human extends Mammal {
 
   speak() {}
 }
-```javascript
+```
 ## Use method chaining
 
 Against the advice of Clean Code, this is one place where we will have to differ. It has been argued that method chaining is unclean and violates the [Law of Demeter](https://en.wikipedia.org/wiki/Law_of_Demeter). Maybe it's true, but this pattern is very useful in JavaScript and you see it in many libraries such as jQuery and Lodash. It allows your code to be expressive, and less verbose. For that reason, I say, use method chaining and take a look at how clean your code will be. In your class functions, simply return `this` at the end of every function, and you can chain further class methods onto it.
@@ -1348,7 +1348,7 @@ car.setColor("pink");
 car.setMake("Ford");
 car.setModel("F-150");
 car.save();
-```javascript
+```
 **Good**:
 
 ```js
@@ -1383,7 +1383,7 @@ class Car {
 }
 
 let car = new Car().setColor("pink").setMake("Ford").setModel("F-150").save();
-```javascript
+```
 ## Prefer composition over inheritance
 
 As stated famously in the [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns), you should prefer composition over inheritance where you can. There are lots of good reasons to use inheritance and lots of good reasons to use composition. The main point for this maxim is that if your mind instinctively goes for inheritance, try to think if composition could model your problem better. In some cases it can.
@@ -1416,7 +1416,7 @@ class EmployeeTaxData extends Employee {
 
   // ...
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -1440,7 +1440,7 @@ class EmployeeTaxData {
 
   // ...
 }
-```javascript
+```
 # 测试
 
 测试是代码部署前不可避免的重要步骤，如果你没有添加任何的测试，那么你在每次部署之前你压根不敢确定是否会产生什么意外情况。不同的团队对于测试覆盖率的需求不太一致，不过保持 100% 的覆盖率能够让你的团队对于代码保持较好的掌控与信赖。我们可以使用很多优秀的[测试工具](http://jstherightway.org/#testing-tools)与[测试覆盖率检测工具](http://gotwarlost.github.io/istanbul/)，建议是对于每个新的特征或者模块都添加测试用例。如果更倾向于使用测试驱动开发，一定要注意在你打算添加新的特性或者重构当前代码之前保证测试覆盖率已经达到了预期。
@@ -1469,7 +1469,7 @@ describe("MakeMomentJSGreatAgain", function () {
     assert.equal("03/01/2015", date);
   });
 });
-```javascript
+```
 **Good**:
 
 ```js
@@ -1494,7 +1494,7 @@ describe("MakeMomentJSGreatAgain", function () {
     assert.equal("03/01/2015", date);
   });
 });
-```javascript
+```
 # 并发
 
 ## 使用 Promise 替代回调
@@ -1520,7 +1520,7 @@ require("request").get(
     }
   },
 );
-```javascript
+```
 **Good**:
 
 ```js
@@ -1535,7 +1535,7 @@ require("request-promise")
   .catch(function (err) {
     console.log(err);
   });
-```javascript
+```
 ## Async/Await 更为清晰
 
 Promises 本身已经是对于回调的不错的替代，而 ES7 中的 async 与 await 则是更为清晰的解决方案，可以避免你编写大量的`then`调用链。
@@ -1554,7 +1554,7 @@ require("request-promise")
   .catch(function (err) {
     console.log(err);
   });
-```javascript
+```
 **Good**:
 
 ```js
@@ -1572,7 +1572,7 @@ async function getCleanCodeArticle() {
     console.log(err);
   }
 }
-```javascript
+```
 # 格式化
 
 就像本文的很多建议一样，格式化本身是非常主观的原则。建议是使用[工具](http://standardjs.com/rules.html) 来自动完成格式化操作，而不是争论具体的格式化的细节。
@@ -1595,7 +1595,7 @@ function restore_database() {}
 
 class animal {}
 class Alpaca {}
-```javascript
+```
 **Good**:
 
 ```js
@@ -1610,7 +1610,7 @@ function restoreDatabase() {}
 
 class Animal {}
 class Alpaca {}
-```javascript
+```
 ## 函数的定义与调用位置尽量靠近
 
 尽量将两个有相互调用关系的函数在源文件的竖直上较为接近的位置，并且将调用者放置于被调用者上方。我们习惯从上至下的阅读代码，这样的布局会提高整个代码的可读性。
@@ -1653,7 +1653,7 @@ class PerformanceReview {
 
 let review = new PerformanceReview(user);
 review.perfReview();
-```javascript
+```
 **Good**:
 
 ```js
@@ -1692,7 +1692,7 @@ class PerformanceReview {
 
 let review = new PerformanceReview(employee);
 review.perfReview();
-```javascript
+```
 # 注释
 
 ## 仅仅对业务逻辑进行注释
@@ -1719,7 +1719,7 @@ function hashIt(data) {
     hash = hash & hash;
   }
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -1735,7 +1735,7 @@ function hashIt(data) {
     hash = hash & hash;
   }
 }
-```javascript
+```
 ## 避免保留被注释的代码
 
 **Bad:**
@@ -1745,12 +1745,12 @@ doStuff();
 // doOtherStuff();
 // doSomeMoreStuff();
 // doSoMuchStuff();
-```javascript
+```
 **Good**:
 
 ```js
 doStuff();
-```javascript
+```
 ## 不要使用日记形式的注释
 
 千万记住，要使用版本控制工具，而不是在你的代码前面添加日记形式的注释，使用`git log`查看历史记录。
@@ -1767,14 +1767,14 @@ doStuff();
 function combine(a, b) {
   return a + b;
 }
-```javascript
+```
 **Good**:
 
 ```js
 function combine(a, b) {
   return a + b;
 }
-```javascript
+```
 ## 避免额外的代码标记注释
 
 建议是让函数与变量名来表述其功能，避免添加过多额外的注释。
@@ -1796,7 +1796,7 @@ let $scope.model = {
 let actions = function() {
   // ...
 }
-```javascript
+```
 **Good**:
 
 ```js
@@ -1808,7 +1808,7 @@ let $scope.model = {
 let actions = function() {
   // ...
 }
-```javascript
+```
 ## 避免在源文件中添加法律声明
 
 **Bad:**
@@ -1841,14 +1841,14 @@ SOFTWARE
 function calculateBill() {
   // ...
 }
-```javascript
+```
 **Good**:
 
 ```js
 function calculateBill() {
   // ...
 }
-```javascript
+```
 # 错误处理
 
 在 JavaScript 中抛出错误是个不错的实践，不仅可以帮助开发者即时感知程序中出现的错误，还能立刻终止程序执行并且打印出其调用栈。
@@ -1865,7 +1865,7 @@ try {
 } catch (error) {
   console.log(error);
 }
-```javascript
+```
 **Good:**
 
 ```javascript
@@ -1880,7 +1880,7 @@ try {
   reportErrorToService(error);
   // OR do all three!
 }
-```javascript
+```
 ## 不要忽略被拒绝的 Promises
 
 **Bad:**
@@ -1893,7 +1893,7 @@ getdata()
   .catch((error) => {
     console.log(error);
   });
-```javascript
+```
 **Good:**
 
 ```js
@@ -1910,7 +1910,7 @@ getdata()
     reportErrorToService(error);
     // OR do all three!
   });
-```javascript
+```
 > 延伸阅读
 >
 > [知乎专栏：某熊的全栈之路](https://zhuanlan.zhihu.com/wx-chevalier) >[知乎专栏：前端当自强](https://zhuanlan.zhihu.com/c_67532981) >[知乎专栏：lotuc 的编程之路](https://zhuanlan.zhihu.com/lotuc) >[2016\_ 我的技术之路 : 编程知识体系结构](https://zhuanlan.zhihu.com/p/24476917?refer=wx-chevalier) >[2016\_ 我的前端之路 : 工具化与工程化](https://zhuanlan.zhihu.com/p/24575395?refer=wx-chevalier) >[某熊周刊系列 : 一周推荐外文技术资料 (12.1)](https://zhuanlan.zhihu.com/p/24516669?refer=wx-chevalier)

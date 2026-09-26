@@ -12,7 +12,7 @@
 
 ```js
 eval("process.exit()");
-```javascript
+```
 对于服务器环境而言，process 是一个全局变量，上诉代码会让整个应用直接退出，简单点说，一旦运行了以上脚本，我们的 NodeJS 服务就挂了。当然，如果将 eval 和 ES6 中的 Proxy 结合使用，可以限制一些上下文或者全局变量的访问，比如以下代码：
 
 ```js
@@ -29,7 +29,7 @@ function evalute(code, sandbox) {
 }
 evalute("1+2"); // 3
 evalute("console.log(1)"); // Cannot read property 'log' of undefined
-```javascript
+```
 这段代码会通过 Proxy 去阻止脚本获取上下文的变量，从而让动态脚本变得更安全了一些，不过由于使用到了 with 关键字，其性能也相对较差。
 
 # NodeJS 中的其它选择？
@@ -53,7 +53,7 @@ console.log(context.x); // 42
 console.log(context.y); // 17
 
 console.log(x); // 1; y is not defined.
-```javascript
+```
 从上述代码中可以看到，VM 模块可以很方便地执行一块动态脚本，并且还可以为其指定上下文并获取到执行后上下文变量的变化。除此之外，VM 还可以指定一个参数 timeout, 如果执行超时会抛出一个异常，如下：
 
 ```js
@@ -65,19 +65,19 @@ try {
   //打印超时的 log
   console.log(err.message);
 }
-```javascript
+```
 while(true){} 将在 50ms 之后报错并捕获到异常，打印出来。但需要注意的是这里的 timeout 只会对于同步的代码生效，如果使用异步代码如下：
 
 ```js
 const script = new vm.Script("setTimeout(()=>{},2000)", { timeout: 50 });
-```javascript
+```
 那么 50ms 的限制将如同摆设。另外，VM 模块中的 runInContext 看起来可隔离上下文，实际上很容易通过一些特殊的写法获取到上下文的变量，比如：
 
 ```js
 const vm = require("vm");
 vm.runInNewContext('this.constructor.constructor("return process")().exit()');
 console.log("Never gets executed.");
-```javascript
+```
 通过运行以上代码，我们会发现，我们 log 的内容并没有出现，脚本片段中的 this.constructor.constructor("return process")().exit() 获取到了 process 对象，像我之前说的那样，直接将整个应用结束了。就像 NodeJS 官网文档中说的那样：The vm module is not a security mechanism. Do not use it to run untrusted code.
 
 由于 Javascript 本身过于动态，官方并不推荐我们通过 VM 模块去运行不受信任的代码。
@@ -92,7 +92,7 @@ console.log("Never gets executed.");
 const { VM } = require("vm2");
 new VM().run('this.constructor.constructor("return process")().exit()');
 // Throws ReferenceError: process is not defined
-```javascript
+```
 可以看到会抛出错误： process is not defined；在功能性上，vm2 还内置一个 NodeVM 的模块，通过这个模块我们甚至可以在脚本中引入外部的依赖，并且可以限制哪些依赖是可以引入的，哪些是不可以引入的，如以下例子：
 
 ```js
@@ -115,7 +115,7 @@ vm.run(
 `,
   "vm.js"
 );
-```javascript
+```
 但是，我们还是可以在 vm2 中写一些恶意代码
 
 - 由于 vm2 中的 NodeVM 不支持 timeout 属性，while(true){} 会阻塞整个应用
@@ -167,7 +167,7 @@ const context = {
   // 释放资源
   safeVm.destroy();
 })();
-```javascript
+```
 像这样的逻辑会一直卡住主进程，timeout 也会失效
 
 - 会在初始化时就实例化出配置的子进程，如果是 4，就会实例化 4 条，对资源占用很不友好，并且需要手动调用 safeify.destory() 方法去销毁子进程，由于执行脚本是异步的，对销毁时机需要很好的把握，一不小心就把还没执行完的子进程销毁掉了

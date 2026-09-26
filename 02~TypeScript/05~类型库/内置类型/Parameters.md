@@ -20,7 +20,7 @@ function callNTimes<Fn extends (...arguments_: any[]) => any>(
 }
 
 const shuffleTwice = callNTimes(shuffle, 2);
-```javascript
+```
 # ConstructorParameters
 
 ```ts
@@ -60,4 +60,4 @@ class InstanceCache<T extends new (...arguments_: any[]) => any> {
 
 const articleCache = new InstanceCache(ArticleModel);
 const amazonArticle = articleCache.getInstance("Amazon forests burining!");
-```javascript
+```

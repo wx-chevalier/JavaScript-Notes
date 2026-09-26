@@ -19,7 +19,7 @@ const handler = {
 
 const obj = new Proxy(target, handler);
 console.log(obj.bar); // 2
-```javascript
+```
 # Reflect Metadata
 
 所谓注解的定义就是：为相应的类附加元数据支持。所谓元数据可以简单的解释，就是修饰数据的数据，比如一个人有 name，age 等数据属性，那么 name 和 age 这些字段就是为了修饰数据的数据，可以简单的称为元数据。通过注解添加元数据，然后在装饰器中获取这些元数据，完成对类、类的方法等等的修改，可以在装饰器中添加元数据的支持，比如可以可以在装饰器工厂函数以及装饰器函数中添加元数据支持等。
@@ -34,7 +34,7 @@ function metadata(
   (target: Function): void;
   (target: Object, propertyKey: string | symbol): void;
 };
-```javascript
+```
 Reflect.metadata 当作 Decorator 使用，当修饰类时，在类上添加元数据，当修饰类属性时，在类原型的属性上添加元数据，如：
 
 ```ts
@@ -48,7 +48,7 @@ class Test {
 
 console.log(Reflect.getMetadata("inClass", Test)); // 'A'
 console.log(Reflect.getMetadata("inMethod", new Test(), "hello")); // 'B'
-```javascript
+```
 ## 内置 Key
 
 reflect-metadata 内置了三种 Key，在代码运行时可以利用内置的 Key 去获取到响应的元数据。
@@ -67,7 +67,7 @@ class Demo {
 }
 
 // attr1 type: String
-```javascript
+```
 譬如在 vue-property-decorator 6.1 及其以下版本中，通过使用 Reflect.getMetadata API，Prop Decorator 能获取属性类型传至 Vue，简要代码如下：
 
 ```ts
@@ -83,7 +83,7 @@ class SomeClass {
   @Prop()
   public Aprop!: string;
 }
-```javascript
+```
 ### Parameter type metadata `design:paramtypes`
 
 ```ts
@@ -112,12 +112,12 @@ class Demo {
 }
 
 // doSomething param types: String, Number, Foo, Object, Object, Function, Function
-```javascript
+```
 ### Return type metadata `design:returntype`
 
 ```ts
 Reflect.getMetadata("design:returntype", target, key);
-```javascript
+```
 ## 自定义 metadataKey
 
 除能获取类型信息外，常用于自定义 metadataKey，并在合适的时机获取它的值，示例如下：
@@ -145,7 +145,7 @@ class SomeClass {
 
 Reflect.getMetadata("classMetaData", SomeClass); // 'a'
 Reflect.getMetadata("methodMetaData", new SomeClass(), "someMethod"); // 'b'
-```javascript
+```
 ## 案例分析：Format
 
 可以通过 reflect-metadata 包来实现对于元数据的操作。首先我们来看 reflect-metadata 的使用，首先定义使用元数据的函数：
@@ -160,7 +160,7 @@ function format(formatString: string) {
 function getFormat(target: any, propertyKey: string) {
   return Reflect.getMetadata(formatMetadataKey, target, propertyKey);
 }
-```javascript
+```
 这里的 format 可以作为装饰器函数的工厂函数，因为 format 函数返回的是一个装饰器函数，上述的方法定义了元数据 `Sysmbol("format")`,用 Sysmbol 的原因是为了防止元数据中的字段重复，而 format 定义了取元数据中相应字段的功能。接着我们来在类中使用相应的元数据：
 
 ```ts
@@ -179,7 +179,7 @@ class Greeter {
 
 const g = new Greeter("Jony");
 console.log(g.sayHello());
-```javascript
+```
 在上述中，我们在 name 属性的装饰器工厂函数，执行`@Format("Hello, %s")`，返回一个装饰器函数，且该装饰器函数修饰了 Greeter 类的 name 属性，将“name”属性的值写入为"Hello, %s"。然后再 sayHello 方法中，通过 getFormat(this,"name") 取到 formatString 为“Hello,%s”.
 
 ## 案例分析：Angular 2 DI
@@ -210,4 +210,4 @@ const Factory = <T>(target: Constructor<T>): T => {
 };
 
 Factory(TestService).testMethod(); // 1
-```javascript
+```

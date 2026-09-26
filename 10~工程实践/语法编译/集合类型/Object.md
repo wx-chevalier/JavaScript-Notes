@@ -30,7 +30,7 @@ console.log(keys1);
 const keys2 = [];
 for (let key in Object.assign({}, obj)) keys2.push(key);
 console.log(keys2);
-```javascript
+```
 # Object 键
 
 Object 中的 Key 类别 JavaScript 中 Object 是一个混合了类似于 Dictionary 与 Class 的用法，基本上来说也是一种键值类型。其中键的类型主要包含四种：
@@ -48,7 +48,7 @@ const object = {
   "foo-bar": 6, // the empty string is not a valid identifier name; quotes are required
   "": 7,
 };
-```javascript
+```
 - Identifier: 包含任何[有效地](https://mathiasbynens.be/notes/javascript-identifiers-es6)标识符，包括了 ES 的保留关键字。
 
 - 字符串 :single (`'`) or double (`"`) quotes. `'foo'`, `"bar"`,`'qu\'ux'`, `""` (the empty string), and `'Ich \u2665 B\xFCcher'` are all valid string literals.
@@ -61,12 +61,12 @@ const object = {
 
 ```js
 object["abc"]; // 1
-```javascript
+```
 有时候也可以使用点操作符，不过这种方式只可以被用于键为有效地 Identifier 情况：
 
 ```js
 object.abc; // 1
-```javascript
+```
 如果需要获取所有的键名的话，可以使用 Object.keys 方法：> 注意，所有的 Object 的方法只能用 Object.methodName 方式调用。
 
 ## Object.create | 指定原型创建
@@ -93,11 +93,11 @@ const Scope = function(){};
 Scope.prototype.$clone = function(){
     return Object.create(this);
 }
-```javascript
+```
 其基本语法为：
 
 ```javascript
 Object.create(proto, { propertiesObject })
-```javascript
+```
 这里需要注意的是，propertiesObject 不是一个简单的键值类型，而是有固定格式的 object。
 ````

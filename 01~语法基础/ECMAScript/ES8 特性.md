@@ -9,7 +9,7 @@ ES8 中添加了内置的字符串填充函数，分别为 padStart 与 padEnd�
 ```js
 str.padStart(targetLength [, padString])
 str.padEnd(targetLength [, padString])
-```javascript
+```
 如上所示，函数的首个参数为目标长度，即最终生成的字符串长度；第二个参数即是指定的填充字符串：
 
 ```js
@@ -23,14 +23,14 @@ str.padEnd(targetLength [, padString])
 "es8".padEnd(6, "woof"); // 'es8woo'
 "es8".padEnd(14, "wow"); // 'es8wowwowwowwo'
 "es8".padEnd(7, "6"); // 'es86666'
-```javascript
+```
 ### 对象值遍历
 
 `Object.values` 函数会返回指定对象的可枚举的属性值数组，数组中值顺序与 `for-in` 循环保持一致，函数的声明为：
 
 ```js
 Object.values(obj);
-```javascript
+```
 首个参数 `obj` 即为需要遍历的目标对象，它可以为某个对象或者数组(数组可以看做键为下标的对象)：
 
 ```js
@@ -45,7 +45,7 @@ Object.values(obj); // ['e', 's', '8']
 const obj = { 10: "xxx", 1: "yyy", 3: "zzz" };
 Object.values(obj); // ['yyy', 'zzz', 'xxx']
 Object.values("es8"); // ['e', 's', '8']
-```javascript
+```
 而 `Object.entries` 方法则会将某个对象的可枚举属性与值按照二维数组的方式返回，数组中顺序与 `Object.values` 保持一致，该函数的声明与使用为：
 
 ```js
@@ -58,14 +58,14 @@ Object.entries(obj); // [['0', 'e'], ['1', 's'], ['2', '8']]
 const obj = { 10: "xxx", 1: "yyy", 3: "zzz" };
 Object.entries(obj); // [['1', 'yyy'], ['3', 'zzz'], ['10': 'xxx']]
 Object.entries("es8"); // [['0', 'e'], ['1', 's'], ['2', '8']]
-```javascript
+```
 ### 对象的属性描述符获取
 
 `getOwnPropertyDescriptors` 函数会返回指定对象的某个指定属性的描述符；该属性必须是对象自己定义而不是继承自原型链，函数的声明为：
 
 ```js
 Object.getOwnPropertyDescriptor(obj, prop);
-```javascript
+```
 `obj` 即为源对象，而 `prop` 即为需要查看的属性名；结果中包含的键可能有 configurable、enumerable、writable、get、set 以及 value。
 
 ```javascript
@@ -77,7 +77,7 @@ Object.getOwnPropertyDescriptor(obj, 'es8');
 //   get: function es8(){}, //the getter function
 //   set: undefined
 // }
-```javascript
+```
 ### 函数参数列表与调用中的尾部逗号
 
 该特性允许我们在定义或者调用函数时添加尾部逗号而不报错：
@@ -87,7 +87,7 @@ function es8(var1, var2, var3) {
   // ...
 }
 es8(10, 20, 30);
-```javascript
+```
 ### 异步函数
 
 ES8 中允许使用 async/await 语法来定义与执行异步函数，async 关键字会返回某个 AsyncFunction 对象；在内部实现中虽然异步函数与迭代器的实现原理类似，但是其并不会被转化为迭代器函数：
@@ -114,7 +114,7 @@ console.log(2);
 1; // immediately
 2; // immediately
 Hello, es8; // after 2 seconds
-```javascript
+```
 ### 共享内存与原子操作
 
 共享内存允许多个线程并发读写数据，而原子操作则能够进行并发控制，确保多个存在竞争关系的线程顺序执行。本部分则介绍了新的构造器 `SharedArrayBuffer` 与包含静态方法的命名空间对象 `Atomics`。`Atomic` 对象类似于 `Math`，我们无法直接创建其实例，而只能使用其提供的静态方法：

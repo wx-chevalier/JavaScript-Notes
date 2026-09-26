@@ -27,7 +27,7 @@ ReactiveX 结合了 [观察者模式、[迭代器模式 和 [使用集合的函�
 ```js
 const button = document.querySelector("button");
 button.addEventListener("click", () => console.log("Clicked!"));
-```javascript
+```
 使用 RxJS 的话，创建一个 observable 来代替。
 
 ```js
@@ -35,7 +35,7 @@ const button = document.querySelector("button");
 Rx.Observable.fromEvent(button, "click").subscribe(() =>
   console.log("Clicked!")
 );
-```javascript
+```
 ## 纯净性（Purity）
 
 使得 RxJS 强大的正是它使用纯函数来产生值的能力。这意味着你的代码更不容易出错。通常你会创建一个非纯函数，在这个函数之外也使用了共享变量的代码，这将使得你的应用状态一团糟。
@@ -44,7 +44,7 @@ Rx.Observable.fromEvent(button, "click").subscribe(() =>
 const count = 0;
 const button = document.querySelector("button");
 button.addEventListener("click", () => console.log(`Clicked ${++count} times`));
-```javascript
+```
 使用 RxJS 的话，你会将应用状态隔离出来。
 
 ```Js
@@ -52,7 +52,7 @@ const button = document.querySelector('button');
 Rx.Observable.fromEvent(button, 'click')
   .scan(count => count + 1, 0)
   .subscribe(count => console.log(`Clicked ${count} times`));
-```javascript
+```
 scan 操作符的工作原理与数组的 reduce 类似。它需要一个暴露给回调函数当参数的初始值。每次回调函数运行后的返回值会作为下次回调函数运行时的参数。
 
 ## 流动性 (Flow)
@@ -72,7 +72,7 @@ button.addEventListener("click", () => {
     lastClick = Date.now();
   }
 });
-```javascript
+```
 使用 RxJS：
 
 ```js
@@ -81,7 +81,7 @@ Rx.Observable.fromEvent(button, "click")
   .throttleTime(1000)
   .scan((count) => count + 1, 0)
   .subscribe((count) => console.log(`Clicked ${count} times`));
-```javascript
+```
 其他流程控制操作符有 filter、delay、debounceTime、take、takeUntil、distinct、distinctUntilChanged 等等。
 
 ## 值 (Values)
@@ -102,7 +102,7 @@ button.addEventListener("click", (event) => {
     lastClick = Date.now();
   }
 });
-```javascript
+```
 使用 RxJS：
 
 ```js
@@ -112,5 +112,5 @@ Rx.Observable.fromEvent(button, "click")
   .map((event) => event.clientX)
   .scan((count, clientX) => count + clientX, 0)
   .subscribe((count) => console.log(count));
-```javascript
+```
 其他产生值的操作符有 pluck、pairwise、sample 等等。

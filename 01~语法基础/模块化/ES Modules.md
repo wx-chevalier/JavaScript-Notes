@@ -6,7 +6,7 @@
 
 ```js
 <script type="module" scr="PATH/file.js" />
-```javascript
+```
 这里的 `module` 关键字就告诉浏览器该脚本中包含了对于其他脚本的导入语句，需要进行预先处理；不过问题来了，那么 JavaScript 解释器又该如何判断某个文件是否为模块。社区也经过很多轮的讨论，我们可以来看下简单的例子：
 
 ```html
@@ -19,7 +19,7 @@
 
   <body></body>
 </html>
-```javascript
+```
 main.js 的代码实现如下：
 
 ```javascript
@@ -30,7 +30,7 @@ utils.alert(`
   JavaScript modules work in this browser:
   https://blog.whatwg.org/js-modules
 `);
-```javascript
+```
 待导入的模块如下：
 
 ```javascript
@@ -40,7 +40,7 @@ export default {
   alert(msg);
   }
 };
-```javascript
+```
 我们可以发现，在 `import` 语句中我们提供了 `.js` 扩展名，这也是区别于打包工具的重要特性之一，往往打包工具中并不需要我们提供扩展名。此外，在浏览器中进行模块的动态加载，也要求待加载文件具有正确的 MIME 类型。我们常用的正确的模块地址譬如：
 
 ```javascript
@@ -52,7 +52,7 @@ http:example.com\pears.mjs (becomes http://example.com/pears.mjs as step 1 parse
 /limes.jsx
 data:text/javascript,export default ‘grapes’;
 blob:https://whatwg.org/d0360e2f-caee-469f-9a2f-87d5b0456f6f
-```javascript
+```
 不过笔者觉得有个不错的特性在于浏览器中支持 CORS 协议，跨域加载其他域中的脚本。在浏览器中加载进来的模块与直接加载的脚本的作用域也是不一致的，并且不需要 `use strict` 声明其也默认处于严格模式下：
 
 ```javascript
@@ -60,7 +60,7 @@ const x = 1;
 
 alert(x === window.x);//false
 alert(this === undefined);// true
-```javascript
+```
 浏览器对于模块的加载默认是异步延迟进行的，即模块脚本的加载并不会阻塞浏览器的解析行为，而是并发加载并在页面加载完毕后进行解析，也就是所有的模块脚本具有 `defer` 属性。我们也可以为脚本添加 `async` 属性，即指明该脚本会在加载完毕后立刻执行。这一点与传统的非模块脚本相比很大不同，传统的脚本会阻塞浏览器解析直到抓取完毕，在抓取之后也会立刻进行执行操作。整个加载流程如下所示：
 ![](https://hospodarets.com/img/blog/1482858323861214000.png)
 
@@ -80,7 +80,7 @@ module.exports = { a, b: 2 }
 // ESM
 import a from "./a"
 export default { a, b: 2 }
-```javascript
+```
 鉴于 CommonJS 并不兼容于 ES Modules，Node.js 打算引入 `.mjs`(Modular JavaScript)文件扩展来指明模块解析规则；这个有点类似于目前对于 JSON 文件的解析，如果我们指明了载入 `.json` 格式文件，Node.js 会自动调用 `JSON.parse` 方法。Node.js 拟计划在 2020 年发布的 9.x 版本中引入内置的 ESM 支持，详细的 Node.js 中 ESM 实现规范查看 Node.js 官方文档 [ES Module Interoperability](https://parg.co/bjW)；而目前主流的办法即是采用 Rollup、Webpack 这样的构建工具或者 Babel 这样的转化工具来进行代码转化。
 
 而近日正式发布的 [@std/esm](https://www.npmjs.com/package/@std/esm) 为我们提供了高性能的 Node.js 中 CommonJS 与 ES Modules 模块间调用，其能够作用于 Node.js 4.x 以上版本；它能够顺滑地集成到现有的 Webpack、Babel 环境中，并且支持不同模块使用不同的依赖版本。不同于目前的解决方案需要是发布编译之后的 CommonJS 格式的文件，[@std/esm] 能够以最小的代价的、按需转化的、动态缓存的方式来进行源代码转化，其基本命令行中的使用方式如下所示：
@@ -92,7 +92,7 @@ export default { a, b: 2 }
 undefined
 > path.join("Hello","World");
 'Hello/World'
-```javascript
+```
 [@std/esm] 除了会自动识别 `.mjs` 扩展的文件之外，它还支持任何包含 `import/export`、Dynamic import、file URI scheme 等语句的文件，典型的用例如下：
 
 ```js
@@ -120,7 +120,7 @@ export default "Hello World!";
 // 运行文件
 // node -r @std/esm index.js
 // Hello World!
-```javascript
+```
 笔者在自己尝试的时候发现 @std/esm 还存在些 Bug，对于缓存代码的处理也并不完善，目前并不建议直接用于生产环境，但是有所了解还是不错的。@std/esm 官方给出的与 [Node.js 9](https://github.com/nodejs/node/pull/14369) 以及 CommonJS 模块的加载时间对比如下，可以发现还是很接近于内建的解决方案性能的：
 
 - Loading CJS equivs was ~0.28 milliseconds per module

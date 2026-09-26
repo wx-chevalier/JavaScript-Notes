@@ -25,7 +25,7 @@ FUNC at 12
 . . ADD at 32
 . . . VAR PROXY parameter[0] (0x7fbd5e818210) (mode = VAR) "x"
 . . . VAR PROXY parameter[1] (0x7fbd5e818240) (mode = VAR) "y"
-```javascript
+```
 ![](https://s3.amazonaws.com/images.ponyfoo.com/uploads/ast-602ed6f747124b0888c0a032eba50bb2.png)
 
 ```sh
@@ -40,7 +40,7 @@ Frame size 0
    36 S> 0x37738712a030 @    6 : 98                Return
 Constant pool (size = 0)
 Handler Table (size = 16)
-```javascript
+```
 ![](https://parg.co/UOA)
 
 ## JIT
@@ -58,7 +58,7 @@ function add (int a, int b) { return a + b;} // a, b 被确定为 int 类型
 
 // 有的开发者会做
 const d = add ("hello", "world");
-```javascript
+```
 这种情况下，JIT 编译器只能推倒重来。JIT 带来的性能提升，有时候还没有这个重编的开销大，[Optimization killers · petkaantonov/bluebird Wiki · GitHub](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)。事实上，大部分时间 JIT 都不会生成优化代码，有字节码的，直接字节码，没有字节码的，粗粗编译下就结了，因为 JIT 自己也需要时间，除非是一个函数被使用过很多遍，否则不会被编译成机器码，因为编译花的时间可能比直接跑字节码还多。
 
 # 语法增强
@@ -119,7 +119,7 @@ function sum(x, y) {
   return x + y;
 }
 [1, 2, 3, 4, 5, "6", 7, 8, 9, 10].reduce((prev, curr) => sum(prev, curr), 0);
-```javascript
+```
 When profiler marks a piece of code as warm, the JIT sends this code to the baseline compiler, which creates a stub for this part of code while the profiler keeps collecting data regarding the frequency and types used on this code section (among other data). When this code section is executed (on our hypothetical example return x + y;), the JIT only needs to take this compiled piece again. When a warm code is called several times in the same manner (like same types), it’s marked as hot.
 
 ## Optimizer Compiler

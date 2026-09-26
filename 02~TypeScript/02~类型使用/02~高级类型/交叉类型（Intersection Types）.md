@@ -20,7 +20,7 @@ const e1: ElevatedEmployee = {
   privileges: ["create-server"],
   startDate: new Date(),
 };
-```javascript
+```
 7. 索引类型（Index Types）
 
 索引类型允许你使用动态属性名。
@@ -43,14 +43,14 @@ let taxi: Car = {
 };
 
 let makeAndModel: string[] = pluck(taxi, ["manufacturer", "model"]);
-```javascript
+```
 8. 类型推断（Type Inference）
 
 TypeScript 可以在很多情况下推断类型，无需明确的类型注解。
 
 ```typescript
 let x = 3; // TypeScript infers that x is a number
-```javascript
+```
 9. 字面量类型（Literal Types）
 
 字面量类型允许你指定一个值必须是特定的字面量。
@@ -64,7 +64,7 @@ function animate(dx: number, dy: number, easing: Easing) {
 
 animate(0, 0, "ease-in");
 // animate(0, 0, "linear"); // Error: Argument of type '"linear"' is not assignable to parameter of type 'Easing'.
-```javascript
+```
 10. 模板字面量类型（Template Literal Types）
 
 模板字面量类型建立在字符串字面量类型上，通过联合类型进行扩展。
@@ -75,7 +75,7 @@ type FooterLocaleIDs = "footer_title" | "footer_sendoff";
 
 type AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;
 // type AllLocaleIDs = "welcome_email_id" | "email_heading_id" | "footer_title_id" | "footer_sendoff_id"
-```javascript
+```
 这些高级类型可以组合使用，创建更复杂和精确的类型定义。理解和熟练使用这些高级类型可以帮助你更好地利用 TypeScript 的类型系统，编写更安全、更可维护的代码。
 
 理解了，你是在寻找一些更复杂、实用的 TypeScript 类型用法。这里有一些更高级的 TypeScript 类型技巧和模式，这些在实际开发中经常会用到：
@@ -88,7 +88,7 @@ type AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;
 type NestedArray<T> = Array<T | NestedArray<T>>;
 
 const arr: NestedArray<number> = [1, [2, 3, [4, 5]], 6, [7, [8, 9]]];
-```javascript
+```
 2. 条件类型与 infer
 
 使用 `infer` 关键字在条件类型中推断类型：
@@ -101,7 +101,7 @@ function foo(x: number): string {
 }
 
 type FooReturn = ReturnType<typeof foo>; // string
-```javascript
+```
 3. 映射类型与键重映射
 
 使用映射类型和键重映射来转换对象类型：
@@ -121,7 +121,7 @@ type PersonGetters = Getters<Person>;
 //   getName: () => string;
 //   getAge: () => number;
 // }
-```javascript
+```
 4. 条件类型分配
 
 条件类型在联合类型上是分配的：
@@ -131,7 +131,7 @@ type ToArray<T> = T extends any ? T[] : never;
 
 type StrArrOrNumArr = ToArray<string | number>;
 // string[] | number[]
-```javascript
+```
 5. 元组类型与可变元组
 
 使用元组类型和展开操作符：
@@ -144,7 +144,7 @@ type PushedTuple = Push<Tuple, null>; // [number, string, boolean, null]
 
 type Pop<T extends any[]> = T extends [...infer U, any] ? U : never;
 type PoppedTuple = Pop<Tuple>; // [number, string]
-```javascript
+```
 6. 类型体操：字符串操作
 
 使用条件类型和递归来操作字符串类型：
@@ -155,7 +155,7 @@ type StringToUnion<S extends string> = S extends `${infer C}${infer R}`
   : never;
 
 type T1 = StringToUnion<"hello">; // "h" | "e" | "l" | "o"
-```javascript
+```
 7. 深度 Partial
 
 创建一个递归的 Partial 类型：
@@ -181,7 +181,7 @@ type PartialA = DeepPartial<A>;
 //     d?: number | undefined;
 //   } | undefined;
 // }
-```javascript
+```
 8. 提取函数参数类型
 
 从函数类型中提取参数类型：
@@ -196,7 +196,7 @@ type Parameters<T extends (...args: any) => any> = T extends (
 function foo(a: number, b: string): void {}
 
 type FooParams = Parameters<typeof foo>; // [number, string]
-```javascript
+```
 9. 类型安全的事件发射器
 
 使用泛型和映射类型创建类型安全的事件发射器：
@@ -224,5 +224,5 @@ emitter.on("click", (data) => {
 });
 
 emitter.emit("click", { x: 10, y: 20 });
-```javascript
+```
 这些例子展示了 TypeScript 类型系统的强大功能。它们可以帮助你创建更精确、更灵活的类型定义，从而提高代码的类型安全性和可读性。在实际项目中，这些技术可以用来构建复杂的类型定义，解决各种类型相关的问题。

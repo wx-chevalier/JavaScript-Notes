@@ -6,7 +6,7 @@
 type NonNullable<T> = T extends null | undefined ? never : T;
 
 type Result = NonNullable<string | null | undefined>; // Result is string
-```javascript
+```
 ```ts
 type PortNumber = string | number | null;
 
@@ -34,4 +34,4 @@ serverBuilder
 
 // TypeScript error
 serverBuilder.portNumber = null;
-```javascript
+```

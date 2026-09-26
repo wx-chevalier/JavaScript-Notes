@@ -24,4 +24,4 @@ mapIter(setObject, (value: string) => value.indexOf("Foo")); // number[]
 mapIter(mapObject, ([key, value]: [number, string]) => {
   return key % 2 === 0 ? value : "Odd";
 }); // string[]
-```javascript
+```

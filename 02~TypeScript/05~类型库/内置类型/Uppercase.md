@@ -12,4 +12,4 @@ type T5 = Uppercase<string>; // string
 type T6 = Uppercase<any>; // any
 type T7 = Uppercase<never>; // never
 type T8 = Uppercase<42>; // Error, type 'number' does not satisfy the constraint 'string'
-```javascript
+```
