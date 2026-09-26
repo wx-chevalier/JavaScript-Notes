@@ -548,13 +548,6 @@ o.f();
 
 在 ECMAScript 中使用 Arrow Function 时候，会在创建该 Function 的时候即在创建时就被绑定到了闭合的作用域内，不会收到 new、bind、call 以及 apply 这些方法的影响。
 
-```js
-const asyncFunction = (param, callback) => {
-  window.setTimeout(() => {
-    callback(param);
-  }, 1);
-};
-
 const o = {
   doSomething: function () {
     // Here we passointo the async function,

@@ -328,14 +328,6 @@ function tokenize(code) {
     // ...
   ];
 
-  let statements = code.split(" ");
-  let tokens;
-  REGEXES.forEach((REGEX) => {
-    statements.forEach((statement) => {
-      // ...
-    });
-  });
-
   return tokens;
 }
 
@@ -634,26 +626,6 @@ for (var i = 0; i < programmerOutput.length; i++) {
 }
 ```
 **正例**:
-
-```javascript
-const programmerOutput = [
-  {
-    name: "Uncle Bobby",
-    linesOfCode: 500,
-  },
-  {
-    name: "Suzie Q",
-    linesOfCode: 1500,
-  },
-  {
-    name: "Jimmy Gosling",
-    linesOfCode: 150,
-  },
-  {
-    name: "Gracie Hopper",
-    linesOfCode: 1000,
-  },
-];
 
 var totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
@@ -1281,13 +1253,6 @@ class InventoryTracker {
     this.requester = requester;
   }
 
-  requestItems() {
-    this.items.forEach((item) => {
-      this.requester.requestItem(item);
-    });
-  }
-}
-
 class InventoryRequesterV1 {
   constructor() {
     this.REQ_METHODS = ["HTTP"];
@@ -1435,14 +1400,6 @@ car.save();
 ```
 **正例**:
 
-```javascript
-class Car {
-  constructor() {
-    this.make = "Honda";
-    this.model = "Accord";
-    this.color = "white";
-  }
-
   setMake(make) {
     this.name = name;
     // NOTE: Returning this for chaining
@@ -1504,13 +1461,6 @@ class EmployeeTaxData extends Employee {
 }
 ```
 **正例**:
-
-```javascript
-class Employee {
-  constructor(name, email) {
-    this.name = name;
-    this.email = email;
-  }
 
   setTaxData(ssn, salary) {
     this.taxData = new EmployeeTaxData(ssn, salary);

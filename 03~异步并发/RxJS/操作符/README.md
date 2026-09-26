@@ -106,10 +106,6 @@ input
 ```
 ## 产生值
 
-```js
-// 输入 "hello world"
-const input = Rx.Observable.fromEvent(document.querySelector("input"), "input");
-
 // 传递一个新的值
 input
   .map((event) => event.target.value)
