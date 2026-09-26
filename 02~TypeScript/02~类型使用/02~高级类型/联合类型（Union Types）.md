@@ -11,4 +11,4 @@ function add(a: Combinable, b: Combinable) {
   }
   return a + b;
 }
-```
+```javascript

@@ -32,4 +32,4 @@ const teamEmpty: Record<MemberPosition, null> = {
   intern: null,
   developer: null,
 };
-```
+```javascript

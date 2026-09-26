@@ -6,7 +6,7 @@ Branded types in TypeScript enable the creation of new types by affixing a type 
 
 Imagine a scenario where a function generates a hash from a string input. Without the use of branded types, the function signature lacks specificity regarding the nature of the returned string, potentially leading to confusion or misuse in the codebase.
 
-```
+```javascript
 const generateHash = (input: string): string => {
   return "hashed_" + input; // For demonstration, appending "hashed_" to input
 };
@@ -26,13 +26,12 @@ console.log(hash.toUpperCase());
 
 // Notice the parameters are in incorrect order
 const matches = compareHash(userInput, hash);
-```
-
+```javascript
 # Solution
 
 It's fairly easy to enhance the clarity and safety of the code above by introducing a Branded type. This Branded type ensures that the returned string from the `generateHash` function is explicitly marked as a hash, preventing potential misuse or confusion in the codebase.
 
-```
+```javascript
 // By declaring a unique symbol, we create a distinct marker in TypeScript.
 declare const __brand: unique symbol;
 
@@ -40,11 +39,10 @@ declare const __brand: unique symbol;
 type Branded<Type, Brand> = Type & {
   readonly [__brand]: Brand;
 };
-```
-
+```javascript
 The `__brand` is enclosed in square brackets to denote that it is a computed property with a key that is dynamically determined at compile time. This property is defined using a unique symbol, `__brand`, ensuring that it is unique across the codebase. Unique symbols are opaque and don't have a runtime value; they're simply used as identifiers to prevent accidental collisions.With the `Branded` type defined, the `generateHash` function can be modified to return a value of type `Branded<string, 'Hash'>`. In practice, the returned string will be both a string and carry the specific brand `'Hash'`, making its intended purpose clear.
 
-```
+```javascript
 type Hash = Branded<string, "Hash">;
 
 const generateHash = (input: string): Hash => {
@@ -65,6 +63,5 @@ const _matches = compareHash(userInput, hash);
 
 // This, however, compiles!
 const matches = compareHash(hash, userInput);
-```
-
+```javascript
 By changing the type of the `hash` parameter in `compareHash`, it's possible to eliminate cases where the order of arguments is incorrect. **A runtime bug is now a compile time bug.**

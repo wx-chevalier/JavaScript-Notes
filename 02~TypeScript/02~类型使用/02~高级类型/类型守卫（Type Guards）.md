@@ -14,4 +14,4 @@ function example(x: number | string) {
     console.log(x.toFixed(2)); // x is treated as number here
   }
 }
-```
+```javascript

@@ -22,8 +22,7 @@ const proxy = new Proxy(
 );
 
 // proxy.whatever => null
-```
-
+```javascript
 # Proxy 案例
 
 ## 数据存储
@@ -59,8 +58,7 @@ userObject.name = "David";
 // Get the value from localStorage
 // 可以方便的使用解构获取数据
 const { name } = userObject;
-```
-
+```javascript
 ## 网络请求
 
 ```js
@@ -81,8 +79,7 @@ const www = new Proxy(new URL("https://www"), {
     return new Proxy(target, { get });
   },
 });
-```
-
+```javascript
 访问百度：
 
 ```js
@@ -98,4 +95,4 @@ console.log(response.ok);
 
 console.log(response.status);
 // ==> 200
-```
+```javascript

@@ -12,4 +12,4 @@ type T5 = Capitalize<string>; // string
 type T6 = Capitalize<any>; // any
 type T7 = Capitalize<never>; // never
 type T8 = Capitalize<42>; // Error, type 'number' does not satisfy the constraint 'string'
-```
+```javascript

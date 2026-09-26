@@ -22,8 +22,7 @@ console.log(animalSounds.has("dog")); //logs false
 
 animalSounds.clear();
 console.log(animalSounds.size); //logs 0
-```
-
+```javascript
 # 索引遍历
 
 ```js
@@ -44,8 +43,7 @@ usersMap.forEach(function(username, userId) {
 for (data of usersMap) {
   console.log(data); //Array [1,"sally"]
 }
-```
-
+```javascript
 Map 的键的类型可以是 object、NaN 等等。
 
 ```js
@@ -56,4 +54,4 @@ map.set(obj, 'foobar');
 obj.newProp = 'stuff';
 console.log(map.has(obj)); //logs true
 console.log(map.get(obj)); //logs "foobar"
-```
+```javascript

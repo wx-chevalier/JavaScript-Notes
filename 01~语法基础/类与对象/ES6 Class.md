@@ -10,8 +10,7 @@ class Parent {
 }
 
 class Child extends Parent {}
-```
-
+```javascript
 ```js
 "use strict";
 
@@ -59,8 +58,7 @@ const Child = (function (_Parent) {
 
   return Child;
 })(Parent);
-```
-
+```javascript
 # JavaScript 中类的声明与实例化
 
 JavaScript is a powerful object-oriented programming (OOP) language, however, unlike many traditional programming languages, it uses a prototype-based OOP model which makes its syntax foreign to most developers. In addition, JavaScript also treats functions as first-class objects which may cause further confusion amongst developers who are not familiar with these concepts.
@@ -88,8 +86,7 @@ new C().logProp(); // TypeError: C is not a function
 // But inside the class, the identifier C
 // still works
 new D().logProp(); // constructor: Hi! // logProp: Hi!
-```
-
+```javascript
 ```js
 class A {
   say() {
@@ -117,11 +114,10 @@ c.say();
 
 // [Function: A]
 // null
-```
-
+```javascript
 ## 静态方法
 
-```
+```javascript
 class Obj {
 
   static myMethod(msg) {
@@ -143,8 +139,7 @@ Obj.myMethod(1); // static 1
 const instance = new Obj();
 
 instance.myMethod(2); // instance 2
-```
-
+```javascript
 Access Self Method
 
 ```js
@@ -161,20 +156,17 @@ class A {
 let instanceA = new A(4);
 
 console.log("A.tight", instanceA.tight); //A.tight 8
-```
-
+```javascript
 Remark
 
-```
+```javascript
 this.tight = this.constructor.getResult( input )
-```
-
+```javascript
 is as same as
 
-```
+```javascript
 this.tight = A.getResult( input )
-```
-
+```javascript
 # Class
 
 # 实例化
@@ -185,9 +177,9 @@ this.tight = A.getResult( input )
 
 单例模式的根本目的在于不需要重复初始化一个类，并且在某些情况下能够使用某个对象来进行全局的状态管理，在 ES6 中要实现一个单例类也比较方便：
 
-```
+```javascript
 /*
-  * Setting up block level variable to store class state
+  - Setting up block level variable to store class state
   *, set's to null by default.
 */
 let instance = null;
@@ -204,24 +196,22 @@ class Cache{
         return instance;
       }
 }
-```
-
+```javascript
 要进行测试的话可以用如下方式：
 
-```
+```javascript
  let cache = new Cache()
  console.log(cache.time);
  setTimeout(function(){
    let cache = new Cache();
    console.log(cache.time);
  },4000);
-```
-
+```javascript
 # Definition
 
 从 ECMAScript 6 开始，JavaScript 中有了类(class )这个概念。但需要注意的是，这并不是说：JavaScript 从此变得像其它基于类的面向对象语言一样，有了一种全新的继承模型。JavaScript 中的类只是 JavaScript 现有的、基于原型的继承模型的一种语法包装(语法糖)，它能让我们用更简洁明了的语法实现继承。ES6 的类是一个基本的基于 Prototype 的 OO 模式，它依旧支持原型继承，并且支持父类调用、实例化、静态方法以及构造器，首先看下基本的类表达式定义：
 
-```
+```javascript
 // 匿名类表达式
 const Polygon = class {
   constructor(height, width) {
@@ -237,8 +227,7 @@ const Polygon = class Polygon {
     this.width = width;
   }
 };
-```
-
+```javascript
 下面看一个更全面一点的类的定义：
 
 ```js
@@ -265,17 +254,15 @@ class SkinnedMesh extends THREE.Mesh {
     return new THREE.Matrix4();
   }
 }
-```
-
+```javascript
 ### 变量提升
 
 类声明和函数声明不同的一点是，函数声明存在[变量提升](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)现象，而类声明不会。也就是说，你必须先声明类，然后才能使用它，否则代码会抛出 [`ReferenceError`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError) 异常，像下面这样：
 
-```
+```javascript
 const p = new Polygon(); // ReferenceError
 class Polygon {}
-```
-
+```javascript
 ## 可见域
 
 ### 私有数据
@@ -311,14 +298,12 @@ class Polygon {
 const square = new Polygon(10, 10);
 
 console.log(square.area);
-```
-
+```javascript
 #### 将 JSON 对象映射到 Object
 
-```
+```javascript
 constructor(data) {Object.assign(this, data);}const data = JSON.parse(req.responseText);new User(data);
-```
-
+```javascript
 ### 静态方法
 
 `static` 关键字用来定义类的静态方法。静态方法是指那些不需要对类进行实例化，使用类名就可以直接访问的方法。静态方法经常用来作为工具函数。
@@ -342,14 +327,13 @@ const p1 = new Point(5, 5);
 const p2 = new Point(10, 10);
 
 console.log(Point.distance(p1, p2));
-```
-
+```javascript
 # 继承
 
 ```js
 /**
- * Classes and Inheritance
- * Code Example from http://www.es6fiddle.net/
+ - Classes and Inheritance
+ - Code Example from http://www.es6fiddle.net/
  */
 class Polygon {
   constructor(height, width) {
@@ -384,8 +368,7 @@ s.sayName(); // => Hi, I am a Square.
 console.log(s.area); // => 25
 
 console.log(new Square().area); // => 100
-```
-
+```javascript
 ## 使用 super 关键字引用父类
 
 ```js
@@ -405,8 +388,7 @@ class Lion extends Cat {
     console.log(this.name + " roars.");
   }
 }
-```
-
+```javascript
 ## 通过子类工厂实现简单的合成器
 
 当 ES6 类继承另一个类，被继承的类可以是通过任意表达式创建的动态类：
@@ -416,22 +398,20 @@ class Lion extends Cat {
 const id = (x) => x;
 
 class Foo extends id(Object) {}
-```
-
+```javascript
 这个特性可以允许你实现一种合成器模式，用一个函数来将一个类 `C` 映射到一个新的继承了`C`的类。例如，下面的两个函数 `Storage` 和 `Validation` 是合成器：
 
-```
+```javascript
 const Storage = Sup => class extends Sup {
     save(database) { ··· }
 };
 const Validation = Sup => class extends Sup {
     validate(schema) { ··· }
 };
-```
-
+```javascript
 你可以使用它们去组合生成一个如下的 `Employee` 类：
 
-```
+```javascript
 class Person { ··· }
 class Employee extends Storage(Validation(Person)) { ··· }
-```
+```javascript

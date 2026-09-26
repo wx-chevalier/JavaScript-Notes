@@ -23,4 +23,4 @@ function startServer(handler: RequestHandler, config: ServerConfig): void {
   const port = config.port === null ? 3000 : getPortValue(config.port);
   server.listen(port);
 }
-```
+```javascript

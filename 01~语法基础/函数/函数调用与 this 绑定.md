@@ -14,8 +14,7 @@
     foo(++i);
   }
 })(0);
-```
-
+```javascript
 ```js
 console.log(1);
 (_ => console.log(2))();
@@ -28,8 +27,7 @@ Reflect.construct(function(){console.log(8)}, []);
 Function.prototype.apply.call(console.log, null, [9]);
 Function.prototype.call.call(console.log, null, 10);
 new (require('vm').Script)('console.log(11)‘).runInThisContext();
-```
-
+```javascript
 ```js
 function createNamedFunction(name, fn) {
   return new Function(
@@ -45,8 +43,7 @@ let func = createNamedFunction('namedFunction', () => {
 console.log(func);
 
 func();
-```
-
+```javascript
 [![img](http://p0.qhimg.com/t0151cc8a48b0da097c.gif)](http://p0.qhimg.com/t0151cc8a48b0da097c.gif)
 
 这段代码调用自己自身 3 次, 每次将 i 的值增加 1。每次函数 foo 被调用的时候, 就会创建一个新的执行上下文。一旦上下文执行完毕之后, 它就会从栈中弹出并且返回控制权到下一个上下文当中，直到`全局上下文又再次被访问。
@@ -81,7 +78,7 @@ func();
 
 我们可以用一个具有三个属性的概念性对象来代表执行上下文`：
 
-```
+```javascript
 executionContextObj = {
 
   'scopeChain': { /* 变量对象 + 所有父级执行上下文中的变量对象 */ },
@@ -91,8 +88,7 @@ executionContextObj = {
   'this': {}
 
 }
-```
-
+```javascript
 ### 活动对象 / 变量对象 [AO/VO]
 
 这个`executionContextObj对象在函数调用的时候创建, 但是实在函数真正执行之前。这就是我们所说的第 1 阶段创建阶段`。在这个阶段，解释器通过扫描传入函数的参数，局部函数声明和局部变量声明来创建 executionContextObj 对象。这个扫描的结果就变成了 executionContextObj 中的 variableObject 对象。
@@ -141,11 +137,10 @@ function foo(i) {
 }
 
 foo(22);
-```
-
+```javascript
 在调用`foo(22)的时候 ,创建阶段看起来像是这样
 
-```
+```javascript
 fooExecutionContext = {
 
   scopeChain: { ... },
@@ -173,11 +168,10 @@ fooExecutionContext = {
   this: { ... }
 
 }
-```
-
+```javascript
 你可以发现 ,创建阶段掌管着属性名的定义，而不是给它们赋值，不过参数除外。一旦创建阶段`完成之后，执行流就会进入函数中。在函数执行完之后，激活 / 代码执行阶段看起来像是这样：
 
-```
+```javascript
 fooExecutionContext = {
 
   scopeChain: { ... },
@@ -205,11 +199,10 @@ fooExecutionContext = {
   this: { ... }
 
 }
-```
-
+```javascript
 # bind
 
-```
+```javascript
 Function.prototype.bind = function() {
 
   const fn = this,
@@ -225,8 +218,7 @@ Function.prototype.bind = function() {
   };
 
 };
-```
-
+```javascript
 # JavaScript this
 
 在 Java 等面向对象的语言中，this 关键字的含义是明确且具体的，即指代当前对象。一般在编译期确定下来，或称为编译期绑定。而在 JavaScript 中，this 是动态绑定，或称为运行期绑定的，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，变得有点随意。而在 ES6 中又引入了 Arrow Function 以及 Class，它们对于 this 指针也带来了一定的影响。
@@ -245,8 +237,7 @@ console.log(this === window); // true
 
 this.a = 37;
 console.log(window.a); // 37
-```
-
+```javascript
 ### Simple Function Context( 简单函数上下文 )
 
 在某个函数中，this 的值取决于该函数的调用者。无论是用`hello("world”)`还是 call 这种方式，都取决于传入该函数的对象。不过，在 ES5 的严格或者不严格模式下，同样的调用方式会有不同的结果。
@@ -261,8 +252,7 @@ hello("world");
 
 // 编译为
 hello.call(window, "world");
-```
-
+```javascript
 而如果是 strict 模式下：
 
 ```js
@@ -271,8 +261,7 @@ hello("world");
 
 // 编译为
 hello.call(undefined, "world");
-```
-
+```javascript
 ### DOM Event handler(DOM 事件 )
 
 当某个函数作为事件监听器时，它的 this 值往往被设置为它的调用者。
@@ -295,14 +284,12 @@ const elements = document.getElementsByTagName('*');
 for(const i=0  i<elements.length  i++){
   elements[i].addEventListener('click', bluify, false);
 }
-```
-
+```javascript
 如果是行内的事件监听者，this 指针会被设置为其所在的 DOM 元素：
 
 ```js
 <button onclick="alert(this.tagName.toLowerCase());">Show this</button>
-```
-
+```javascript
 ## Manual Setting: 手动指定 this
 
 ### Closures( 闭包 )
@@ -328,8 +315,7 @@ const o = {
 };
 
 o.doSomething(); // param === this? true
-```
-
+```javascript
 ### 对象方法
 
 如果将某个方法设置为 Object 的一个属性，并且作为对象方法进行调用时，那么方法中的 this 指针会默认指向该 Object。
@@ -345,8 +331,7 @@ person.hello = hello;
 person.hello("world"); // still desugars to person.hello.call(person, "world") [object Object] says hello world
 
 hello("world"); // "[object DOMWindow]world"
-```
-
+```javascript
 这种效果等效于使用 apply/call 进行调用。
 
 ### call/apply: 运行时指定
@@ -372,8 +357,7 @@ Cat.prototype.sayHi.call(fluffybottom); // => fluffy bottom meows loudly!
 whiskers.sayHi.call(fluffybottom); // => fluffy bottom meows loudly!
 Dog.prototype.sayHi.call(whiskers); // => whiskers barks excitedly!
 fluffybottom.sayHi.call(whiskers); // => whiskers barks excitedly!
-```
-
+```javascript
 ### bind: 绑定
 
 ```js
@@ -402,8 +386,7 @@ fluffybottom.sayHi.call(whiskers); // => whiskers barks excitedly!
 |    f.bind()      |      future      |        now        |
 |                  |                  |                  |
 +-------------------+-------------------+-------------------+
-```
-
+```javascript
 很多时候，需要为某个函数指定一个固定的 this 对象，最简单的方式即是使用闭包来获取一个不变的 this 对象。bind 函数的官方解释为：
 
 > Thebind()method creates a new function that, when called, has itsthiskeyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
@@ -427,8 +410,7 @@ getX(); // 9, because in this case, "this" refers to the global object
 // Create a new function with 'this' bound to module
 const boundGetX = getX.bind(module);
 boundGetX(); // 81
-```
-
+```javascript
 bind 方法在 React 中应用的比较广泛，因为 React 声明方程时往往要绑定到 this 指针上。然而在异步编程中，this 指针极有可能指向错误，譬如：
 
 ```js
@@ -451,8 +433,7 @@ const myObj = {
 };
 
 myObj.render();
-```
-
+```javascript
 如果在 getAsyncData 这个异步方程中调用`that.specialFunction();`，是会得到如下的错误显示：
 
 > Uncaught TypeError: Object [object global] has no method 'specialFunction'
@@ -471,8 +452,7 @@ render: function () {
     }.bind(this));
 
 }
-```
-
+```javascript
 bind 方程的支持情况如下：
 
 | Browser           | Version support |
@@ -496,22 +476,19 @@ const boundHello = function (thing) {
 };
 
 boundHello("world");
-```
-
+```javascript
 不过，这种方式仍然存在着一定的问题，ES5 为 Function 对象引入了一个新的 bind 方法来解决这个问题。bind() 方法会创建一个新函数，当这个新函数被调用时，它的 this 值是传递给 bind() 的第一个参数, 它的参数是 bind() 的其他参数和其原本的参数。
 
-```
+```javascript
 fun.bind(thisArg[, arg1[, arg2[, ...]]])
-```
-
+```javascript
 - thisArg 当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。当使用 new 操作符调用绑定函数时，该参数无效。
 - arg1, arg2, ... 当绑定函数被调用时，这些参数加上绑定函数本身的参数会按照顺序作为原函数运行时的参数。
 
 ```js
 const boundHello = person.hello.bind(person);
 boundHello("world"); // "Brendan Eich says hello world"
-```
-
+```javascript
 这种方式在设置回调函数中的 this 指针的时候会起到很大的作用，特别是在 React 中，为了保证指针的稳定性，往往需要为内置方法设置 bind。
 
 ```js
@@ -525,8 +502,7 @@ const person = {
 $("#some-div").click(person.hello.bind(person));
 
 // when the div is clicked, "Alex Russell says hello world" is printed
-```
-
+```javascript
 ```js
 const asyncFunction = (param, callback) => {
   window.setTimeout(() => {
@@ -550,8 +526,7 @@ const o = {
 };
 
 o.doSomething(); // param === this? true
-```
-
+```javascript
 还有一个类似的实例是 array.forEach，在这样一个回调函数中，回调函数的 this 指针是由调用者决定的，完整的 forEach 声明如下：**array.forEach(callback[, thisArg])**，这个传入的 thisArg 即是回调的调用者。
 
 ```js
@@ -568,8 +543,7 @@ const o = {
 o.f();
 //undefined a1
 //undefined a2
-```
-
+```javascript
 ### Arrow Function 绑定
 
 在 ECMAScript 中使用 Arrow Function 时候，会在创建该 Function 的时候即在创建时就被绑定到了闭合的作用域内，不会收到 new、bind、call 以及 apply 这些方法的影响。
@@ -596,4 +570,4 @@ const o = {
 };
 
 o.doSomething(); // param === this? true
-```
+```javascript

@@ -12,8 +12,7 @@ const observable = Rx.Observable.create(function (observer) {
     observer.complete();
   }, 1000);
 });
-```
-
+```javascript
 要调用 Observable 并看到这些值，我们需要订阅 Observable：
 
 ```js
@@ -24,8 +23,7 @@ observable.subscribe({
   complete: () => console.log("done"),
 });
 console.log("just after subscribe");
-```
-
+```javascript
 Observables 是使用 Rx.Observable.create 或创建操作符创建的，并使用观察者来订阅它，然后执行它并发送 next/error/complete 通知给观察者，而且执行可能会被清理。这四个方面全部编码在 Observables 实例中，但某些方面是与其他类型相关的，像 Observer (观察者) 和 Subscription (订阅)。
 
 # 拉取 (Pull) vs. 推送 (Push)
@@ -49,8 +47,7 @@ const observable = Rx.Observable.create(function subscribe(observer) {
     observer.next("hi");
   }, 1000);
 });
-```
-
+```javascript
 Observables 可以使用 create 来创建, 但通常我们使用所谓的创建操作符, 像 of、from、interval、等等。
 
 ```ts
@@ -77,16 +74,14 @@ exists("file.txt").subscribe((exists) =>
 // fs.rename = (pathA, pathB, cb(err, result))
 const rename = Rx.Observable.bindNodeCallback(fs.rename);
 rename("file.txt", "else.txt").subscribe(() => console.log("Renamed!"));
-```
-
+```javascript
 # 订阅 Observables
 
 示例中的 Observable 对象 observable 可以订阅，像这样：
 
 ```js
 observable.subscribe((x) => console.log(x));
-```
-
+```javascript
 observable.subscribe 和 `Observable.create(function subscribe(observer) {...})` 中的 subscribe 有着同样的名字，这并不是一个巧合。在库中，它们是不同的，但从实际出发，你可以认为在概念上它们是等同的。这表明 subscribe 调用在同一 Observable 的多个观察者之间是不共享的。当使用一个观察者调用 observable.subscribe 时，`Observable.create(function subscribe(observer) {...})` 中的 subscribe 函数只服务于给定的观察者。对 observable.subscribe 的每次调用都会触发针对给定观察者的独立设置。
 
 这与像 addEventListener / removeEventListener 这样的事件处理方法 API 是完全不同的。使用 observable.subscribe，在 Observable 中不会将给定的观察者注册为监听器。Observable 甚至不会去维护一个附加的观察者列表。
@@ -110,8 +105,7 @@ const observable = Rx.Observable.create(function subscribe(observer) {
   observer.next(3);
   observer.complete();
 });
-```
-
+```javascript
 Observable 严格遵守自身的规约，所以下面的代码不会发送 "Next" 通知 `4`：
 
 ```js
@@ -122,8 +116,7 @@ const observable = Rx.Observable.create(function subscribe(observer) {
   observer.complete();
   observer.next(4); // 因为违反规约，所以不会发送
 });
-```
-
+```javascript
 在 `subscribe` 中用 `try`/`catch` 代码块来包裹任意代码是个不错的主意，如果捕获到异常的话，会发送 "Error" 通知：
 
 ```js
@@ -137,16 +130,14 @@ const observable = Rx.Observable.create(function subscribe(observer) {
     observer.error(err); // 如果捕获到异常会发送一个错误
   }
 });
-```
-
+```javascript
 # 清理 Observable 执行
 
 因为 Observable 执行可能会是无限的，并且观察者通常希望能在有限的时间内中止执行，所以我们需要一个 API 来取消执行。因为每个执行都是其对应观察者专属的，一旦观察者完成接收值，它必须要一种方法来停止执行，以避免浪费计算能力或内存资源。当调用了 observable.subscribe，观察者会被附加到新创建的 Observable 执行中。这个调用还返回一个对象，即 Subscription (订阅)：
 
 ```ts
 const subscription = observable.subscribe((x) => console.log(x));
-```
-
+```javascript
 Subscription 表示进行中的执行，它有最小化的 API 以允许你取消执行。使用 subscription.unsubscribe() 你可以取消进行中的执行：
 
 ```ts
@@ -154,8 +145,7 @@ const observable = Rx.Observable.from([10, 20, 30]);
 const subscription = observable.subscribe((x) => console.log(x));
 // 稍后：
 subscription.unsubscribe();
-```
-
+```javascript
 当我们使用 create() 方法创建 Observable 时，Observable 必须定义如何清理执行的资源。你可以通过在 function subscribe() 中返回一个自定义的 unsubscribe 函数。举例来说，这是我们如何清理使用了 setInterval 的 interval 执行集合：
 
 ```js
@@ -170,8 +160,7 @@ const observable = Rx.Observable.create(function subscribe(observer) {
     clearInterval(intervalID);
   };
 });
-```
-
+```javascript
 正如 `observable.subscribe` 类似于 `Observable.create(function subscribe() {...})`，从 `subscribe` 返回的 `unsubscribe` 在概念上也等同于 `subscription.unsubscribe`。事实上，如果我们抛开围绕这些概念的 ReactiveX 类型，保留下来的只是相当简单的 JavaScript 。
 
 ```js
@@ -189,6 +178,5 @@ const unsubscribe = subscribe({ next: (x) => console.log(x) });
 
 // 稍后：
 unsubscribe(); // 清理资源
-```
-
+```javascript
 为什么我们要使用像 Observable、Observer 和 Subscription 这样的 Rx 类型？原因是保证代码的安全性(比如 Observable 规约)和操作符的可组合性。

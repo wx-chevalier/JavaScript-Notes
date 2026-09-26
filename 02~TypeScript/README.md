@@ -25,8 +25,7 @@ $ npm install -g typescript
 # 检测是否安装成功
 $ tsc -v
 Version 2.8.3
-```
-
+```javascript
 TypeScript 源文件一般使用 `.ts` 或者 `.tsx` 为后缀，其并不能直接运行在浏览器中而需要进行编译转化，TypeScript 的官方提供了 `tsc` 命令来进行文件编译：
 
 ```sh
@@ -40,8 +39,7 @@ $ tsc *.ts
 
 # 启动后台常驻编译程序
 $ tsc main.ts --watch
-```
-
+```javascript
 在实际的项目中，我们也往往会在项目根目录配置 tsconfig.json 文件，来个性化配置 TypeScript 的编译参数：
 
 ```json
@@ -107,8 +105,7 @@ $ tsc main.ts --watch
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   }
 }
-```
-
+```javascript
 也可以使用 [ts-node](https://github.com/TypeStrong/ts-node) 快速地直接运行 TypeScript 文件：
 
 ```sh
@@ -126,8 +123,7 @@ ts-node -p '"Hello, world!"'
 
 # Pipe scripts to execute with TypeScript.
 echo "console.log('Hello, world!')" | ts-node
-```
-
+```javascript
 # 编译配置
 
 在 tsconfig.json 中，我们可以自定义很多的编译配置项，本节我们即讨论某些典型场景下的配置案例。

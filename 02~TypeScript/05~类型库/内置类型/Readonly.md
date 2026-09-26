@@ -34,4 +34,4 @@ logger.config.level = LogLevel.Error;
 
 // We are able to edit config variable as we please.
 config.level = LogLevel.Error;
-```
+```javascript

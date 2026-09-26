@@ -45,4 +45,4 @@ const newsEntry = getInstance(
   "Last month..."
 );
 // Will log: `Created 1 instances of News class`
-```
+```javascript

@@ -35,14 +35,12 @@
 
 ```javascript
 var yyyymmdstr = moment().format("YYYY/MM/DD");
-```
-
+```javascript
 **正例**:
 
 ```javascript
 var yearMonthDay = moment().format("YYYY/MM/DD");
-```
-
+```javascript
 ### 使用 ES6 的 const 定义常量
 
 反例中使用"var"定义的"常量"是可变的。
@@ -53,14 +51,12 @@ var yearMonthDay = moment().format("YYYY/MM/DD");
 
 ```javascript
 var FIRST_US_PRESIDENT = "George Washington";
-```
-
+```javascript
 **正例**:
 
 ```javascript
 const FIRST_US_PRESIDENT = "George Washington";
-```
-
+```javascript
 ### 对功能类似的变量名采用统一的命名风格
 
 **反例**:
@@ -69,14 +65,12 @@ const FIRST_US_PRESIDENT = "George Washington";
 getUserInfo();
 getClientData();
 getCustomerRecord();
-```
-
+```javascript
 **正例**:
 
 ```javascript
 getUser();
-```
-
+```javascript
 ### 使用易于检索名称
 
 我们需要阅读的代码远比自己写的要多，使代码拥有良好的可读性且易于检索非常重要。阅读变量名晦涩难懂的代码对读者来说是一种相当糟糕的体验。
@@ -89,8 +83,7 @@ getUser();
 for (var i = 0; i < 525600; i++) {
   runCronJob();
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -99,8 +92,7 @@ var MINUTES_IN_A_YEAR = 525600;
 for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
   runCronJob();
 }
-```
-
+```javascript
 ### 使用说明变量(即有意义的变量名)
 
 **反例**:
@@ -111,8 +103,7 @@ saveCityState(
   cityStateRegex.match(cityStateRegex)[1],
   cityStateRegex.match(cityStateRegex)[2]
 );
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -122,8 +113,7 @@ var match = ADDRESS.match(cityStateRegex);
 var city = match[1];
 var state = match[2];
 saveCityState(city, state);
-```
-
+```javascript
 ### 不要绕太多的弯子
 
 显式优于隐式。
@@ -141,8 +131,7 @@ locations.forEach((l) => {
   // l是什么？
   dispatch(l);
 });
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -155,8 +144,7 @@ locations.forEach((location) => {
   ...
   dispatch(location);
 });
-```
-
+```javascript
 ### 避免重复的描述
 
 当类/对象名已经有意义时，对其变量进行命名不需要再次重复。
@@ -173,8 +161,7 @@ var Car = {
 function paintCar(car) {
   car.carColor = "Red";
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -187,8 +174,7 @@ var Car = {
 function paintCar(car) {
   car.color = "Red";
 }
-```
-
+```javascript
 ### 避免无意义的条件判断
 
 **反例**:
@@ -202,16 +188,14 @@ function createMicrobrewery(name) {
     breweryName = "Hipster Brew Co.";
   }
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
 function createMicrobrewery(name) {
   var breweryName = name || "Hipster Brew Co.";
 }
-```
-
+```javascript
 ## **函数**
 
 ### 函数参数 (理想情况下应不超过 2 个)
@@ -228,8 +212,7 @@ JS 定义对象非常方便，当需要多个参数时，可以使用一个对�
 function createMenu(title, body, buttonText, cancellable) {
   ...
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -244,8 +227,7 @@ function createMenu(menuConfig) {
   ...
 }
 
-```
-
+```javascript
 ### 函数功能的单一性
 
 这是软件功能中最重要的原则之一。
@@ -263,8 +245,7 @@ function emailClients(clients) {
     }
   });
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -284,8 +265,7 @@ function isClientActive(client) {
   let clientRecord = database.lookup(client);
   return clientRecord.isActive();
 }
-```
-
+```javascript
 ### 函数名应明确表明其功能
 
 **反例**:
@@ -299,8 +279,7 @@ let date = new Date();
 
 // 很难理解dateAdd(date, 1)是什么意思
 dateAdd(date, 1);
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -310,8 +289,7 @@ function dateAddMonth(date, month) {
 
 let date = new Date();
 dateAddMonth(date, 1);
-```
-
+```javascript
 ### 函数应该只做一层抽象
 
 当函数的需要的抽象多于一层时通常意味着函数功能过于复杂，需将其进行分解以提高其可重用性和可测试性。
@@ -341,8 +319,7 @@ function parseBetterJSAlternative(code) {
     // parse...
   });
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -378,8 +355,7 @@ function parseBetterJSAlternative(code) {
     // parse...
   });
 }
-```
-
+```javascript
 ### 移除重复的代码
 
 永远、永远、永远不要在任何循环下有重复的代码。
@@ -418,8 +394,7 @@ function showManagerList(managers) {
     render(data);
   });
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -444,8 +419,7 @@ function showList(employees) {
     render(data);
   });
 }
-```
-
+```javascript
 ### 采用默认参数精简代码
 
 **反例**:
@@ -455,8 +429,7 @@ function writeForumComment(subject, body) {
   subject = subject || "No Subject";
   body = body || "No text";
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -464,8 +437,7 @@ function writeForumComment(subject = 'No subject', body = 'No text') {
   ...
 }
 
-```
-
+```javascript
 ### 使用 Object.assign 设置默认对象
 
 **反例**:
@@ -487,8 +459,7 @@ function createMenu(config) {
 }
 
 createMenu(menuConfig);
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -515,8 +486,7 @@ function createMenu(config) {
 }
 
 createMenu(menuConfig);
-```
-
+```javascript
 ### 不要使用标记(Flag)作为函数参数
 
 这通常意味着函数的功能的单一性已经被破坏。此时应考虑对函数进行再次划分。
@@ -531,8 +501,7 @@ function createFile(name, temp) {
     fs.create(name);
   }
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -543,8 +512,7 @@ function createTempFile(name) {
 ----------function createFile(name) {
   fs.create(name);
 };
-```
-
+```javascript
 ### 避免副作用
 
 当函数产生了除了“接受一个值并返回一个结果”之外的行为时，称该函数产生了副作用。比如写文件、修改全局变量或将你的钱全转给了一个陌生人等。
@@ -565,8 +533,7 @@ function splitIntoFirstAndLastName() {
 splitIntoFirstAndLastName();
 
 console.log(name); // ['Ryan', 'McDermott'];
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -579,8 +546,7 @@ var newName = splitIntoFirstAndLastName(name);
 
 console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
-```
-
+```javascript
 ### 不要写全局函数
 
 在 JS 中污染全局是一个非常不好的实践，这么做可能和其他库起冲突，且调用你的 API 的用户在实际环境中得到一个 exception 前对这一情况是一无所知的。
@@ -608,8 +574,7 @@ Array.prototype.diff = function (comparisonArray) {
 
   return values;
 };
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -635,8 +600,7 @@ class SuperArray extends Array {
     return values;
   }
 }
-```
-
+```javascript
 ### 采用函数式编程
 
 函数式的编程具有更干净且便于测试的特点。尽可能的使用这种风格吧。
@@ -668,8 +632,7 @@ var totalOutput = 0;
 for (var i = 0; i < programmerOutput.length; i++) {
   totalOutput += programmerOutput[i].linesOfCode;
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -695,8 +658,7 @@ const programmerOutput = [
 var totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
   .reduce((acc, linesOfCode) => acc + linesOfCode, 0);
-```
-
+```javascript
 ### 封装判断条件
 
 **反例**:
@@ -705,8 +667,7 @@ var totalOutput = programmerOutput
 if (fsm.state === "fetching" && isEmpty(listNode)) {
   /// ...
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -717,8 +678,7 @@ function shouldShowSpinner(fsm, listNode) {
 if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
   // ...
 }
-```
-
+```javascript
 ### 避免“否定情况”的判断
 
 **反例**:
@@ -731,8 +691,7 @@ function isDOMNodeNotPresent(node) {
 if (!isDOMNodeNotPresent(node)) {
   // ...
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -743,8 +702,7 @@ function isDOMNodePresent(node) {
 if (isDOMNodePresent(node)) {
   // ...
 }
-```
-
+```javascript
 ### 避免条件判断
 
 这看起来似乎不太可能。
@@ -769,8 +727,7 @@ class Airplane {
     }
   }
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -798,8 +755,7 @@ class Cessna extends Airplane {
     return getMaxAltitude() - getFuelExpenditure();
   }
 }
-```
-
+```javascript
 ### 避免类型判断(part 1)
 
 JS 是弱类型语言，这意味着函数可接受任意类型的参数。
@@ -816,16 +772,14 @@ function travelToTexas(vehicle) {
     vehicle.drive(this.currentLocation, new Location("texas"));
   }
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
 function travelToTexas(vehicle) {
   vehicle.move(this.currentLocation, new Location("texas"));
 }
-```
-
+```javascript
 ### 避免类型判断(part 2)
 
 如果需处理的数据为字符串，整型，数组等类型，无法使用多态并仍有必要对其进行类型检测时，可以考虑使用 TypeScript。
@@ -843,16 +797,14 @@ function combine(val1, val2) {
     throw new Error("Must be of type String or Number");
   }
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
 function combine(val1, val2) {
   return val1 + val2;
 }
-```
-
+```javascript
 ### 避免过度优化
 
 现代的浏览器在运行时会对代码自动进行优化。有时人为对代码进行优化可能是在浪费时间。
@@ -868,16 +820,14 @@ function combine(val1, val2) {
 for (var i = 0, len = list.length; i < len; i++) {
   // ...
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
 for (var i = 0; i < list.length; i++) {
   // ...
 }
-```
-
+```javascript
 ### 删除无效的代码
 
 不再被调用的代码应及时删除。
@@ -895,8 +845,7 @@ function newRequestModule(url) {
 
 var req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -906,8 +855,7 @@ function newRequestModule(url) {
 
 var req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
-```
-
+```javascript
 ## **对象和数据结构**
 
 ### 使用 getters 和 setters
@@ -936,8 +884,7 @@ let bankAccount = new BankAccount();
 
 // Buy shoes...
 bankAccount.balance = bankAccount.balance - 100;
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -958,8 +905,7 @@ let bankAccount = new BankAccount();
 
 // Buy shoes...
 bankAccount.withdraw(100);
-```
-
+```javascript
 ### 让对象拥有私有成员
 
 可以通过闭包完成
@@ -979,8 +925,7 @@ var employee = new Employee("John Doe");
 console.log("Employee name: " + employee.getName()); // Employee name: John Doe
 delete employee.name;
 console.log("Employee name: " + employee.getName()); // Employee name: undefined
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -998,8 +943,7 @@ var employee = new Employee("John Doe");
 console.log("Employee name: " + employee.getName()); // Employee name: John Doe
 delete employee.name;
 console.log("Employee name: " + employee.getName()); // Employee name: John Doe
-```
-
+```javascript
 ## **类**
 
 ### 单一职责原则 (SRP)
@@ -1028,8 +972,7 @@ class UserSettings {
     // ...
   }
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1055,8 +998,7 @@ class UserSettings {
     }
   }
 }
-```
-
+```javascript
 ### 开/闭原则 (OCP)
 
 “代码实体(类，模块，函数等)应该易于扩展，难于修改。”
@@ -1077,8 +1019,7 @@ class AjaxRequester {
     // ...
   }
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1095,8 +1036,7 @@ class AjaxRequester {
     this.HTTP_METHODS.push(method);
   }
 }
-```
-
+```javascript
 ### 利斯科夫替代原则 (LSP)
 
 “子类对象应该能够替换其超类对象被使用”。
@@ -1160,8 +1100,7 @@ function renderLargeRectangles(rectangles) {
 
 let rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1229,8 +1168,7 @@ function renderLargeShapes(shapes) {
 
 let shapes = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeShapes(shapes);
-```
-
+```javascript
 ### 接口隔离原则 (ISP)
 
 “客户端不应该依赖它不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。”
@@ -1261,8 +1199,7 @@ let $ = new DOMTraverser({
   animationModule: function () {}, // Most of the time, we won't need to animate when traversing.
   // ...
 });
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1295,8 +1232,7 @@ let $ = new DOMTraverser({
     animationModule: function () {},
   },
 });
-```
-
+```javascript
 ### 依赖反转原则 (DIP)
 
 该原则有两个核心点：
@@ -1335,8 +1271,7 @@ class InventoryRequester {
 
 let inventoryTracker = new InventoryTracker(["apples", "bananas"]);
 inventoryTracker.requestItems();
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1380,8 +1315,7 @@ let inventoryTracker = new InventoryTracker(
   new InventoryRequesterV2()
 );
 inventoryTracker.requestItems();
-```
-
+```javascript
 ### 使用 ES6 的 classes 而不是 ES5 的 Function
 
 典型的 ES5 的类(function)在继承、构造和方法定义方面可读性较差。
@@ -1428,8 +1362,7 @@ var Human = function (age, furColor, languageSpoken) {
 Human.prototype = Object.create(Mammal.prototype);
 Human.prototype.constructor = Human;
 Human.prototype.speak = function () {};
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1458,8 +1391,7 @@ class Human extends Mammal {
 
   speak() {}
 }
-```
-
+```javascript
 ### 使用方法链
 
 这里我们的理解与《代码整洁之道》的建议有些不同。
@@ -1500,8 +1432,7 @@ car.setColor("pink");
 car.setMake("Ford");
 car.setModel("F-150");
 car.save();
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1536,8 +1467,7 @@ class Car {
 }
 
 let car = new Car().setColor("pink").setMake("Ford").setModel("F-150").save();
-```
-
+```javascript
 ### 优先使用组合模式而非继承
 
 在著名的[设计模式](https://en.wikipedia.org/wiki/Design_Patterns)一书中提到，应多使用组合模式而非继承。
@@ -1572,8 +1502,7 @@ class EmployeeTaxData extends Employee {
 
   // ...
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1597,8 +1526,7 @@ class EmployeeTaxData {
 
   // ...
 }
-```
-
+```javascript
 ## **测试**
 
 [一些好的覆盖工具](http://gotwarlost.github.io/istanbul/)。
@@ -1629,8 +1557,7 @@ describe("MakeMomentJSGreatAgain", function () {
     assert.equal("03/01/2015", date);
   });
 });
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1655,8 +1582,7 @@ describe("MakeMomentJSGreatAgain", function () {
     assert.equal("03/01/2015", date);
   });
 });
-```
-
+```javascript
 ## **并发**
 
 ### 用 Promises 替代回调
@@ -1682,8 +1608,7 @@ require("request").get(
     }
   }
 );
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1698,8 +1623,7 @@ require("request-promise")
   .catch(function (err) {
     console.error(err);
   });
-```
-
+```javascript
 ### Async/Await 是较 Promises 更好的选择
 
 Promises 是较回调而言更好的一种选择，但 ES7 中的 async 和 await 更胜过 Promises。
@@ -1720,8 +1644,7 @@ require("request-promise")
   .catch(function (err) {
     console.error(err);
   });
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1739,8 +1662,7 @@ async function getCleanCodeArticle() {
     console.log(err);
   }
 }
-```
-
+```javascript
 ## **错误处理**
 
 错误抛出是个好东西！这使得你能够成功定位运行状态中的程序产生错误的位置。
@@ -1759,8 +1681,7 @@ try {
 } catch (error) {
   console.log(error);
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1775,8 +1696,7 @@ try {
   reportErrorToService(error);
   // OR do all three!
 }
-```
-
+```javascript
 ### 不要忽略被拒绝的 promises
 
 理由同 `try/catch`。
@@ -1791,8 +1711,7 @@ getdata()
   .catch((error) => {
     console.log(error);
   });
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1809,8 +1728,7 @@ getdata()
     reportErrorToService(error);
     // OR do all three!
   });
-```
-
+```javascript
 ## **格式化**
 
 格式化是一件主观的事。如同这里的许多规则一样，这里并没有一定/立刻需要遵守的规则。可以在[这里](http://standardjs.com/rules.html)完成格式的自动化。
@@ -1835,8 +1753,7 @@ function restore_database() {}
 
 class animal {}
 class Alpaca {}
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1851,8 +1768,7 @@ function restoreDatabase() {}
 
 class Animal {}
 class Alpaca {}
-```
-
+```javascript
 ### 调用函数的函数和被调函数应放在较近的位置
 
 当函数间存在相互调用的情况时，应将两者置于较近的位置。
@@ -1897,8 +1813,7 @@ class PerformanceReview {
 
 let review = new PerformanceReview(user);
 review.perfReview();
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1937,8 +1852,7 @@ class PerformanceReview {
 
 let review = new PerformanceReview(employee);
 review.perfReview();
-```
-
+```javascript
 ## **注释**
 
 ### 只对存在一定业务逻辑复杂性的代码进行注释
@@ -1965,8 +1879,7 @@ function hashIt(data) {
     hash = hash & hash;
   }
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -1982,8 +1895,7 @@ function hashIt(data) {
     hash = hash & hash;
   }
 }
-```
-
+```javascript
 ### 不要在代码库中遗留被注释掉的代码
 
 版本控制的存在是有原因的。让旧代码存在于你的 history 里吧。
@@ -1995,14 +1907,12 @@ doStuff();
 // doOtherStuff();
 // doSomeMoreStuff();
 // doSoMuchStuff();
-```
-
+```javascript
 **正例**:
 
 ```javascript
 doStuff();
-```
-
+```javascript
 ### 不需要版本更新类型注释
 
 记住，我们可以使用版本控制。废代码、被注释的代码及用注释记录代码中的版本更新说明都是没有必要的。
@@ -2013,24 +1923,22 @@ doStuff();
 
 ```javascript
 /**
- * 2016-12-20: Removed monads, didn't understand them (RM)
- * 2016-10-01: Improved using special monads (JP)
- * 2016-02-03: Removed type-checking (LI)
- * 2015-03-14: Added combine with type-checking (JR)
+ - 2016-12-20: Removed monads, didn't understand them (RM)
+ - 2016-10-01: Improved using special monads (JP)
+ - 2016-02-03: Removed type-checking (LI)
+ - 2015-03-14: Added combine with type-checking (JR)
  */
 function combine(a, b) {
   return a + b;
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
 function combine(a, b) {
   return a + b;
 }
-```
-
+```javascript
 ### 避免位置标记
 
 这些东西通常只能代码麻烦，采用适当的缩进就可以了。
@@ -2052,8 +1960,7 @@ let $scope.model = {
 let actions = function() {
   // ...
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
@@ -2065,8 +1972,7 @@ let $scope.model = {
 let actions = function() {
   // ...
 }
-```
-
+```javascript
 ### 避免在源文件中写入法律评论
 
 将你的 `LICENSE` 文件置于源码目录树的根目录。
@@ -2101,12 +2007,11 @@ SOFTWARE
 function calculateBill() {
   // ...
 }
-```
-
+```javascript
 **正例**:
 
 ```javascript
 function calculateBill() {
   // ...
 }
-```
+```javascript

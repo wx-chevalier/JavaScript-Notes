@@ -12,4 +12,4 @@ function updateUser(id: UserId): void {
 declare const id: GroupId;
 
 updateUser(id); // Error: Argument of type '`group_${string}`' is not assignable to parameter of type '`user_${string}`'
-```
+```javascript

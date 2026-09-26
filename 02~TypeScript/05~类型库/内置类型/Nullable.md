@@ -10,4 +10,4 @@ function process(value: Nullable<string>) {
     console.log(value.toUpperCase());
   }
 }
-```
+```javascript

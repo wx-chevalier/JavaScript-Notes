@@ -18,4 +18,4 @@ function renderAnimalHoverInfo(animals: AnimalShortInfo[]): HTMLElement {
   // Internal implementation.
   return container;
 }
-```
+```javascript

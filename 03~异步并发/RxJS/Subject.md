@@ -21,8 +21,7 @@ observerA: 1;
 observerB: 1;
 observerA: 2;
 observerB: 2;
-```
-
+```javascript
 ## Observable vs Subject
 
 The subject is another Observable type in RxJS. Subjects like Observables can emit multiple event values. However, Subjects allow subscribers of the Subject to push back or trigger their own events on the Subject. Here is what the Subject API looks like,
@@ -45,8 +44,7 @@ subject.next("missed message from Subject");
 subject.subscribe((v) => console.log(v));
 
 subject.next("hello from subject!");
-```
-
+```javascript
 We instantiate the Subject class. With the Subject instance, we can immediately trigger events outside of the constructor by calling next(). Now anyone can listen or trigger events on the Subject. Notice how we call next and emit ‘missed message from Subject’ before we have subscribed to the Subject? Subjects, unlike regular Observables, are what we would call “Hot”. A hot Observable is an Observable that can start emitting events before you subscribe. This means you can miss previous events that have already emitted.
 
 Subjects, unlike Observables, share their work with all subscribers. Unlike our first Observable that created a setTimeout for each subscriber, this Subject would share that work with all subscribers. What if we subscribe late to our Subject and want to get the previous value we missed? Well, that’s where our next Subject type comes in, the ReplaySubject.
@@ -72,12 +70,12 @@ setTimeout(() => {
 }, 2000)
 
 /*
- * A next: 0
- * A next: 1
- * A next: 2
- * B next: 0
- * B next: 1
- * B next: 2
+ - A next: 0
+ - A next: 1
+ - A next: 2
+ - B next: 0
+ - B next: 1
+ - B next: 2
  */
 
 // 如果是同一个 shared Observable execution 的话，B的第一个 emit 的值应该是 2 而不是 0，并且只有且仅有一个值 2
@@ -103,13 +101,12 @@ setTimeout(() => {
 }, 2000)
 
 /*
- * A next: 0
- * A next: 1
- * A next: 2
- * B next: 2
+ - A next: 0
+ - A next: 1
+ - A next: 2
+ - B next: 2
  */
-```
-
+```javascript
 # multicast
 
 ```js
@@ -140,8 +137,7 @@ const subscriberOne = multi.subscribe((val) => console.log(val));
 const subscriberTwo = multi.subscribe((val) => console.log(val));
 //subscribe subject to source
 multi.connect();
-```
-
+```javascript
 # 引用计数
 
 通常，当第一个观察者到达时我们想要自动地连接，而当最后一个观察者取消订阅时我们想要自动地取消共享执行。我们可以使用 ConnectableObservable 的 refCount() 方法(引用计数)，这个方法返回 Observable，这个 Observable 会追踪有多少个订阅者。当订阅者的数量从 0 变成 1，它会调用 connect() 以开启共享的执行。当订阅者数量从 1 变成 0 时，它会完全取消订阅，停止进一步的执行。
@@ -200,8 +196,7 @@ setTimeout(() => {
 "observerC subscribed"
 "observerC: 0"
 */
-```
-
+```javascript
 refCount() 只存在于 ConnectableObservable，它返回的是 Observable，而不是另一个 ConnectableObservable 。
 
 # BehaviorSubject
@@ -234,8 +229,7 @@ observerB: 2
 observerA: 3
 observerB: 3
 **/
-```
-
+```javascript
 # ReplaySubject
 
 ReplaySubject 类似于 BehaviorSubject，它可以发送旧值给新的订阅者，但它还可以记录 Observable 执行的一部分。ReplaySubject 记录 Observable 执行中的多个值并将其回放给新的订阅者。当创建 ReplaySubject 时，你可以指定回放多少个值：
@@ -269,8 +263,7 @@ observerB: 4
 observerA: 5
 observerB: 5
 **/
-```
-
+```javascript
 除了缓冲数量，你还可以指定 window time (以毫秒为单位)来确定多久之前的值可以记录。在下面的示例中，我们使用了较大的缓存数量 100，但 window time 参数只设置了 500 毫秒。
 
 ```js
@@ -288,8 +281,7 @@ setTimeout(() => {
     next: (v) => console.log("observerB: " + v),
   });
 }, 1000);
-```
-
+```javascript
 从下面的输出可以看出，第二个观察者得到的值是`3`、`4`、`5`，这三个值是订阅发生前的`500`毫秒内发生的：
 
 ```none
@@ -304,8 +296,7 @@ observerB: 5
 observerA: 6
 observerB: 6
 ...
-```
-
+```javascript
 # AsyncSubject
 
 AsyncSubject 是另一个 Subject 变体，只有当 Observable 执行完成时(执行 `complete()`)，它才会将执行的最后一个值发送给观察者。
@@ -328,13 +319,11 @@ subject.subscribe({
 
 subject.next(5);
 subject.complete();
-```
-
+```javascript
 输出：
 
 ```none
 observerA: 5
 observerB: 5
-```
-
+```javascript
 AsyncSubject 和 [`last()`](https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-last) 操作符类似，因为它也是等待 `complete` 通知，以发送一个单个值。
